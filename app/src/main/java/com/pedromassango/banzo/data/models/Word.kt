@@ -14,7 +14,9 @@ class Word(
         var ptWord: String,
         var translation: String,
         var learning: Boolean = false,
-        var learned: Boolean = false): Parcelable{
+        var learned: Boolean = false,
+        var failCount: Int = 0,
+        var hitCounter: Int = 0): Parcelable{
         constructor(parcel: Parcel) : this(
                 parcel.readString(),
                 parcel.readString(),

@@ -32,7 +32,7 @@ class WritingFragment : Fragment(), View.OnClickListener {
     }
 
     private lateinit var viewModel: LearnViewModel
-    private lateinit var iLastWriteFragmentListener: ILastWriteFragmentListener
+    private lateinit var iWriteFragmentListener: IWriteFragmentListener
 
     private var wordToLearn: Word? = null
 
@@ -63,7 +63,8 @@ class WritingFragment : Fragment(), View.OnClickListener {
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        iLastWriteFragmentListener = (context as ILastWriteFragmentListener)
+        // get fragment listener from activity
+        iWriteFragmentListener = (context as IWriteFragmentListener)
     }
 
     private var canClick = true
@@ -76,17 +77,25 @@ class WritingFragment : Fragment(), View.OnClickListener {
         }
         canClick = false
 
-        //change EditText background ad text color
+        // handle hit or missed this word
         textView?.postDelayed({
-            if (translation.trim().equals(wordToLearn!!.ptWord.trim(), true)) {
-                edt_response.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.green, null))
-            } else {
-                edt_response.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.red, null))
+            when(translation.trim().equals(wordToLearn!!.ptWord.trim(), true)){
+                true ->{
+                    // user hit that word
+                    iWriteFragmentListener.onLearnWordResult(wordToLearn, true)
+                    edt_response.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.green, null))
+                }
+                false -> {
+                    // user missed this word
+                    iWriteFragmentListener.onLearnWordResult(wordToLearn, false)
+                    edt_response.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.red, null))
+                }
             }
 
             // change text color
             edt_response.setTextColor(ResourcesCompat.getColor(resources, R.color.white, null))
         }, LearningActivity.PAUSE_SHOW_ANSWER_TIME)
+
 
         // sleep a while, and notify activity if it is the last fragment
         // or got to next fragment
@@ -95,7 +104,7 @@ class WritingFragment : Fragment(), View.OnClickListener {
 
             // if last fragment, notify activity, else go to next fragment
             when (arguments!!.getBoolean(KEY_LAST_FRAGMENT)) {
-                true -> iLastWriteFragmentListener.onLearnWriteFinished()
+                true -> iWriteFragmentListener.onLearnWritingFinished()
                 false -> (activity!! as LearningActivity).nextFragment()
             }
         }, LearningActivity.PAUSE_SCREEN_TIME)

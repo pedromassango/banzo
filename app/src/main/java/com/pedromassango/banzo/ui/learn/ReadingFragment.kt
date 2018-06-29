@@ -38,7 +38,7 @@ class ReadingFragment : Fragment(), View.OnClickListener {
 
     private lateinit var viewModel: LearnViewModel
     private lateinit var fakeWordsObserver: Observer<List<Word>>
-    private lateinit var iLastReadingFragmentListener: ILastReadingFragmentListener
+    private lateinit var iReadFragmentListener: IReadFragmentListener
 
     private var wordToLearn: Word? = null
     private val textViews = arrayListOf<TextView>()
@@ -107,7 +107,7 @@ class ReadingFragment : Fragment(), View.OnClickListener {
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        iLastReadingFragmentListener = (context as ILastReadingFragmentListener)
+        iReadFragmentListener = (context as IReadFragmentListener)
     }
 
     private var canClick = true
@@ -119,15 +119,25 @@ class ReadingFragment : Fragment(), View.OnClickListener {
 
         val translation = (textView as TextView).text
 
-        // change clicked textView text and background color
+        // handle hit or missed this word
         textView.postDelayed({
-            if (translation == wordToLearn!!.ptWord) {
-                textView.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.green, null))
-            } else {
-                textView.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.red, null))
+            when (translation == wordToLearn!!.ptWord) {
+                true -> {
+                    // user hit that word
+                    iReadFragmentListener.onLearnWordResult(wordToLearn, true)
+                    textView.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.green, null))
+                }
+                false -> {
+                    // user missed this word
+                    iReadFragmentListener.onLearnWordResult(wordToLearn, false)
+                    textView.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.red, null))
+                }
             }
+
+            // change text color
             textView.setTextColor(ResourcesCompat.getColor(resources, R.color.white, null))
         }, LearningActivity.PAUSE_SHOW_ANSWER_TIME)
+
 
         // sleep a while, and notify activity if it is the last fragment
         // or got to next fragment
@@ -136,7 +146,7 @@ class ReadingFragment : Fragment(), View.OnClickListener {
 
             // if last fragment, notify activity else go to next fragment
             when (arguments!!.getBoolean(KEY_LAST_FRAGMENT)) {
-                true -> iLastReadingFragmentListener.onLearnReadingFinished()
+                true -> iReadFragmentListener.onLearnReadingFinished()
                 false -> (activity!! as LearningActivity).nextFragment()
             }
         }, LearningActivity.PAUSE_SCREEN_TIME)
