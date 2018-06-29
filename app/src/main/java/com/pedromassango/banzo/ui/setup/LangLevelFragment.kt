@@ -11,7 +11,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pedromassango.banzo.MainActivity
@@ -22,6 +21,7 @@ import com.pedromassango.banzo.data.models.Level
 import com.pedromassango.banzo.data.models.Word
 import com.pedromassango.banzo.data.preferences.PreferencesHelper
 import com.pedromassango.banzo.enums.LanguageLevels
+import com.pedromassango.banzo.enums.LanguagestTypes
 import com.pedromassango.banzo.extras.ActivityUtils
 import com.pedromassango.banzo.extras.FileUtils
 import com.pedromassango.banzo.services.DateChangedReceiver
@@ -100,17 +100,17 @@ class LangLevelFragment : Fragment(), (Level) -> Unit {
         Thread {
 
             val fileUtils = FileUtils(resources.assets)
-            val portugueseWords = fileUtils.read(FileUtils.LANGUAGE_PORTUGUESE)
-            val englishWords = fileUtils.read(FileUtils.LANGUAGE_ENGLISH)
+            val portugueseWords = fileUtils.read(LanguagestTypes.PORTUGUES)
+            val translationhWords = fileUtils.read(selectedLanguage.type)
 
             // get all words from assets, and store in database
             portugueseWords.forEachIndexed { index, ptWord ->
-                val enWord = englishWords[index]
+                val translationWord = translationhWords[index]
 
                 // Word model class to save in database
                 val word = Word(
                         ptWord = ptWord,
-                        translation = enWord
+                        translation = translationWord
                 )
 
                 // save word in database

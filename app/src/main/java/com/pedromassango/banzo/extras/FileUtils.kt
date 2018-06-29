@@ -1,6 +1,7 @@
 package com.pedromassango.banzo.extras
 
 import android.content.res.AssetManager
+import com.pedromassango.banzo.enums.LanguagestTypes
 import timber.log.Timber
 import java.io.BufferedReader
 import java.io.IOException
@@ -11,17 +12,13 @@ import java.io.InputStreamReader
  */
 class FileUtils(private val assetsManager: AssetManager) {
 
-    companion object {
-        const val LANGUAGE_PORTUGUESE = 0
-        const val LANGUAGE_ENGLISH = 1
-    }
-
-    fun read(type: Int): ArrayList<String> {
+    fun read(type: LanguagestTypes): ArrayList<String> {
         var reader: BufferedReader? = null
         val result = arrayListOf<String>()
 
         val fileName = when(type){
-            LANGUAGE_ENGLISH -> "en_words.txt"
+            LanguagestTypes.ENGLISH -> "en_words.txt"
+            LanguagestTypes.QUIMBUNDO -> "pt_words.txt" //TODO: replace to -> "qb_words.txt"
             else -> "pt_words.txt"
         }
 

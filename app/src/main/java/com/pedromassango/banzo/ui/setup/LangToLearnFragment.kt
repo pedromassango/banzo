@@ -13,6 +13,7 @@ import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.pedromassango.banzo.enums.LanguagestTypes
 import kotlinx.android.synthetic.main.fragment_lang_to_learn.*
 import kotlinx.android.synthetic.main.fragment_lang_to_learn.view.*
 
@@ -25,8 +26,8 @@ class LangToLearnFragment : Fragment(), (Language) -> Unit {
 
     // Available languages to learn
     private val languages = arrayListOf(
-            Language("Inglês", "en"),
-            Language("Quimbundo", "qb")
+            Language("Inglês", LanguagestTypes.ENGLISH),
+            Language("Quimbundo", LanguagestTypes.QUIMBUNDO)
     )
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
