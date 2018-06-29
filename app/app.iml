@@ -126,7 +126,6 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/instant_run_merged_manifests" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/javac" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/jniLibs" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/lint_jar" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/merged_assets" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/merged_manifests" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/prebuild" />
@@ -167,6 +166,7 @@
     <orderEntry type="library" name="Gradle: androidx.cursoradapter:cursoradapter-1.0.0-alpha3" level="project" />
     <orderEntry type="library" name="Gradle: androidx.room:room-common:2.0.0-alpha1@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.core:core-ktx-1.0.0-alpha3" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.preference:preference-1.0.0-alpha3" level="project" />
     <orderEntry type="library" name="Gradle: androidx.slidingpanelayout:slidingpanelayout-1.0.0-alpha3" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.navigation:navigation-runtime-ktx-1.0.0-alpha02" level="project" />
     <orderEntry type="library" name="Gradle: androidx.arch.core:core-runtime-2.0.0-alpha1" level="project" />

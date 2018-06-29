@@ -11,6 +11,7 @@
         <item name="android:statusBarColor" tools:targetApi="lollipop">@android:color/transparent</item>
         <item name="android:fontFamily">@font/gotham_rounded_book</item>
         <item name="buttonStyle">@style/MyButtonStyle</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
     </style>
 
     <style name="MyButtonStyle" parent="Widget.MaterialComponents.Button">

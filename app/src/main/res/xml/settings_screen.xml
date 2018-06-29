@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Preference
+        android:layout="@layout/install_paid_version"/>
+
+    <Preference android:title="Palavras aprendidas"
+        android:summary="Todas palavras aprendidas"/>
+
+    <Preference android:title="Palavras por dia"
+        android:key="prefs_max_daily_words"
+        android:summary="8"/>
+
+    <CheckBoxPreference android:title="Lembrar-me"
+        android:key="prefs_reminder"
+        android:defaultValue="true"
+        android:summaryOff="Desativado"
+        android:summaryOn="Ativado"/>
+
+    <Preference android:title="Avaliar app"
+        android:key="prefs_rate_app"/>
+
+    <Preference android:title="Partilhar este app"
+        android:key="prefs_share_app"/>
+
+</PreferenceScreen>

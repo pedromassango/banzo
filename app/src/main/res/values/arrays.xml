@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer-array name="words_per_day_values">
+        <item>4</item>
+        <item>8</item>
+    </integer-array>
+
+</resources>

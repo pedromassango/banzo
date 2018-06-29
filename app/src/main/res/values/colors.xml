@@ -7,6 +7,7 @@
     <color name="colorAccentSetup">@color/colorAccentLight</color>
     <color name="secondaryText">#212121</color>
     <color name="lessWhite">#d1d1d1</color>
+    <color name="lessWhiteLight">#edecec</color>
     <color name="white">#fff</color>
     <color name="red">#b71c1c</color>
     <color name="green">#1b8b11</color>

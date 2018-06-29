@@ -18,7 +18,7 @@ class FileUtils(private val assetsManager: AssetManager) {
 
         val fileName = when(type){
             LanguagestTypes.ENGLISH -> "en_words.txt"
-            LanguagestTypes.QUIMBUNDO -> "pt_words.txt" //TODO: replace to -> "qb_words.txt"
+            LanguagestTypes.QUIMBUNDO -> "en_words.txt" //TODO: replace to -> "qb_words.txt"
             else -> "pt_words.txt"
         }
 

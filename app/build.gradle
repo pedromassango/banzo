@@ -60,4 +60,5 @@ dependencies {
     // Tests
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha3'
+    implementation 'com.android.support:preference-v7:28.0.3'
 }
