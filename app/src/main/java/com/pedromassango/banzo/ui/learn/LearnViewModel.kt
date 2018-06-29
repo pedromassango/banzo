@@ -14,24 +14,14 @@ class LearnViewModel : ViewModel() {
     private val wordsDatabase = WordsDatabase.getInstance().wordDAO
 
     // learnig words
-    private var learningWords: MutableLiveData<List<Word>>? = null
+    private var learningWords: LiveData<List<Word>>? = null
     // fake words
     private var fakeWords: LiveData<List<Word>>? = null
 
-    fun getLearningWords(): MutableLiveData<List<Word>>? {
+    fun getLearningWords(): LiveData<List<Word>>? {
         if(learningWords == null) {
             Timber.i("Getting learning words...")
-            learningWords = MutableLiveData()
-            wordsDatabase.getLearningWords()?.observeForever {
-                // set this words in learning state
-                it?.forEach{
-                    it.learning = true
-                    wordsDatabase.update(it)
-                }
-                // expose the data
-                learningWords?.postValue(it)
-                Timber.i("Done...")
-            }
+            learningWords = wordsDatabase.getLearningWords()
         }
 
         return learningWords
@@ -39,9 +29,13 @@ class LearnViewModel : ViewModel() {
 
     fun getFakeWords(): LiveData<List<Word>>?{
         if(fakeWords == null){
-            fakeWords = MutableLiveData()
+            Timber.i("Getting fake words...")
             fakeWords = wordsDatabase.getFakeWords()
         }
         return fakeWords
+    }
+
+    fun update(word: Word){
+        wordsDatabase.update(word)
     }
 }

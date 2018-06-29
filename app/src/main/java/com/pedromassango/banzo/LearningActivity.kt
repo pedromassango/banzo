@@ -9,15 +9,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.PagerAdapter
 import com.pedromassango.banzo.data.models.Word
-import com.pedromassango.banzo.data.preferences.PreferencesHelper
-import com.pedromassango.banzo.extras.DateUtils
 import com.pedromassango.banzo.ui.learn.*
 import kotlinx.android.synthetic.main.learn_activity.*
 import timber.log.Timber
 
 class LearningActivity : AppCompatActivity(),
-        ILastReadingFragmentListener,
-        ILastWriteFragmentListener
+        IReadFragmentListener,
+        IWriteFragmentListener
         , Observer<List<Word>> {
 
     companion object {
@@ -56,6 +54,10 @@ class LearningActivity : AppCompatActivity(),
         viewModel.getFakeWords()
     }
 
+    /**
+     * Method to receive words that need to be learned at this time.
+     * @param words the words to be learned
+     */
     override fun onChanged(words: List<Word>?) {
         // remove observer, we need to observe just one time
         viewModel.getLearningWords()?.removeObserver(this)
@@ -90,7 +92,7 @@ class LearningActivity : AppCompatActivity(),
     }
 
     /**
-     * Called when the last learning fragment was finished
+     * Called when the last learn reading fragment was finished
      */
     override fun onLearnReadingFinished() {
         Timber.i("onLearnReadingFinished() last: $learnReadingTimes")
@@ -101,11 +103,14 @@ class LearningActivity : AppCompatActivity(),
         viewModel.getLearningWords()?.observe(this, this)
     }
 
-    override fun onLearnWriteFinished() {
-        Timber.i("onLearnWriteFinished() last: $learnWritingTimes")
+    /**
+     * Called when the last learn writing fragment was finished
+     */
+    override fun onLearnWritingFinished() {
+        Timber.i("onLearnWritingFinished() last: $learnWritingTimes")
 
         learnWritingTimes += 1
-        Timber.i("onLearnWriteFinished() current: $learnWritingTimes")
+        Timber.i("onLearnWritingFinished() current: $learnWritingTimes")
 
         // if user learned by writing two times, finish activity
         // else, learn again by writing
@@ -114,6 +119,23 @@ class LearningActivity : AppCompatActivity(),
         } else {
             viewModel.getLearningWords()?.observe(this, this)
         }
+    }
+
+    /**
+     * Called when the user has learned an word.
+     * Here we need to check if the user hit the word or missed it.
+     * @param learnedWord the word tha the user has leaned
+     * @param hit the state of the learned word
+     */
+    override fun onLearnWordResult(learnedWord: Word?, hit: Boolean) {
+        Timber.i("Learned word: ${learnedWord?.translation} & hit: $hit")
+
+        when(hit){
+            true -> learnedWord!!.hitCounter += 1
+            else -> learnedWord!!.failCount += 1
+        }
+
+        viewModel.update(learnedWord!!)
     }
 
     /**
