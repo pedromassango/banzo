@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#5B539C</color>
+    <color name="colorPrimaryDark">#5B539C</color>
+    <color name="colorAccent">#4f0080</color>
+    <color name="colorAccentLight">#962185</color>
+    <color name="colorAccentSetup">@color/colorAccentLight</color>
+    <color name="secondaryText">#212121</color>
+    <color name="lessWhite">#d1d1d1</color>
+    <color name="white">#fff</color>
+    <color name="red">#b71c1c</color>
+    <color name="green">#1b8b11</color>
+    <color name="train_item_background">#f1f1f1</color>
+</resources>

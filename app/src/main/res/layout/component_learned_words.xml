@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingTop="32dp"
+    android:paddingStart="32dp"
+    android:paddingEnd="32dp"
+    android:paddingBottom="32dp"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_learned_words_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="0"
+        android:textSize="32sp"
+        android:maxLines="1"
+        android:textColor="@color/colorAccent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:fontFamily="@font/gotham_rounded_book"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_learned_words_count"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:text="@string/palavras_estao_sendo_aprendidas"
+        android:textColor="@color/secondaryText"
+        android:textSize="20sp" />
+</RelativeLayout>

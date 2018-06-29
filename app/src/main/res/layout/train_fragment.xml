@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".ui.learn.TrainFragment">
+
+    <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="16dp"
+        tools:context=".ui.learn.ReadingFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="95dp"
+                android:background="@color/white"
+                android:gravity="center"
+                android:maxLines="1"
+                android:padding="12dp"
+                android:text="Leia atentamente estas palavras"
+                android:textAllCaps="true"
+                android:textColor="@color/secondaryText"
+                app:autoSizeTextType="uniform" />
+
+            <include layout="@layout/divider" />
+
+            <TextView
+                android:id="@+id/tv_word1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/text_view_option_height"
+                android:background="@color/train_item_background"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="car \n carro"
+                android:textColor="@color/secondaryText"
+                android:textSize="16sp" />
+
+            <include layout="@layout/divider" />
+
+            <TextView
+                android:id="@+id/tv_word2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/text_view_option_height"
+                android:background="@color/train_item_background"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="Cheese \n queijo"
+                android:textColor="@color/secondaryText"
+                android:textSize="16sp" />
+
+            <include layout="@layout/divider" />
+
+            <TextView
+                android:id="@+id/tv_word3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/text_view_option_height"
+                android:background="@color/train_item_background"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="strong \n forte"
+                android:textColor="@color/secondaryText"
+                android:textSize="16sp" />
+
+            <include layout="@layout/divider" />
+
+            <TextView
+                android:id="@+id/tv_word4"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/text_view_option_height"
+                android:background="@color/train_item_background"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="strong \n forte"
+                android:textColor="@color/secondaryText"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="32dp"
+        android:id="@+id/btn_ready"
+        android:text="Preparado" />
+
+</LinearLayout>

@@ -1,0 +1,32 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:windowBackground">@drawable/background_gradient_main</item>
+        <item name="android:statusBarColor" tools:targetApi="lollipop">@android:color/transparent</item>
+        <item name="android:fontFamily">@font/gotham_rounded_book</item>
+        <item name="buttonStyle">@style/MyButtonStyle</item>
+    </style>
+
+    <style name="MyButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_height">54dp</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:layout_margin">0dp</item>
+    </style>
+
+    <!--Splash activity theme-->
+    <style name="AppThemeSplash" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/background_splash</item>
+    </style>
+
+    <!-- First Setup activity theme-->
+    <style name="AppThemeSetup" parent="AppTheme">
+        <item name="colorAccent">@color/colorAccentSetup</item>
+        <item name="android:windowBackground">@color/colorPrimary</item>
+    </style>
+</resources>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Estatisticas"
+        android:checked="false"
+        android:checkable="true"
+        android:id="@+id/statisticFragment"
+        android:icon="@drawable/ic_statistic"/>
+
+    <item android:title="Aprender"
+        android:checked="true"
+        android:checkable="true"
+        android:id="@+id/mainFragment"
+        android:icon="@drawable/ic_learn"/>
+
+    <item android:title="Configuracoes"
+        android:checked="false"
+        android:checkable="true"
+        android:id="@+id/settingsFragment"
+        android:icon="@drawable/ic_settings"/>
+
+</menu>

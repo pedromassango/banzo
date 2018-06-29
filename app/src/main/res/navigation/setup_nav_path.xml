@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/first_setup_path"
+    app:startDestination="@id/langToLearnFragment">
+
+    <fragment
+        android:id="@+id/langToLearnFragment"
+        android:name="com.pedromassango.banzo.ui.setup.LangToLearnFragment"
+        android:label="lang_to_learn_fragment"
+        tools:layout="@layout/fragment_lang_to_learn" >
+        <action
+            android:id="@+id/action_langToLearnFragment_to_langLevelFragment"
+            app:destination="@id/langLevelFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/langLevelFragment"
+        android:name="com.pedromassango.banzo.ui.setup.LangLevelFragment"
+        android:label="fragment_lang_level"
+        tools:layout="@layout/fragment_lang_level" />
+
+</navigation>

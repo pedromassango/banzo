@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="horizontal">
+
+    <TextView
+        android:paddingStart="54dp"
+        android:paddingLeft="54dp"
+        android:id="@+id/tv_title"
+        android:text="@string/app_name"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <CheckBox
+        android:checked="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:button="@drawable/test_checkbox"
+        android:id="@+id/cb_selected"
+        android:layout_width="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp" />
+
+</RelativeLayout>

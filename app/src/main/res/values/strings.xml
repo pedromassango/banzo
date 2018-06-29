@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Banzo</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="selecione_o_idioma_que_deja_aprender">Selecione o idioma que deja aprender</string>
+    <string name="escolha_seu_nivel_de_1_s">Escolha seu nivel de %1$s</string>
+    <string name="comece_a_aprender">Comece a aprender</string>
+    <string name="selecionar">Selecionar</string>
+    <string name="muito_bem_vamos_come_ar_com_o_treinamento_de_hoje">Muito bem! Vamos começar com o treinamento de hoje.</string>
+    <string name="iniciar">Iniciar</string>
+    <string name="voce_tem_quatro_palavras_para_revisar">Vamos treinar mais as palavras aprendidas.</string>
+    <string name="voce_tem_palavras_novas_para_aprender">Esta um bom dia para aprender, vamos estudar 4 palavras novas hoje.</string>
+    <string name="palavras_estao_sendo_aprendidas">Palavras estao sendo aprendidas</string>
+</resources>

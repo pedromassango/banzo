@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/selectlangtolearn"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:animateLayoutChanges="true"
+    tools:context=".ui.setup.LangToLearnFragment">
+
+    <TextView
+        android:layout_alignParentTop="true"
+        android:id="@+id/tv_lang_level_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingStart="32dp"
+        android:paddingTop="74dp"
+        android:paddingEnd="32dp"
+        android:text="@string/escolha_seu_nivel_de_1_s"
+        android:textSize="24sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_levels"
+        android:layout_below="@id/tv_lang_level_title"
+        android:layout_marginTop="42dp"
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:text="@string/comece_a_aprender"
+        android:id="@+id/btn_select_level"
+        android:layout_alignParentBottom="true"
+        android:layout_height="55dp" />
+
+    <ProgressBar
+        android:id="@+id/progress_save_data"
+        android:indeterminate="true"
+        android:visibility="invisible"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>
