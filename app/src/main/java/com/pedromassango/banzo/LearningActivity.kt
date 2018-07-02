@@ -170,10 +170,6 @@ class LearningActivity : AppCompatActivity(),
             return fragments.size
         }
 
-        //TODO: Prevent swipe
-        override fun getItemPosition(`object`: Any): Int {
-            return PagerAdapter.POSITION_NONE
-        }
     }
 
 }
