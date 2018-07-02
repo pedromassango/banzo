@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#5B539C</color>
     <color name="colorAccent">#4f0080</color>
     <color name="colorAccentLight">#962185</color>
-    <color name="colorAccentSetup">@color/colorAccentLight</color>
+    <color name="colorAccentSetup">#ffbf00</color>
     <color name="secondaryText">#212121</color>
     <color name="lessWhite">#d1d1d1</color>
     <color name="lessWhiteLight">#edecec</color>

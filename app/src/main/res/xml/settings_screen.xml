@@ -11,11 +11,11 @@
     <Preference android:title="Palavras por dia"
         android:key="@string/prefs_max_daily_words"/>
 
-    <CheckBoxPreference android:title="Lembrar-me"
+<!--    <CheckBoxPreference android:title="Lembrar-me"
         android:key="prefs_reminder"
         android:defaultValue="true"
         android:summaryOff="Desativado"
-        android:summaryOn="Ativado"/>
+        android:summaryOn="Ativado"/>-->
 
     <Preference android:title="Avaliar app"
         android:key="@string/prefs_rate_app"/>
