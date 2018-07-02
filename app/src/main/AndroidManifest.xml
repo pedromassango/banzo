@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
-        <activity android:name=".SplashActivity"
+        <activity
+            android:name=".SplashActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeSplash">
@@ -25,22 +26,27 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".SetupActivity"
+        <activity
+            android:name=".SetupActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeSetup" />
-        <activity android:name=".LearningActivity"
-            android:screenOrientation="portrait"
-            android:label="Treino"/>
+        <activity
+            android:name=".LearningActivity"
+            android:label="Treino"
+            android:screenOrientation="portrait" />
 
-        <receiver android:name=".services.DateChangedReceiver"
+        <receiver
+            android:name=".services.DateChangedReceiver"
             android:enabled="true">
             <intent-filter>
-                <action android:name="android.intent.action.DATE_CHANGED"/>
+                <action android:name="android.intent.action.DATE_CHANGED" />
             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+
+        <activity android:name=".LearnedActivity"></activity>
     </application>
 
 </manifest>

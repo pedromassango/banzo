@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:textColor="@color/secondaryText"
+        android:id="@+id/tv_translation"
+        android:textSize="16sp"
+        android:text="@string/app_name"
+        android:fontFamily="@font/gotham_rounded_bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:textColor="@color/secondaryText"
+        android:text="@string/app_name"
+        android:id="@+id/tv_default"
+        android:textSize="16sp"
+        android:fontFamily="@font/gotham_rounded_book"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

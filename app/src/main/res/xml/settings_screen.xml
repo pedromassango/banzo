@@ -5,6 +5,7 @@
         android:layout="@layout/install_paid_version"/>
 
     <Preference android:title="Palavras aprendidas"
+        android:key="prefs_learned_words"
         android:summary="Todas palavras aprendidas"/>
 
     <Preference android:title="Palavras por dia"

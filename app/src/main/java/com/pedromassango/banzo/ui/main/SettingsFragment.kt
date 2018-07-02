@@ -16,8 +16,10 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import com.pedromassango.banzo.LearnedActivity
 
 import com.pedromassango.banzo.R
+import com.pedromassango.banzo.extras.ActivityUtils
 import java.io.File
 
 /**
@@ -39,6 +41,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onPreferenceTreeClick(preference: Preference?): Boolean {
 
         when (preference!!.key) {
+            "prefs_learned_words" -> ActivityUtils.start(context, LearnedActivity::class.java)
             "prefs_rate_app" -> startPlaystoreAppPage(context!!)
             "prefs_share_app" -> startShareApp(activity!!)
         }
