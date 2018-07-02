@@ -8,19 +8,21 @@
     <TextView
         android:textColor="#000"
         android:gravity="center_horizontal"
-        android:text="Versao completa sem anuncios"
+        android:text="Versao completa sem anuncios e aprenda 12 palavras por dia."
         android:layout_marginTop="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <com.google.android.material.button.MaterialButton
         android:layout_width="match_parent"
         android:layout_marginTop="8dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:backgroundTint="#ffbf00"
         android:text="Versao Sem anuncios"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginEnd="42dp"
         android:layout_marginBottom="16dp"
         android:layout_height="wrap_content" />
 

@@ -9,8 +9,7 @@
         android:summary="Todas palavras aprendidas"/>
 
     <Preference android:title="Palavras por dia"
-        android:key="prefs_max_daily_words"
-        android:summary="8"/>
+        android:key="@string/prefs_max_daily_words"/>
 
     <CheckBoxPreference android:title="Lembrar-me"
         android:key="prefs_reminder"

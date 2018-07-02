@@ -16,9 +16,11 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import com.pedromassango.banzo.BuildConfig
 import com.pedromassango.banzo.LearnedActivity
 
 import com.pedromassango.banzo.R
+import com.pedromassango.banzo.data.preferences.PreferencesHelper
 import com.pedromassango.banzo.extras.ActivityUtils
 import java.io.File
 
@@ -30,6 +32,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.settings_screen)
+
+        val maxWords = findPreference( getString(R.string.prefs_max_daily_words))
+        maxWords.isEnabled = !BuildConfig.DEBUG
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
