@@ -5,7 +5,7 @@
         android:layout="@layout/install_paid_version"/>
 
     <Preference android:title="Palavras aprendidas"
-        android:key="prefs_learned_words"
+        android:key="@string/prefs_learned_words"
         android:summary="Todas palavras aprendidas"/>
 
     <Preference android:title="Palavras por dia"
@@ -19,9 +19,9 @@
         android:summaryOn="Ativado"/>
 
     <Preference android:title="Avaliar app"
-        android:key="prefs_rate_app"/>
+        android:key="@string/prefs_rate_app"/>
 
     <Preference android:title="Partilhar este app"
-        android:key="prefs_share_app"/>
+        android:key="@string/prefs_share_app"/>
 
 </PreferenceScreen>

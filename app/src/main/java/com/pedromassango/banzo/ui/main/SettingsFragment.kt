@@ -41,9 +41,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onPreferenceTreeClick(preference: Preference?): Boolean {
 
         when (preference!!.key) {
-            "prefs_learned_words" -> ActivityUtils.start(context, LearnedActivity::class.java)
-            "prefs_rate_app" -> startPlaystoreAppPage(context!!)
-            "prefs_share_app" -> startShareApp(activity!!)
+            getString(R.string.prefs_learned_words) -> ActivityUtils.start(context, LearnedActivity::class.java)
+            getString(R.string.prefs_rate_app) -> startPlaystoreAppPage(context!!)
+            getString(R.string.prefs_share_app) -> startShareApp(activity!!)
         }
 
         return super.onPreferenceTreeClick(preference)
