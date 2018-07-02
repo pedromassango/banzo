@@ -7,14 +7,23 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'key0'
+            keyPassword 'S3t3mbr0/13'
+            storeFile file('/home/pedromassango/AndroidStudioProjects/keystores/pedromassango_apps.jks')
+            storePassword 'S3t3mbr0/13'
+        }
+    }
     compileSdkVersion 'android-P'
     defaultConfig {
-        applicationId "com.pedromassango.banzo"
+        applicationId 'com.pedromassango.banzo'
         minSdkVersion 16
         targetSdkVersion 27
         versionCode 1
         versionName "1.0.0-beta"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.config
     }
     buildTypes {
         release {
@@ -30,9 +39,7 @@ dependencies {
     def room_version = "2.0.0-alpha1"
     // Navigation version
     def nav_version = "1.0.0-alpha02"
-
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     // Room database
@@ -48,7 +55,6 @@ dependencies {
     implementation "android.arch.navigation:navigation-fragment-ktx:$nav_version"
     implementation "android.arch.navigation:navigation-ui-ktx:$nav_version"
     //implementation 'androidx.core:core-ktx:1.0.0-alpha3'
-
     // Material Design
     implementation 'com.google.android.material:material:1.0.0-alpha3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0-alpha3'
