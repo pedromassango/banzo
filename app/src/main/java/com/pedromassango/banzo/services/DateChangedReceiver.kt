@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.lifecycle.ViewModelProviders
 import com.pedromassango.banzo.data.WordsDatabase
+import com.pedromassango.banzo.data.models.Word
 import com.pedromassango.banzo.data.preferences.PreferencesHelper
 import com.pedromassango.banzo.extras.DateUtils
 import timber.log.Timber
@@ -38,8 +39,8 @@ class DateChangedReceiver : BroadcastReceiver() {
 
                 // set as learned word
                 it.forEach { learningWord ->
-                    learningWord.learning = false
-                    learningWord.learned = true
+                    learningWord.learning = userLearnTheWord(learningWord)
+                    learningWord.learned = isLearnedWord( learningWord)
 
                     wordsDatabase.update(learningWord)
                 }
@@ -62,5 +63,23 @@ class DateChangedReceiver : BroadcastReceiver() {
         }else{
             Timber.i("Same day, keep user training.")
         }
+    }
+
+    /**
+     * This function check if the user has learned that word
+     * @param word the word to check
+     * @return true if there is more hit than fail counter
+     */
+    private fun isLearnedWord(word: Word): Boolean{
+        return word.hitCounter > word.failCount
+    }
+
+    /**
+     * This function check if the user has played at least one time that word
+     * @param word the word to check
+     * @return true if there is at least one hit or fail counter.
+     */
+    private fun userLearnTheWord(word: Word): Boolean{
+        return word.hitCounter > 1 || word.failCount > 1
     }
 }
