@@ -52,8 +52,16 @@ class LearnedFragment : Fragment() {
 
             // remove progress bar
             progress_learned.visibility = View.GONE
+
+            // If list is empty, show the message
+            // else hide it and stop the execution
+            tv_empty_data.visibility =
+                    if(learnedWords!!.isEmpty())
+                        View.VISIBLE
+                    else View.GONE.also { return@Observer }
+
             // set data in adapter
-            learnedWords?.let {
+            learnedWords.let {
                 Timber.i("showing learned words...")
                 wordsAdapter.add(it)
             }

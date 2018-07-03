@@ -13,6 +13,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <TextView
+        android:visibility="invisible"
+        android:id="@+id/tv_empty_data"
+        android:layout_gravity="center"
+        android:textSize="16sp"
+        android:layout_margin="16dp"
+        android:text="@string/palavras_aprendidas_estarao_aqui"
+        android:textColor="@color/secondaryText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_learned_words"
         android:layout_width="match_parent"
