@@ -6,7 +6,7 @@ import com.pedromassango.banzo.data.WordsDatabase
 
 
 class MainViewModel : ViewModel() {
-    // TODO: inject database
+    // database
     private val wordsDatabase = WordsDatabase.getInstance().wordDAO
     // a count of learning and learned words
     private var learningAndLearnedWordsCount: LiveData<Int>? = null

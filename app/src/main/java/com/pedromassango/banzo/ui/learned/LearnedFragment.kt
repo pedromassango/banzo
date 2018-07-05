@@ -58,7 +58,7 @@ class LearnedFragment : Fragment() {
             tv_empty_data.visibility =
                     if(learnedWords!!.isEmpty())
                         View.VISIBLE
-                    else View.GONE.also { return@Observer }
+                    else { View.GONE }
 
             // set data in adapter
             learnedWords.let {
