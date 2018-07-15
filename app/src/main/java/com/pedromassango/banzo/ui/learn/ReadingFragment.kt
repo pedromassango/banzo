@@ -65,8 +65,8 @@ class ReadingFragment : Fragment(), View.OnClickListener {
 
             // on ignore word, just skip to the next fragment
             btn_ignore_word.setOnClickListener {
-                (activity as LearningActivity)
-                        .nextFragment()
+                // call next fragment
+                nextFragment()
             }
         }
         return v
@@ -148,12 +148,19 @@ class ReadingFragment : Fragment(), View.OnClickListener {
         // running on main thread
         textView.postDelayed({
 
-            // if last fragment, notify activity else go to next fragment
-            when (arguments!!.getBoolean(KEY_LAST_FRAGMENT)) {
-                true -> iReadFragmentListener.onLearnReadingFinished(reverseTranslation)
-                false -> (activity!! as LearningActivity).nextFragment()
-            }
+            // call next fragment
+            nextFragment()
         }, LearningActivity.PAUSE_SCREEN_TIME)
+    }
+
+    /**
+     * If last fragment, notify activity or go to next fragment
+     */
+    private fun nextFragment(){
+        when (arguments!!.getBoolean(KEY_LAST_FRAGMENT)) {
+            true -> iReadFragmentListener.onLearnReadingFinished(reverseTranslation)
+            false -> (activity!! as LearningActivity).nextFragment()
+        }
     }
 
 }
