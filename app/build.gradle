@@ -30,8 +30,30 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            signingConfig signingConfigs.config
+        }
     }
     buildToolsVersion '27.0.3'
+
+    flavorDimensions "beta"
+
+    productFlavors {
+        free {
+            applicationId "com.pedromassango.banzo.free"
+            minSdkVersion 16
+            targetSdkVersion 27
+            versionCode 1
+            versionName '1.0.0-beta'
+        }
+        pro {
+            applicationId "com.pedromassango.banzo.pro"
+            minSdkVersion 16
+            targetSdkVersion 27
+            versionCode 1
+            versionName '1.0.0-beta'
+        }
+    }
 }
 
 dependencies {
