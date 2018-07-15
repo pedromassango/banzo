@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <FrameLayout
@@ -16,7 +17,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:text="45"
-            android:id="@+id/tv_learned_words"
+            android:id="@+id/tv_progress_learnig_average"
             android:fontFamily="@font/gotham_rounded_bold"
             android:textSize="20sp"
             android:textColor="@color/colorAccent"
@@ -26,8 +27,8 @@
         <com.jackandphantom.circularprogressbar.CircleProgressbar
             android:layout_width="80dp"
             android:layout_height="80dp"
-            app:cpb_progress="55"
-            android:id="@+id/progress_days_learnig"
+            app:cpb_progress="100"
+            android:id="@+id/progress_learnig_average"
             app:cpb_roundedCorner="true"
             app:cpb_foregroundProgressWidth="20"
             app:cpb_backgroundProgressWidth="20"
@@ -37,21 +38,34 @@
 
     </FrameLayout>
 
+    <LinearLayout
+        android:gravity="center"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@id/view1"
+        android:layout_toLeftOf="@id/view1"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:fontFamily="@font/gotham_rounded_bold"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:text="Progresso de aprendizagem"
+        android:textColor="@color/secondaryText"
+        android:textSize="16sp" />
 
     <androidx.appcompat.widget.AppCompatTextView
         style="@style/TextAppearance.AppCompat.Medium"
         android:layout_width="wrap_content"
         android:fontFamily="@font/gotham_rounded_book"
         android:layout_height="wrap_content"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:layout_toStartOf="@id/view1"
-        android:layout_toLeftOf="@id/view1"
-        android:paddingLeft="16dp"
-        android:layout_centerVertical="true"
         android:gravity="center_horizontal"
-        android:text="Complete as tarefas para aprender as palavras"
+        android:text="Complete as tarefas para aprender as palavras!"
         android:textColor="@color/secondaryText"
-        android:textSize="20sp" />
+        android:textSize="12sp" />
+    </LinearLayout>
 
 </RelativeLayout>
