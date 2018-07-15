@@ -11,8 +11,8 @@ import com.pedromassango.banzo.data.models.Word
 interface WordDAO {
 
     companion object {
-        const val FAKE_WORDS_LIMIT = 24
-        const val DAILY_WORDS_LIMIT = 4
+        const val FAKE_WORDS_LIMIT = 48
+        const val DAILY_WORDS_LIMIT = 8
     }
 
     // get words that is in learning state
