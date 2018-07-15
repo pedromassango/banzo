@@ -7,7 +7,11 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.InterstitialAd
 import com.pedromassango.banzo.data.models.Word
+import com.pedromassango.banzo.extras.runOnFree
 import com.pedromassango.banzo.ui.learn.*
 import kotlinx.android.synthetic.main.learn_activity.*
 import timber.log.Timber
@@ -28,6 +32,7 @@ class LearningActivity : AppCompatActivity(),
     private val learningWords: ArrayList<Word> = lazy {
         arrayListOf<Word>()
     }.value
+    private lateinit var interstitialAd: InterstitialAd
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +55,20 @@ class LearningActivity : AppCompatActivity(),
         viewModel.getLearningWords()?.observe(this, this)
         // pre-load fake words from database
         viewModel.getFakeWords()
+
+        // setup ads
+        runOnFree{
+            interstitialAd = InterstitialAd(this)
+            interstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712"
+            interstitialAd.loadAd(AdRequest.Builder().build())
+            interstitialAd.adListener = object : AdListener(){
+                override fun onAdClosed() {
+                    super.onAdClosed()
+                    // close activity on ad closed
+                    this@LearningActivity.finish()
+                }
+            }
+        }
     }
 
     /**
@@ -141,7 +160,15 @@ class LearningActivity : AppCompatActivity(),
         // if user learned by writing two times, finish activity
         // else, learn again by writing
         when(reversed){
-            true -> this.finish()
+            true -> {
+                if(BanzoApp.isPro()){
+                    this.finish()
+                }else{
+                    if(interstitialAd.isLoaded){
+                        interstitialAd.show()
+                    }
+                }
+            }
             false -> showWritingFragments( true)
         }
     }

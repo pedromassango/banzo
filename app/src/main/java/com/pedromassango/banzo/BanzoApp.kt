@@ -2,6 +2,8 @@ package com.pedromassango.banzo
 
 import android.app.Application
 import android.content.Context
+import com.google.android.gms.ads.MobileAds
+import com.pedromassango.banzo.extras.runOnFree
 import timber.log.Timber
 
 /**
@@ -31,6 +33,9 @@ class BanzoApp : Application() {
         super.onCreate()
         instance = this
 
+        runOnFree{
+            MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713")
+        }
 
         // Setup Timber logging library
         when (BuildConfig.DEBUG) {

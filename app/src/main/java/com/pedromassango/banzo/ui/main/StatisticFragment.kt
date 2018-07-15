@@ -14,8 +14,11 @@ import kotlinx.android.synthetic.main.component_learned_words.*
 import kotlinx.android.synthetic.main.component_learning_words.*
 import timber.log.Timber
 import android.animation.ValueAnimator
-
-
+import com.google.android.gms.ads.AdRequest
+import com.pedromassango.banzo.extras.runOnFree
+import kotlinx.android.synthetic.free.fragment_statistic.*
+import kotlinx.android.synthetic.free.fragment_statistic.view.*
+import kotlinx.android.synthetic.main.fragment_statistic.view.*
 
 
 /**
@@ -33,7 +36,16 @@ class StatisticFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_statistic, container, false)
+        val v = inflater.inflate(R.layout.fragment_statistic, container, false)
+
+        with(v){
+            // setup ads
+            runOnFree {
+                val adRequest = AdRequest.Builder().build()
+                adView_statistic.loadAd(adRequest)
+            }
+        }
+        return v
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
