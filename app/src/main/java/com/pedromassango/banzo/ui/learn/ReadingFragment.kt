@@ -41,6 +41,7 @@ class ReadingFragment : Fragment(), View.OnClickListener {
     private lateinit var viewModel: LearnViewModel
     private lateinit var fakeWordsObserver: Observer<List<Word>>
     private lateinit var iReadFragmentListener: IReadFragmentListener
+    private var optionsClickListener: View.OnClickListener? = null
 
     private lateinit var wordToLearn: Word
     private var reverseTranslation: Boolean = false
@@ -51,17 +52,17 @@ class ReadingFragment : Fragment(), View.OnClickListener {
         val v = inflater.inflate(R.layout.reading_fragment, container, false)
 
         with(v) {
-            // a list of click options
-            // attach click listener
-            tv_option1.setOnClickListener(this@ReadingFragment)
-            tv_option2.setOnClickListener(this@ReadingFragment)
-            tv_option3.setOnClickListener(this@ReadingFragment)
-            tv_option4.setOnClickListener(this@ReadingFragment)
-
             textViews.add(tv_option1)
             textViews.add(tv_option2)
             textViews.add(tv_option3)
             textViews.add(tv_option4)
+
+            // set click listener on all testView options
+            textViews.forEach {
+                optionsClickListener?.let {listener ->
+                    it.setOnClickListener(listener)
+                }
+            }
 
             // on ignore word, just skip to the next fragment
             btn_ignore_word.setOnClickListener {
@@ -111,7 +112,9 @@ class ReadingFragment : Fragment(), View.OnClickListener {
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
+        Timber.i("onAttach()")
         iReadFragmentListener = (context as IReadFragmentListener)
+        optionsClickListener = this@ReadingFragment
     }
 
     private var canClick = true
@@ -157,6 +160,7 @@ class ReadingFragment : Fragment(), View.OnClickListener {
      * If last fragment, notify activity or go to next fragment
      */
     private fun nextFragment(){
+        optionsClickListener = null
         when (arguments!!.getBoolean(KEY_LAST_FRAGMENT)) {
             true -> iReadFragmentListener.onLearnReadingFinished(reverseTranslation)
             false -> (activity!! as LearningActivity).nextFragment()
