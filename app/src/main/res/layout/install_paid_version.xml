@@ -18,6 +18,7 @@
     <com.google.android.material.button.MaterialButton
         android:layout_width="220dp"
         android:minWidth="200dp"
+        android:id="@+id/btn_download_pro"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="8dp"
         xmlns:app="http://schemas.android.com/apk/res-auto"
