@@ -60,27 +60,27 @@ dependencies {
     // kotlin version
     def room_version = "2.0.0-alpha1"
     // Navigation version
-    def nav_version = "1.0.0-alpha02"
+    def nav_version = "1.0.0-alpha03"
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     // Room database
     implementation "androidx.room:room-runtime:$room_version"
     implementation "androidx.lifecycle:lifecycle-extensions:$room_version"
-    implementation 'androidx.appcompat:appcompat:1.0.0-alpha3'
+    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0-alpha1'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0-beta01'
     kapt "androidx.room:room-compiler:$room_version"
     // ViewModel & LiveData
-    implementation 'androidx.core:core-ktx:1.0.0-alpha3'
+    implementation 'androidx.core:core-ktx:1.0.0-beta01'
     // Navigation
     implementation "android.arch.navigation:navigation-fragment-ktx:$nav_version"
     implementation "android.arch.navigation:navigation-ui-ktx:$nav_version"
     //implementation 'androidx.core:core-ktx:1.0.0-alpha3'
     // Material Design
-    implementation 'com.google.android.material:material:1.0.0-alpha3'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0-alpha3'
-    implementation 'androidx.cardview:cardview:1.0.0-alpha3'
+    implementation 'com.google.android.material:material:1.0.0-beta01'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0-beta01'
+    implementation 'androidx.cardview:cardview:1.0.0-beta01'
     // Circular Progress Bar
     implementation 'com.jackandphantom.android:circularprogressbar:1.2.0'
     // Timber for Logging
@@ -89,5 +89,7 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha3'
     implementation 'com.android.support:preference-v7:28.0.3'
-    implementation 'android.arch.navigation:navigation-fragment:1.0.0-alpha02'
+    implementation 'android.arch.navigation:navigation-fragment:1.0.0-alpha03'
+    // ads
+    implementation 'com.google.firebase:firebase-ads:15.0.1'
 }
