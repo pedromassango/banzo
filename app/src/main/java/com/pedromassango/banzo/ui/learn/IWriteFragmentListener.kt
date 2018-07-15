@@ -10,5 +10,5 @@ interface IWriteFragmentListener {
                           hit: Boolean
     )
 
-    fun onLearnWritingFinished()
+    fun onLearnWritingFinished(reversed: Boolean)
 }

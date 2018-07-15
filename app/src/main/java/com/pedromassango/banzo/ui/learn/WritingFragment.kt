@@ -18,11 +18,13 @@ class WritingFragment : Fragment(), View.OnClickListener {
 
     companion object {
         const val KEY_WORD = "KEY_WORD"
+        const val KEY_REVERSED = "KEY_REVERSED"
         const val KEY_LAST_FRAGMENT = "KEY_LAST_FRAGMENT"
-        fun newInstance(word: Word, isLastFragment: Boolean = false): WritingFragment {
+        fun newInstance(word: Word, reversed: Boolean = false, isLastFragment: Boolean = false): WritingFragment {
             val instance = WritingFragment()
             val b = Bundle().apply {
                 putParcelable(KEY_WORD, word)
+                putBoolean(KEY_REVERSED, reversed)
                 putBoolean(KEY_LAST_FRAGMENT, isLastFragment)
             }
             instance.arguments = b
@@ -34,7 +36,8 @@ class WritingFragment : Fragment(), View.OnClickListener {
     private lateinit var viewModel: LearnViewModel
     private lateinit var iWriteFragmentListener: IWriteFragmentListener
 
-    private var wordToLearn: Word? = null
+    private lateinit var wordToLearn: Word
+    private var reverseTranslation = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -57,8 +60,9 @@ class WritingFragment : Fragment(), View.OnClickListener {
 
         // Get and show the learning word
         wordToLearn = arguments!!.getParcelable(KEY_WORD)
+        reverseTranslation = arguments!!.getBoolean(KEY_REVERSED)
         checkNotNull(wordToLearn)
-        tv_word_to_learn.text = wordToLearn!!.translation
+        tv_word_to_learn.text = if(reverseTranslation) wordToLearn.ptWord else wordToLearn.translation
     }
 
     override fun onAttach(context: Context?) {
@@ -79,7 +83,8 @@ class WritingFragment : Fragment(), View.OnClickListener {
 
         // handle hit or missed this word
         textView?.postDelayed({
-            when(translation.trim().equals(wordToLearn!!.ptWord.trim(), true)){
+            when(translation.trim().equals(wordToLearn.ptWord.trim(), true) ||
+                    translation.trim().equals(wordToLearn.translation.trim(), true)){
                 true ->{
                     // user hit that word
                     iWriteFragmentListener.onLearnWordResult(wordToLearn, true)
@@ -104,7 +109,7 @@ class WritingFragment : Fragment(), View.OnClickListener {
 
             // if last fragment, notify activity, else go to next fragment
             when (arguments!!.getBoolean(KEY_LAST_FRAGMENT)) {
-                true -> iWriteFragmentListener.onLearnWritingFinished()
+                true -> iWriteFragmentListener.onLearnWritingFinished(reverseTranslation)
                 false -> (activity!! as LearningActivity).nextFragment()
             }
         }, LearningActivity.PAUSE_SCREEN_TIME)

@@ -10,5 +10,5 @@ interface IReadFragmentListener {
                           hit: Boolean
     )
 
-    fun onLearnReadingFinished()
+    fun onLearnReadingFinished( reversed: Boolean)
 }

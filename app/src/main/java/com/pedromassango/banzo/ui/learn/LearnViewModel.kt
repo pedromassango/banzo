@@ -13,7 +13,7 @@ class LearnViewModel : ViewModel() {
     // Words database
     private val wordsDatabase = WordsDatabase.getInstance().wordDAO
 
-    // learnig words
+    // learning words
     private var learningWords: LiveData<List<Word>>? = null
     // fake words
     private var fakeWords: LiveData<List<Word>>? = null
@@ -24,6 +24,7 @@ class LearnViewModel : ViewModel() {
             learningWords = wordsDatabase.getLearningWords()
         }
 
+        Timber.i("Getting learning words - done")
         return learningWords
     }
 

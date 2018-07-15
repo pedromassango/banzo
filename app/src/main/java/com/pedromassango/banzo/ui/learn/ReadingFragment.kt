@@ -23,11 +23,13 @@ class ReadingFragment : Fragment(), View.OnClickListener {
     companion object {
         // Time to wait before show the next fragment
         const val KEY_WORD = "KEY_WORD"
+        const val KEY_REVERSED = "KEY_WORD_REVERSED"
         const val KEY_LAST_FRAGMENT = "KEY_LAST_FRAGMENT"
-        fun newInstance(word: Word, isLastFragment: Boolean = false): ReadingFragment {
+        fun newInstance(word: Word, reversed: Boolean = false, isLastFragment: Boolean = false): ReadingFragment {
             val instance = ReadingFragment()
             val b = Bundle().apply {
                 putParcelable(KEY_WORD, word)
+                putBoolean(KEY_REVERSED, reversed)
                 putBoolean(KEY_LAST_FRAGMENT, isLastFragment)
             }
             instance.arguments = b
@@ -40,7 +42,8 @@ class ReadingFragment : Fragment(), View.OnClickListener {
     private lateinit var fakeWordsObserver: Observer<List<Word>>
     private lateinit var iReadFragmentListener: IReadFragmentListener
 
-    private var wordToLearn: Word? = null
+    private lateinit var wordToLearn: Word
+    private var reverseTranslation: Boolean = false
     private val textViews = arrayListOf<TextView>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -75,8 +78,9 @@ class ReadingFragment : Fragment(), View.OnClickListener {
 
         // Get and show the learning word
         wordToLearn = arguments!!.getParcelable(KEY_WORD)
+        reverseTranslation = arguments!!.getBoolean(KEY_REVERSED)
         checkNotNull(wordToLearn)
-        tv_word_to_learn.text = wordToLearn!!.translation
+        tv_word_to_learn.text = if(reverseTranslation) wordToLearn.ptWord else wordToLearn.translation
 
         // A random position to set the right answer
         val random = Random()
@@ -95,8 +99,8 @@ class ReadingFragment : Fragment(), View.OnClickListener {
                 // set the correct answer on first generated textView
                 val generatedTextView = textViews[posix]
                 when (posix == rightAnswerPosition) {
-                    true -> generatedTextView.text = wordToLearn!!.ptWord
-                    false -> generatedTextView.text = fakes!![posix].ptWord
+                    true -> generatedTextView.text = if(reverseTranslation) wordToLearn.translation else wordToLearn.ptWord
+                    false -> generatedTextView.text = if(reverseTranslation) fakes!![posix].translation else fakes!![posix].ptWord
                 }
             }
         }
@@ -121,7 +125,7 @@ class ReadingFragment : Fragment(), View.OnClickListener {
 
         // handle hit or missed this word
         textView.postDelayed({
-            when (translation == wordToLearn!!.ptWord) {
+            when (translation == wordToLearn.ptWord || translation == wordToLearn.translation) {
                 true -> {
                     // user hit that word
                     iReadFragmentListener.onLearnWordResult(wordToLearn, true)
@@ -146,7 +150,7 @@ class ReadingFragment : Fragment(), View.OnClickListener {
 
             // if last fragment, notify activity else go to next fragment
             when (arguments!!.getBoolean(KEY_LAST_FRAGMENT)) {
-                true -> iReadFragmentListener.onLearnReadingFinished()
+                true -> iReadFragmentListener.onLearnReadingFinished(reverseTranslation)
                 false -> (activity!! as LearningActivity).nextFragment()
             }
         }, LearningActivity.PAUSE_SCREEN_TIME)

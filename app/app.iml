@@ -22,14 +22,13 @@
       </configuration>
     </facet>
     <facet type="kotlin-language" name="Kotlin">
-      <configuration version="3" platform="JVM 1.8" useProjectSettings="false">
+      <configuration version="3" platform="JVM 1.6" useProjectSettings="false">
         <compilerSettings />
         <compilerArguments>
           <option name="destination" value="$MODULE_DIR$/build/tmp/kotlin-classes/freeDebug" />
           <option name="noStdlib" value="true" />
           <option name="noReflect" value="true" />
           <option name="moduleName" value="app_freeDebug" />
-          <option name="jvmTarget" value="1.8" />
           <option name="addCompilerBuiltIns" value="true" />
           <option name="loadBuiltInsFromDependencies" value="true" />
           <option name="languageVersion" value="1.2" />
@@ -189,6 +188,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Gradle: com.google.firebase:firebase-common-15.0.1" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-basement-15.0.1" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.sqlite:sqlite-framework-2.0.0-alpha1" level="project" />
     <orderEntry type="library" name="Gradle: androidx.browser:browser-1.0.0-alpha3" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.navigation:navigation-runtime-1.0.0-alpha03" level="project" />
     <orderEntry type="library" name="Gradle: androidx.cursoradapter:cursoradapter-1.0.0-beta01" level="project" />
@@ -215,12 +215,14 @@
     <orderEntry type="library" name="Gradle: androidx.cardview:cardview-1.0.0-beta01" level="project" />
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-livedata-core-2.0.0-beta01" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-ads-15.0.1" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.room:room-runtime-2.0.0-alpha1" level="project" />
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-process-2.0.0-beta01" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.navigation:navigation-ui-1.0.0-alpha03" level="project" />
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-common:2.0.0-beta01@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.transition:transition-1.0.0-beta01" level="project" />
     <orderEntry type="library" name="Gradle: androidx.fragment:fragment-1.0.0-beta01" level="project" />
     <orderEntry type="library" name="Gradle: androidx.asynclayoutinflater:asynclayoutinflater-1.0.0-beta01" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.room:room-common:2.0.0-alpha1@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.loader:loader-1.0.0-beta01" level="project" />
     <orderEntry type="library" name="Gradle: androidx.preference:preference-1.0.0-alpha3" level="project" />
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-service-2.0.0-beta01" level="project" />
@@ -239,6 +241,7 @@
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.test:runner-1.1.0-alpha3" level="project" />
     <orderEntry type="library" name="Gradle: androidx.coordinatorlayout:coordinatorlayout-1.0.0-beta01" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.test.espresso:espresso-idling-resource-3.1.0-alpha3" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.sqlite:sqlite-2.0.0-alpha1" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.navigation:navigation-fragment-1.0.0-alpha03" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.gms:play-services-base-15.0.1" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.41@jar" level="project" />

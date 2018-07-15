@@ -7,7 +7,6 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.viewpager.widget.PagerAdapter
 import com.pedromassango.banzo.data.models.Word
 import com.pedromassango.banzo.ui.learn.*
 import kotlinx.android.synthetic.main.learn_activity.*
@@ -26,10 +25,9 @@ class LearningActivity : AppCompatActivity(),
     }
 
     private lateinit var viewModel: LearnViewModel
-    // store times tha the user learned by reading
-    private var learnReadingTimes = 0
-    // store times tha the user learned by writing
-    private var learnWritingTimes = 0
+    private val learningWords: ArrayList<Word> = lazy {
+        arrayListOf<Word>()
+    }.value
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,60 +62,87 @@ class LearningActivity : AppCompatActivity(),
 
         // shuffle the list
         val shuffledWords = words?.shuffled()
+                ?.sortedByDescending { it.failCount == 0 || it.hitCounter == 0 }
+                ?.shuffled()!!
 
-        // create one instance of train fragment
-        // and four of learning fragment
-        // with an word to learn,
-        // and set in list
-        // if user already learn by reading two times
-        // they should learn now by writing
-        val fragments: ArrayList<Fragment> = when (learnReadingTimes < 2) {
-            true -> arrayListOf(
-                    TrainFragment.newInstance(), // to train the words
-                    ReadingFragment.newInstance(shuffledWords!![0]),
-                    ReadingFragment.newInstance(shuffledWords[1]),
-                    ReadingFragment.newInstance(shuffledWords[3]),
-                    ReadingFragment.newInstance(shuffledWords[2], true)
-            )
-            false -> arrayListOf(
-                    WritingFragment.newInstance(shuffledWords!![0]),
-                    WritingFragment.newInstance(shuffledWords[1]),
-                    WritingFragment.newInstance(shuffledWords[3]),
-                    WritingFragment.newInstance(shuffledWords[2], true)
-            )
-        }
+        // add into learning list
+        learningWords.addAll(shuffledWords.take(4))
 
+        // the user start learning by reading,
+        // then by reading reversed, then
+        // by writing, and then by writing reversed
+        // this function will call the other sequentially.
+        showReadingFragments()
+    }
+
+    /**
+     * Replace fragments adapter with news fragments to how.
+     * @param fragments the news fragments to be shown.
+     * NOTE: this will remove the holds fragments on UI.
+     */
+    private fun showFragments(fragments: ArrayList<Fragment>){
         // show fragments
         learn_viewpager.adapter = MyPagerAdapter(supportFragmentManager, fragments)
+    }
+    /**
+     * Show learn by reading fragments.
+     * @param reversed if true reverse the translation and fake words.
+     */
+    private fun showReadingFragments(reversed: Boolean = false){
+        Timber.i("showReadingFragments() - reversed: $reversed")
+
+        val fragments = arrayListOf(
+                TrainFragment.newInstance(learningWords), // to train the words
+                ReadingFragment.newInstance(learningWords [0], reversed),
+                ReadingFragment.newInstance(learningWords[1], reversed),
+                ReadingFragment.newInstance(learningWords[3], reversed),
+                ReadingFragment.newInstance(learningWords[2], reversed, isLastFragment = true)
+        )
+
+        showFragments(fragments)
+    }
+    /**
+     * Show learn by writing fragments.
+     * @param reversed if true reverse the translation.
+     */
+    private fun showWritingFragments(reversed: Boolean = false){
+        Timber.i("showWritingFragments() - reversed: $reversed")
+
+        val fragments = arrayListOf<Fragment>(
+                WritingFragment.newInstance(learningWords [0], reversed),
+                WritingFragment.newInstance(learningWords[1], reversed),
+                WritingFragment.newInstance(learningWords[3], reversed),
+                WritingFragment.newInstance(learningWords[2], reversed, isLastFragment = true)
+        )
+
+        showFragments(fragments)
     }
 
     /**
      * Called when the last learn reading fragment was finished
+     *  @param reversed if true, user learned by reading the reversed translation.
      */
-    override fun onLearnReadingFinished() {
-        Timber.i("onLearnReadingFinished() last: $learnReadingTimes")
+    override fun onLearnReadingFinished(reversed: Boolean) {
+        Timber.i("onLearnReadingFinished() reversed: $reversed")
 
-        learnReadingTimes += 1
-        Timber.i("onLearnReadingFinished() current: $learnReadingTimes")
-
-        viewModel.getLearningWords()?.observe(this, this)
+        when(reversed){
+            true -> showWritingFragments()
+            false -> showReadingFragments( true)
+        }
     }
 
     /**
      * Called when the last learn writing fragment was finished
+     * @param reversed if true, user learned by writing the reversed translation.
      */
-    override fun onLearnWritingFinished() {
-        Timber.i("onLearnWritingFinished() last: $learnWritingTimes")
-
-        learnWritingTimes += 1
-        Timber.i("onLearnWritingFinished() current: $learnWritingTimes")
+    override fun onLearnWritingFinished(reversed: Boolean) {
+        Timber.i("onLearnWritingFinished() reversed: $reversed")
 
         // if user learned by writing two times, finish activity
         // else, learn again by writing
-        if (learnWritingTimes == 2) {
-            this.finish()
-        } else {
-            viewModel.getLearningWords()?.observe(this, this)
+        when(reversed){
+            true -> this.finish()
+            false -> showWritingFragments( true)
         }
     }
 

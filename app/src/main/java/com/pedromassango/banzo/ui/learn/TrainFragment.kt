@@ -25,10 +25,24 @@ import kotlinx.android.synthetic.main.train_fragment.view.*
 class TrainFragment : Fragment() {
 
     companion object {
-        fun newInstance() = TrainFragment()
+        const val KEY_WORDS = "com.pedromassango.banzo.ui.learn.KEY_WORDS"
+
+        fun newInstance(words: List<Word>): TrainFragment {
+            // convert List to ArrayList (bundle allow only ArrayList)
+            val tmp = arrayListOf<Word>()
+            tmp.addAll(words)
+
+            val instance = TrainFragment()
+            val b = Bundle().apply {
+                putParcelableArrayList(KEY_WORDS, tmp)
+            }
+            instance.arguments = b
+
+            return instance
+        }
     }
 
-    private lateinit var viewModel: LearnViewModel
+    private lateinit var words: List<Word>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -46,27 +60,20 @@ class TrainFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(activity!!).get(LearnViewModel::class.java)
+        // get words from arguments
+        words = arguments!!.getParcelableArrayList(KEY_WORDS)
 
-        lateinit var learningWordsObserver: Observer<List<Word>>
-        learningWordsObserver = Observer {
-            // remove observer
-            viewModel.getLearningWords()?.removeObserver(learningWordsObserver)
+        val shuffledList = words.shuffled()
+        val w1 = shuffledList[0]
+        val w2 = shuffledList[1]
+        val w3 = shuffledList[2]
+        val w4 = shuffledList[3]
 
-            val shuffledList = it?.shuffled()
-            val w1 = shuffledList!![0]
-            val w2 = shuffledList[1]
-            val w3 = shuffledList[2]
-            val w4 = shuffledList[3]
-
-            // show learning words with a stylized translation
-            tv_word1.text = stylizeText(w1.translation, w1.ptWord)
-            tv_word2.text = stylizeText( w2.translation, w2.ptWord)
-            tv_word3.text = stylizeText( w3.translation, w3.ptWord)
-            tv_word4.text = stylizeText( w4.translation, w4.ptWord)
-        }
-
-        viewModel.getLearningWords()?.observe(this, learningWordsObserver)
+        // show learning words with a stylized translation
+        tv_word1.text = stylizeText(w1.translation, w1.ptWord)
+        tv_word2.text = stylizeText(w2.translation, w2.ptWord)
+        tv_word3.text = stylizeText(w3.translation, w3.ptWord)
+        tv_word4.text = stylizeText(w4.translation, w4.ptWord)
     }
 
     /**
