@@ -74,17 +74,20 @@ class WritingFragment : Fragment(), View.OnClickListener {
     private var canClick = true
     override fun onClick(textView: View?) {
         // typed text
-        val translation = edt_response.text.toString().trim()
+        val translation = edt_response.text.toString()
         // if already click or typed text is empty, do nothing
-        if (!canClick || translation.isEmpty()) {
+        if (!canClick || translation.trim().isEmpty()) {
             return
         }
         canClick = false
 
+        // check if is the right answer
+        val rightAnswer = translation.trim().equals(wordToLearn.ptWord.trim(), true) ||
+                translation.trim().equals(wordToLearn.translation.trim(), true)
+
         // handle hit or missed this word
         textView?.postDelayed({
-            when(translation.trim().equals(wordToLearn.ptWord.trim(), true) ||
-                    translation.trim().equals(wordToLearn.translation.trim(), true)){
+            when(rightAnswer){
                 true ->{
                     // user hit that word
                     iWriteFragmentListener.onLearnWordResult(wordToLearn, true)
@@ -96,6 +99,14 @@ class WritingFragment : Fragment(), View.OnClickListener {
                     edt_response.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.red, null))
                 }
             }
+
+            // Speak the learning word to memorize the pronounce
+            val text = when(!reverseTranslation) {
+                true -> tv_word_to_learn.text.toString()
+                else -> wordToLearn.translation
+            }
+            // start speaking
+            (activity as LearningActivity).speak(text)
 
             // change text color
             edt_response.setTextColor(ResourcesCompat.getColor(resources, R.color.white, null))

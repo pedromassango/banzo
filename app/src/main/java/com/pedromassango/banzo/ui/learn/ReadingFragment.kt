@@ -1,6 +1,7 @@
 package com.pedromassango.banzo.ui.learn
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,8 +18,14 @@ import kotlinx.android.synthetic.main.reading_fragment.*
 import kotlinx.android.synthetic.main.reading_fragment.view.*
 import timber.log.Timber
 import java.util.*
+import android.speech.tts.TextToSpeech
 
-class ReadingFragment : Fragment(), View.OnClickListener {
+
+
+class ReadingFragment : Fragment(), View.OnClickListener, TextToSpeech.OnInitListener {
+    override fun onInit(p0: Int) {
+
+    }
 
     companion object {
         // Time to wait before show the next fragment
@@ -126,9 +133,13 @@ class ReadingFragment : Fragment(), View.OnClickListener {
 
         val translation = (textView as TextView).text
 
+        // check if is the right answer
+        val rightAnswer = translation.trim().toString().equals(wordToLearn.ptWord.trim(), true) ||
+                translation.trim().toString().equals(wordToLearn.translation.trim(), true)
+
         // handle hit or missed this word
         textView.postDelayed({
-            when (translation == wordToLearn.ptWord || translation == wordToLearn.translation) {
+            when (rightAnswer) {
                 true -> {
                     // user hit that word
                     iReadFragmentListener.onLearnWordResult(wordToLearn, true)
@@ -140,6 +151,14 @@ class ReadingFragment : Fragment(), View.OnClickListener {
                     textView.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.red, null))
                 }
             }
+
+            // Speak the learning word to memorize the pronounce
+            val text = when(!reverseTranslation) {
+                true -> tv_word_to_learn.text.toString()
+                else -> wordToLearn.translation
+            }
+            // start speaking
+            (activity as LearningActivity).speak(text)
 
             // change text color
             textView.setTextColor(ResourcesCompat.getColor(resources, R.color.white, null))

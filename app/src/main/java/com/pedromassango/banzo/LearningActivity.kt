@@ -1,6 +1,8 @@
 package com.pedromassango.banzo
 
+import android.os.Build
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -11,15 +13,22 @@ import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
 import com.pedromassango.banzo.data.models.Word
+import com.pedromassango.banzo.data.preferences.PreferencesHelper
+import com.pedromassango.banzo.enums.LanguagestTypes
 import com.pedromassango.banzo.extras.runOnFree
 import com.pedromassango.banzo.ui.learn.*
 import kotlinx.android.synthetic.main.learn_activity.*
 import timber.log.Timber
+import java.util.*
 
 class LearningActivity : AppCompatActivity(),
         IReadFragmentListener,
         IWriteFragmentListener
-        , Observer<List<Word>> {
+        , Observer<List<Word>>, TextToSpeech.OnInitListener {
+
+    override fun onInit(p0: Int) {
+        Timber.i("TextToSpeech - initialized: $p0")
+    }
 
     companion object {
         // Time to wait before show the next fragment
@@ -33,6 +42,26 @@ class LearningActivity : AppCompatActivity(),
         arrayListOf<Word>()
     }.value
     private lateinit var interstitialAd: InterstitialAd
+    private lateinit var tts: TextToSpeech
+    private val languageToLearn = PreferencesHelper().getLangToLearn()
+
+    /**
+     * Function to speak the learning word.
+     * ATT: this will speak only if the learning idiom
+     * is ENGLISH.
+     */
+    fun speak(text: String){
+        // We speak only if language to learn is english
+        if(languageToLearn != LanguagestTypes.ENGLISH){
+            return
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, text.trim())
+        }else{
+            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +84,10 @@ class LearningActivity : AppCompatActivity(),
         viewModel.getLearningWords()?.observe(this, this)
         // pre-load fake words from database
         viewModel.getFakeWords()
+
+        // setup TextToSpeech
+        tts = TextToSpeech(this, this)
+        tts.language = Locale.US
 
         // setup ads
         runOnFree{

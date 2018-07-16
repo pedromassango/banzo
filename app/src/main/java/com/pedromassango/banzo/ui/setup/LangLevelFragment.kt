@@ -124,7 +124,10 @@ class LangLevelFragment : Fragment(), (Level) -> Unit {
             PreferencesHelper().isFirstTime = false
             // save total words
             PreferencesHelper().totalWordsToLearn = portugueseWords.size
+            // save the selected language
+            PreferencesHelper().setLangToLearn(selectedLanguage.type)
 
+            Timber.i("Language to learn is: ${PreferencesHelper().getLangToLearn()}")
             Timber.i("Total words to learn: ${PreferencesHelper().totalWordsToLearn}")
 
             Timber.i("starting broadcast to generate words...")
