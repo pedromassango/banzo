@@ -164,12 +164,18 @@ class LearningActivity : AppCompatActivity(),
                 if(BanzoApp.isPro()){
                     this.finish()
                 }else{
-                    if(interstitialAd.isLoaded){
-                        interstitialAd.show()
-                    }
+                    showInterstitialAdsOrCloseActivity()
                 }
             }
             false -> showWritingFragments( true)
+        }
+    }
+
+    private fun showInterstitialAdsOrCloseActivity(){
+        if(interstitialAd.isLoaded){
+            interstitialAd.show()
+        }else{
+            this.finish()
         }
     }
 
