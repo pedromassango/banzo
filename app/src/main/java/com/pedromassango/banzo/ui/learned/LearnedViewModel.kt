@@ -16,7 +16,7 @@ class LearnedViewModel : ViewModel() {
 
         if(learnedWords == null){
             learnedWords = MutableLiveData()
-            learnedWords = wordsDatabase.getLearnedWords()
+            learnedWords = wordsDatabase.getLearnedAndLearningWords()
         }
 
         return learnedWords

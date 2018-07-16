@@ -40,8 +40,8 @@ interface WordDAO {
     fun getFakeWords(): LiveData<List<Word>>?
 
     // get all words that have been learned
-    @Query("SELECT * FROM Word WHERE Word.learned = 1")
-    fun getLearnedWords(): LiveData<List<Word>>
+    @Query("SELECT * FROM Word WHERE Word.learned = 1 OR Word.learning = 1 OR Word.hitCounter > 1")
+    fun getLearnedAndLearningWords(): LiveData<List<Word>>
 
     @Update
     fun update(word: Word)
