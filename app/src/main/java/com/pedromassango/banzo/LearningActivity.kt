@@ -171,6 +171,11 @@ class LearningActivity : AppCompatActivity(),
         }
     }
 
+    override fun onBackPressed() {
+        //super.onBackPressed()
+        showInterstitialAdsOrCloseActivity()
+    }
+
     private fun showInterstitialAdsOrCloseActivity(){
         if(interstitialAd.isLoaded){
             interstitialAd.show()
