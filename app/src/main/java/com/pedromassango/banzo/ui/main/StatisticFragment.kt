@@ -73,7 +73,8 @@ class StatisticFragment : Fragment() {
             animator.start()
 
             // show learning progress
-            tv_progress_learnig_average.text = progress.toString()
+            val value = "${progress.toInt()}%"
+            tv_progress_learnig_average.text = value
             progress_learnig_average.setProgressWithAnimation( progress, TEXT_ANIMATION_DURATION)
         }
 
