@@ -1,5 +1,6 @@
 package com.pedromassango.banzo.services
 
+import android.annotation.SuppressLint
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -18,6 +19,7 @@ import timber.log.Timber
  */
 class DateChangedReceiver : BroadcastReceiver() {
 
+    @SuppressLint("UnsafeProtectedBroadcastReceiver")
     override fun onReceive(context: Context?, intent: Intent?) {
         Timber.i("onReceive()")
 
@@ -75,11 +77,11 @@ class DateChangedReceiver : BroadcastReceiver() {
     }
 
     /**
-     * This function check if the user has played at least one time that word
+     * This function check if the user has played at least three time that word
      * @param word the word to check
      * @return true if there is at least one hit or fail counter.
      */
     private fun userLearnTheWord(word: Word): Boolean{
-        return word.hitCounter > 1 || word.failCount > 1
+        return word.hitCounter > 3 || word.failCount > 3
     }
 }
