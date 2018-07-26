@@ -14,10 +14,12 @@ import kotlinx.android.synthetic.main.component_learned_words.*
 import kotlinx.android.synthetic.main.component_learning_words.*
 import timber.log.Timber
 import android.animation.ValueAnimator
+import android.widget.Toast
 import com.google.android.gms.ads.AdRequest
 import com.pedromassango.banzo.extras.runOnFree
 import kotlinx.android.synthetic.free.fragment_statistic.*
 import kotlinx.android.synthetic.free.fragment_statistic.view.*
+import kotlinx.android.synthetic.main.fragment_statistic.*
 import kotlinx.android.synthetic.main.fragment_statistic.view.*
 
 
@@ -48,11 +50,23 @@ class StatisticFragment : Fragment() {
         return v
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // button train difficult words
+        btn_train_challenging_words.setOnClickListener {
+            Toast.makeText(context, "TODO", Toast.LENGTH_SHORT).show()
+
+            //TODO: start activity to learn challenging words
+        }
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(activity!!).get(MainViewModel::class.java)
 
         var learnedWordsObserver: Observer<Int>? = null
+        var challengingWordsObserver: Observer<Int>? = null
 
         // get and show the number of learned and learning words
         learnedWordsObserver = Observer { learnedWordsCount ->
@@ -76,6 +90,18 @@ class StatisticFragment : Fragment() {
             val value = "${progress.toInt()}%"
             tv_progress_learnig_average.text = value
             progress_learnig_average.setProgressWithAnimation( progress, TEXT_ANIMATION_DURATION)
+
+            // start observing challenging words count
+            viewModel.getChallengingWordsCount()?.observe(this@StatisticFragment, challengingWordsObserver!!)
+        }
+
+        challengingWordsObserver = Observer {challengingWordsCount ->
+            if(challengingWordsCount > 1){
+                layout_challenging_words.visibility = View.VISIBLE
+
+                tv_challenging_words.text = String.format(getString(R.string.palavras_desafiadoras_encontradas),
+                        challengingWordsCount)
+            }
         }
 
         // start looking for data

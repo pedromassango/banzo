@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#f2f2f2"
+    android:animateLayoutChanges="true"
     tools:context=".ui.main.StatisticFragment">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

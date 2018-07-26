@@ -4,9 +4,9 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:paddingTop="32dp"
-    android:paddingStart="32dp"
-    android:paddingEnd="32dp"
-    android:paddingBottom="32dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="16dp"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -25,10 +25,50 @@
         android:fontFamily="@font/gotham_rounded_book"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingBottom="16dp"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
         android:layout_below="@id/tv_learned_words_count"
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"
         android:text="@string/palavras_estao_sendo_aprendidas"
         android:textColor="@color/secondaryText"
+        android:id="@+id/v0"
         android:textSize="20sp" />
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/v0"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        android:id="@+id/layout_challenging_words"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_train_challenging_words"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="Treinar"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:fontFamily="@font/gotham_rounded_book"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/btn_train_challenging_words"
+            android:layout_toStartOf="@id/btn_train_challenging_words"
+            android:paddingEnd="8dp"
+            android:layout_centerVertical="true"
+            android:paddingRight="8dp"
+            android:paddingStart="8dp"
+            android:textSize="14sp"
+            android:id="@+id/tv_challenging_words"
+            android:text="@string/palavras_desafiadoras_encontradas"
+            android:textColor="@color/secondaryText" />
+
+    </RelativeLayout>
 </RelativeLayout>

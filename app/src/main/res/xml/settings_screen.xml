@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <Preference
-        android:layout="@layout/install_paid_version"/>
-
     <Preference android:title="Palavras aprendidas"
         android:key="@string/prefs_learned_words"
         android:summary="Todas palavras aprendidas"/>

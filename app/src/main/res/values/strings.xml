@@ -16,4 +16,5 @@
     <string name="prefs_share_app">prefs_share_app</string>
     <string name="prefs_max_daily_words">prefs_max_daily_words</string>
     <string name="palavras_aprendidas_estarao_aqui">Palavras aprendidas estarao aqui!</string>
+    <string name="palavras_desafiadoras_encontradas">%1$s palavras desafiadoras encontradas.</string>
 </resources>

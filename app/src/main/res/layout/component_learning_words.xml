@@ -39,7 +39,7 @@
     </FrameLayout>
 
     <LinearLayout
-        android:gravity="center"
+        android:gravity="start"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_centerVertical="true"
@@ -53,7 +53,8 @@
         android:fontFamily="@font/gotham_rounded_bold"
         android:layout_height="wrap_content"
         android:maxLines="1"
-        android:text="Progresso de aprendizagem"
+        android:gravity="start"
+        android:text="Nivel de aprendizagem"
         android:textColor="@color/secondaryText"
         android:textSize="16sp" />
 
@@ -62,7 +63,6 @@
         android:layout_width="wrap_content"
         android:fontFamily="@font/gotham_rounded_book"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
         android:text="Complete as tarefas para aprender as palavras!"
         android:textColor="@color/secondaryText"
         android:textSize="12sp" />
