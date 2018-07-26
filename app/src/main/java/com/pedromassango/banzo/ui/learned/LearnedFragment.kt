@@ -2,8 +2,10 @@ package com.pedromassango.banzo.ui.learned
 
 import android.content.Context
 import android.graphics.drawable.Drawable
+import android.os.Build
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,10 +16,13 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pedromassango.banzo.R
+import com.pedromassango.banzo.data.preferences.PreferencesHelper
+import com.pedromassango.banzo.enums.LanguagestTypes
 import com.pedromassango.banzo.ui.MyDividerDecoration
 import kotlinx.android.synthetic.main.learned_fragment.*
 import kotlinx.android.synthetic.main.learned_fragment.view.*
 import timber.log.Timber
+import java.util.*
 
 class LearnedFragment : Fragment() {
 
@@ -26,10 +31,37 @@ class LearnedFragment : Fragment() {
     }
 
     private lateinit var viewModel: LearnedViewModel
+    private lateinit var tts: TextToSpeech
+    private val languageToLearn = PreferencesHelper().getLangToLearn()
     private val wordsAdapter: WordsAdapter = lazy {
         Timber.i("setting up wordsAdapter...")
-        WordsAdapter()
+        WordsAdapter(this)
     }.value
+
+    /**
+     * Function to speak the learning word.
+     * ATT: this will speak only if the learning idiom
+     * is ENGLISH.
+     */
+    fun speak(text: String){
+        // We speak only if language to learn is english
+        if(languageToLearn != LanguagestTypes.ENGLISH){
+            return
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, text.trim())
+        }else{
+            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null)
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // setup TextToSpeech
+        tts = TextToSpeech(context, TextToSpeech.OnInitListener { Timber.i("TTS initialized") })
+        tts.language = Locale.US
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {

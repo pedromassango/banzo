@@ -21,7 +21,7 @@ class WordViewModel(view: View): RecyclerView.ViewHolder(view){
     }
 }
 
-class WordsAdapter : RecyclerView.Adapter<WordViewModel>(){
+class WordsAdapter(val fragment: LearnedFragment) : RecyclerView.Adapter<WordViewModel>(){
     private val data = mutableListOf<Word>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewModel {
@@ -32,7 +32,11 @@ class WordsAdapter : RecyclerView.Adapter<WordViewModel>(){
     override fun getItemCount(): Int = data.size
 
     override fun onBindViewHolder(holder: WordViewModel, position: Int) {
-        holder.bind( data[position])
+        val item = data[position]
+        holder.bind( item)
+        holder.itemView.setOnClickListener {
+            fragment.speak(item.translation)
+        }
     }
 
     @Synchronized
