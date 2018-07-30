@@ -18,12 +18,11 @@ class MainActivity : AppCompatActivity(), NavHost {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-           val animatedDrawable = container.background as AnimationDrawable
-           animatedDrawable.setExitFadeDuration(4000)
-           animatedDrawable.setEnterFadeDuration(2000)
-           animatedDrawable.start()
-        }
+        // Start background animation
+        val animatedDrawable = container.background as AnimationDrawable
+        animatedDrawable.setExitFadeDuration(4000)
+        animatedDrawable.setEnterFadeDuration(2000)
+        animatedDrawable.start()
 
         // Setup bottom navigation view
         bottom_navigation_view.selectedItemId = bottom_navigation_view.menu.get(1).itemId
