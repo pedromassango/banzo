@@ -11,11 +11,12 @@ android {
         config {
             keyAlias 'key0'
             keyPassword 'S3t3mbr0/13'
-            storeFile file('/home/pedromassango/AndroidStudioProjects/keystores/pedromassango_apps.jks')
+            //storeFile file('/home/pedromassango/AndroidStudioProjects/keystores/pedromassango_apps.jks')
             storePassword 'S3t3mbr0/13'
+            storeFile file('/Users/pass/AndroidStudioProjects/banzo/pedromassango_apps.jks')
         }
     }
-    compileSdkVersion 'android-P'
+    compileSdkVersion 28
     defaultConfig {
         applicationId 'com.pedromassango.banzo'
         minSdkVersion 16
@@ -29,6 +30,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
         debug {
             signingConfig signingConfigs.config
@@ -45,6 +47,7 @@ android {
             targetSdkVersion 27
             versionCode 1
             versionName '1.0.0-beta'
+            signingConfig signingConfigs.config
         }
         pro {
             applicationId "com.pedromassango.banzo.pro"
@@ -52,6 +55,7 @@ android {
             targetSdkVersion 27
             versionCode 1
             versionName '1.0.0-beta'
+            signingConfig signingConfigs.config
         }
     }
 }
