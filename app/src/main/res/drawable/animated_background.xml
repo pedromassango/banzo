@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <animation-list  xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle" >
 
-    <item android:duration="30000" android:drawable="@drawable/gradient1"/>
-    <item android:duration="10000" android:drawable="@drawable/gradient2" />
+    <item android:duration="8000" android:drawable="@drawable/gradient2" />
     <item android:duration="8000" android:drawable="@drawable/gradient3"/>
-    <item android:duration="6000" android:drawable="@drawable/gradient4"/>
+    <item android:duration="8000" android:drawable="@drawable/gradient4"/>
+    <item android:duration="8000" android:drawable="@drawable/gradient1"/>
 
 </animation-list>

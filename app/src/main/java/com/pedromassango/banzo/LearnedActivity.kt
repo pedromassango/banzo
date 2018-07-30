@@ -3,13 +3,13 @@ package com.pedromassango.banzo
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.pedromassango.banzo.ui.learned.LearnedFragment
-import kotlinx.android.synthetic.main.learned_activity.*
+import kotlinx.android.synthetic.main.activity_learned.*
 
 class LearnedActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.learned_activity)
+        setContentView(R.layout.activity_learned)
         setSupportActionBar(toolbar)
 
         // On navigation click, go back.

@@ -17,7 +17,7 @@ import com.pedromassango.banzo.data.preferences.PreferencesHelper
 import com.pedromassango.banzo.enums.LanguagestTypes
 import com.pedromassango.banzo.extras.runOnFree
 import com.pedromassango.banzo.ui.learn.*
-import kotlinx.android.synthetic.main.learn_activity.*
+import kotlinx.android.synthetic.main.activity_learn.*
 import timber.log.Timber
 import java.util.*
 
@@ -65,7 +65,7 @@ class LearningActivity : AppCompatActivity(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.learn_activity)
+        setContentView(R.layout.activity_learn)
         setSupportActionBar(toolbar)
 
         // set margin on viewPager to preview other fragments
