@@ -30,7 +30,6 @@ class MainViewModel : ViewModel() {
 
     /**
      * This function, retrieve the number of learned words.
-     * OBS: words that have -10 error.
      */
     fun getLearnedWordsCount(): LiveData<Int>?{
         if(learnedWordsCount == null){
