@@ -17,10 +17,8 @@ import android.animation.ValueAnimator
 import android.widget.Toast
 import com.google.android.gms.ads.AdRequest
 import com.pedromassango.banzo.extras.runOnFree
-import kotlinx.android.synthetic.free.fragment_statistic.*
 import kotlinx.android.synthetic.free.fragment_statistic.view.*
-import kotlinx.android.synthetic.main.fragment_statistic.*
-import kotlinx.android.synthetic.main.fragment_statistic.view.*
+import kotlinx.android.synthetic.main.component_learned_level.*
 
 
 /**
@@ -65,21 +63,22 @@ class StatisticFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(activity!!).get(MainViewModel::class.java)
 
+        var learnedAndLearningWordsObserver: Observer<Int>? = null
         var learnedWordsObserver: Observer<Int>? = null
         var challengingWordsObserver: Observer<Int>? = null
 
         // get and show the number of learned and learning words
-        learnedWordsObserver = Observer { learnedWordsCount ->
-            viewModel.getLearningAndLearnedWordsCount()?.removeObserver(learnedWordsObserver!!)
+        learnedAndLearningWordsObserver = Observer { learnedAndLearningWordsCount ->
+            viewModel.getLearningAndLearnedWordsCount()?.removeObserver(learnedAndLearningWordsObserver!!)
 
-            Timber.i("Number of learned and learning words: $learnedWordsCount")
+            Timber.i("Number of learned and learning words: $learnedAndLearningWordsCount")
 
             // calculate average of learned words then show it
             val totalWords = PreferencesHelper().totalWordsToLearn
-            val progress = ((learnedWordsCount * 100) / totalWords).toFloat()
+            val progress = ((learnedAndLearningWordsCount * 100) / totalWords).toFloat()
 
             // show total learned and learning words
-            val animator = ValueAnimator.ofInt(0, learnedWordsCount)
+            val animator = ValueAnimator.ofInt(0, learnedAndLearningWordsCount)
             animator.duration = TEXT_ANIMATION_DURATION.toLong()
             animator.addUpdateListener{ anim ->
                 tv_learned_words_count.text = anim.animatedValue.toString()
@@ -95,6 +94,7 @@ class StatisticFragment : Fragment() {
             viewModel.getChallengingWordsCount()?.observe(this@StatisticFragment, challengingWordsObserver!!)
         }
 
+        // if there is challenging words, we need to show an alert.
         challengingWordsObserver = Observer {challengingWordsCount ->
             if(challengingWordsCount > 1){
                 layout_challenging_words.visibility = View.VISIBLE
@@ -104,8 +104,22 @@ class StatisticFragment : Fragment() {
             }
         }
 
+        // if there is challenging words, we need to show an alert.
+        learnedWordsObserver = Observer {learnedWordsCount ->
+
+            // calculate average of learned words
+            val totalWords = PreferencesHelper().totalWordsToLearn
+            val progress = ((learnedWordsCount * 100) / totalWords).toFloat()
+
+            // show progress
+            progress_learned_words.progress = progress
+            // show learned words count
+            tv_progress_learned_words.text = learnedWordsCount.toString()
+        }
+
         // start looking for data
-        viewModel.getLearningAndLearnedWordsCount()?.observe(this, learnedWordsObserver)
+        viewModel.getLearnedWordsCount()?.observe(this, learnedWordsObserver)
+        viewModel.getLearningAndLearnedWordsCount()?.observe(this, learnedAndLearningWordsObserver)
     }
 
 }

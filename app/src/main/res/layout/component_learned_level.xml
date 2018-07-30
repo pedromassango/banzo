@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:id="@+id/view1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:text="0"
+            android:id="@+id/tv_progress_learned_words"
+            android:fontFamily="@font/gotham_rounded_bold"
+            android:textSize="20sp"
+            android:textColor="@color/green"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content" />
+
+        <com.jackandphantom.circularprogressbar.CircleProgressbar
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:cpb_progress="0"
+            android:id="@+id/progress_learned_words"
+            app:cpb_roundedCorner="true"
+            app:cpb_foregroundProgressWidth="20"
+            app:cpb_backgroundProgressWidth="20"
+            app:cpb_backgroundProgressColor="@color/lessWhite"
+            app:cpb_foregroundProgressColor="@color/green"
+            app:cpb_touchEnabled="false"/>
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:gravity="start"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@id/view1"
+        android:layout_toLeftOf="@id/view1"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:fontFamily="@font/gotham_rounded_bold"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:gravity="start"
+        android:text="Total de palavras aprendidas"
+        android:textColor="@color/secondaryText"
+        android:textSize="16sp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:fontFamily="@font/gotham_rounded_book"
+        android:layout_height="wrap_content"
+        android:text="Quanto mais treinar, mais palavras vai aprender."
+        android:textColor="@color/secondaryText"
+        android:textSize="12sp" />
+    </LinearLayout>
+
+</RelativeLayout>

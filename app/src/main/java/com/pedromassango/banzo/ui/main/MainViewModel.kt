@@ -10,6 +10,7 @@ class MainViewModel : ViewModel() {
     private val wordsDatabase = WordsDatabase.getInstance().wordDAO
     // a count of learning and learned words
     private var learningAndLearnedWordsCount: LiveData<Int>? = null
+    private var learnedWordsCount: LiveData<Int>? = null
     private var challengingWordsCount: LiveData<Int>? = null
 
     // expose learning and learned words count data
@@ -25,5 +26,16 @@ class MainViewModel : ViewModel() {
             challengingWordsCount = wordsDatabase.getChallengingWordsCount()
         }
         return challengingWordsCount
+    }
+
+    /**
+     * This function, retrieve the number of learned words.
+     * OBS: words that have -10 error.
+     */
+    fun getLearnedWordsCount(): LiveData<Int>?{
+        if(learnedWordsCount == null){
+            learnedWordsCount = wordsDatabase.getLearnedWords()
+        }
+        return learnedWordsCount
     }
 }

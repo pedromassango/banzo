@@ -47,6 +47,14 @@ interface WordDAO {
     @Query("SELECT * FROM Word WHERE Word.learned = 1 OR Word.learning = 1 OR Word.hitCounter > 1")
     fun getLearnedAndLearningWords(): LiveData<List<Word>>
 
+    /**
+     * Return the total of learned words
+     * The number of words with more hits, than fails.
+     */
+    @Query("SELECT COUNT(*) FROM Word WHERE ((Word.hitCounter - Word.failCount) > 3)")
+    //@Query("SELECT COUNT(*) FROM Word WHERE Word.failCount = 0 AND Word.hitCounter > 3")
+    fun getLearnedWords(): LiveData<Int>
+
     @Update
     fun update(word: Word)
 
