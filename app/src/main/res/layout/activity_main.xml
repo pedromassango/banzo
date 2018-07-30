@@ -19,6 +19,8 @@
         android:layout_height="wrap_content"/>
 
     <fragment
+        android:layout_alignParentTop="true"
+        android:layout_above="@id/bottom_navigation_view"
         android:layout_width="match_parent"
         android:id="@+id/main_nav_host_fragment"
         app:defaultNavHost="true"
