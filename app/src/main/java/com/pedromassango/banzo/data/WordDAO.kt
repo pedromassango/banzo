@@ -43,8 +43,8 @@ interface WordDAO {
     @Query("SELECT * FROM Word WHERE Word.learning = 0 ORDER BY Random() LIMIT $FAKE_WORDS_LIMIT")
     fun getFakeWords(): LiveData<List<Word>>?
 
-    // get all words that have been learned
-    @Query("SELECT * FROM Word WHERE Word.learned = 1 OR Word.learning = 1 OR Word.hitCounter > 1")
+    // get all words that have been learned or learning
+    @Query("SELECT * FROM Word WHERE Word.learned = 1 OR Word.learning = 1 OR Word.hitCounter > 1 OR Word.failCount > 1")
     fun getLearnedAndLearningWords(): LiveData<List<Word>>
 
     /**
