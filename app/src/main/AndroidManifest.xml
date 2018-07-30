@@ -33,7 +33,8 @@
         <activity
             android:name=".LearningActivity"
             android:label="Treino"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeSetup"/>
 
         <receiver
             android:name=".services.DateChangedReceiver"
@@ -46,7 +47,7 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".LearnedActivity"></activity>
+        <activity android:name=".LearnedActivity"/>
     </application>
 
 </manifest>
