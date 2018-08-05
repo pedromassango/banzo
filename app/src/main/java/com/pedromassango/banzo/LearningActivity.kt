@@ -121,7 +121,7 @@ class LearningActivity : AppCompatActivity(),
         // shuffle the list
         val shuffledWords = words?.shuffled()
                 ?.sortedByDescending { it.failCount == 0 || it.hitCounter == 0 }
-                ?.shuffled()!!
+                ?.toList()!!
 
         // add into learning list
         learningWords.addAll(shuffledWords.take(4))
