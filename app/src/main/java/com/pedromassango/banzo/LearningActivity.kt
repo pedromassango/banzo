@@ -83,11 +83,6 @@ class LearningActivity : AppCompatActivity(),
         tts = TextToSpeech(this, this)
         tts.language = Locale.US
 
-        if(intent != null &&
-                intent.hasExtra("challeng")){
-            Toast.makeText(this, "Show challeng", Toast.LENGTH_SHORT).show()
-        }
-
         // get viewModel
         viewModel = ViewModelProviders.of(this).get(LearnViewModel::class.java)
         // start loading data
