@@ -51,7 +51,7 @@ interface WordDAO {
      * Return the total of learned words
      * The number of words with more hits, than fails.
      */
-    @Query("SELECT COUNT(*) FROM Word WHERE ((Word.hitCounter - Word.failCount) > 3)")
+    @Query("SELECT COUNT(*) FROM Word WHERE ((Word.hitCounter - Word.failCount) >= 4)")
     //@Query("SELECT COUNT(*) FROM Word WHERE Word.failCount = 0 AND Word.hitCounter > 3")
     fun getLearnedWords(): LiveData<Int>
 

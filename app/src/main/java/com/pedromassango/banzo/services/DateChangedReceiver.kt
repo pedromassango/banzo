@@ -82,6 +82,6 @@ class DateChangedReceiver : BroadcastReceiver() {
      * @return true if there is at least one hit or fail counter.
      */
     private fun userLearnTheWord(word: Word): Boolean{
-        return word.hitCounter > 3 || word.failCount > 3
+        return (word.hitCounter - word.failCount) >= 4
     }
 }
