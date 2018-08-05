@@ -81,7 +81,7 @@ class StatisticFragment : Fragment() {
             val animator = ValueAnimator.ofInt(0, learnedAndLearningWordsCount)
             animator.duration = TEXT_ANIMATION_DURATION.toLong()
             animator.addUpdateListener{ anim ->
-                tv_learned_words_count.text = anim.animatedValue.toString()
+                tv_learned_words_count?.text = anim.animatedValue.toString()
             }
             animator.start()
 
@@ -89,22 +89,9 @@ class StatisticFragment : Fragment() {
             val value = "${progress.toInt()}%"
             tv_progress_learnig_average.text = value
             progress_learnig_average.setProgressWithAnimation( progress, TEXT_ANIMATION_DURATION)
-
-            // start observing challenging words count
-            viewModel.getChallengingWordsCount()?.observe(this@StatisticFragment, challengingWordsObserver!!)
         }
 
-        // if there is challenging words, we need to show an alert.
-        challengingWordsObserver = Observer {challengingWordsCount ->
-            if(challengingWordsCount >= 1){
-                layout_challenging_words.visibility = View.VISIBLE
-
-                tv_challenging_words.text = String.format(getString(R.string.palavras_desafiadoras_encontradas),
-                        challengingWordsCount)
-            }
-        }
-
-        // if there is challenging words, we need to show an alert.
+        // show the number of learned words
         learnedWordsObserver = Observer {learnedWordsCount ->
 
             // calculate average of learned words
@@ -117,9 +104,22 @@ class StatisticFragment : Fragment() {
             tv_progress_learned_words.text = learnedWordsCount.toString()
         }
 
+        // if there is challenging words, we need to show an alert.
+        challengingWordsObserver = Observer {challengingWordsCount ->
+            if(challengingWordsCount >= 1){
+                tv_challenging_words.text = String.format(getString(R.string.palavras_desafiadoras_encontradas),
+                        challengingWordsCount)
+
+                // make the view visible
+                layout_challenging_words.visibility = View.VISIBLE
+            }
+        }
+
         // start looking for data
         viewModel.getLearnedWordsCount()?.observe(this, learnedWordsObserver)
         viewModel.getLearningAndLearnedWordsCount()?.observe(this, learnedAndLearningWordsObserver)
+        // start observing challenging words count
+        viewModel.getChallengingWordsCount()?.observe(this@StatisticFragment, challengingWordsObserver)
     }
 
 }
