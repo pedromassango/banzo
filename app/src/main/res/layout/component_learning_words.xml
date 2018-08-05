@@ -27,7 +27,7 @@
         <com.jackandphantom.circularprogressbar.CircleProgressbar
             android:layout_width="80dp"
             android:layout_height="80dp"
-            app:cpb_progress="100"
+            app:cpb_progress="0"
             android:id="@+id/progress_learnig_average"
             app:cpb_roundedCorner="true"
             app:cpb_foregroundProgressWidth="20"

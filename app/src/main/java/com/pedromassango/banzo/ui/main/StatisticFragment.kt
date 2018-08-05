@@ -88,7 +88,11 @@ class StatisticFragment : Fragment() {
             // show learning progress
             val value = "${progress.toInt()}%"
             tv_progress_learnig_average.text = value
-            progress_learnig_average.setProgressWithAnimation( progress, TEXT_ANIMATION_DURATION)
+            // only use animation if progress is more than 5.
+            when(progress >= 5) {
+                true -> progress_learnig_average.setProgressWithAnimation(progress, TEXT_ANIMATION_DURATION)
+                false -> progress_learnig_average.progress = progress
+            }
         }
 
         // show the number of learned words
