@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pedromassango.banzo.MainActivity
@@ -137,7 +138,7 @@ class LangLevelFragment : Fragment(), (Level) -> Unit {
 
             // navigate to MainActivity
             Timber.i("starting main activity...")
-            ActivityUtils.start(context, MainActivity::class.java)
+            view?.findNavController()?.navigate(R.id.action_langLevelFragment_to_mainActivity)
 
         }.start()
     }

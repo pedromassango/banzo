@@ -49,12 +49,7 @@
         android:id="@+id/learningActivity"
         android:name="com.pedromassango.banzo.LearningActivity"
         android:label="activity_learn"
-        tools:layout="@layout/activity_learn" >
-        <argument
-            android:name="challeng"
-            android:defaultValue="0"
-            app:type="integer" />
-    </activity>
+        tools:layout="@layout/activity_learn" />
     <activity
         android:id="@+id/learnedActivity"
         android:name="com.pedromassango.banzo.LearnedActivity"
