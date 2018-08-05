@@ -196,15 +196,12 @@ class LearningActivity : AppCompatActivity(),
     override fun onLearnWritingFinished(reversed: Boolean) {
         Timber.i("onLearnWritingFinished() reversed: $reversed")
 
-        // if user learned by writing two times, finish activity
+        // if user learned by writing two times, repeat tasks instead of finish the activity
         // else, learn again by writing
         when(reversed){
             true -> {
-                if(BanzoApp.isPro()){
-                    this.finish()
-                }else{
-                    showInterstitialAdsOrCloseActivity()
-                }
+                showReadingFragments()
+                //this.finish()
             }
             false -> showWritingFragments( true)
         }
