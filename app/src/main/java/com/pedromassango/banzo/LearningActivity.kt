@@ -3,6 +3,7 @@ package com.pedromassango.banzo
 import android.os.Build
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -76,6 +77,11 @@ class LearningActivity : AppCompatActivity(),
         // back button click
         toolbar.setNavigationOnClickListener {
             this.onBackPressed()
+        }
+
+        if(intent != null &&
+                intent.hasExtra("challeng")){
+            Toast.makeText(this, "Show challeng", Toast.LENGTH_SHORT).show()
         }
 
         // get viewModel

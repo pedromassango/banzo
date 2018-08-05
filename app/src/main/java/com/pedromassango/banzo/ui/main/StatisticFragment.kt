@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.component_learning_words.*
 import timber.log.Timber
 import android.animation.ValueAnimator
 import android.widget.Toast
+import androidx.navigation.findNavController
 import com.google.android.gms.ads.AdRequest
 import com.pedromassango.banzo.extras.runOnFree
 import kotlinx.android.synthetic.free.fragment_statistic.view.*
@@ -53,9 +54,8 @@ class StatisticFragment : Fragment() {
 
         // button train difficult words
         btn_train_challenging_words.setOnClickListener {
-            Toast.makeText(context, "TODO", Toast.LENGTH_SHORT).show()
-
-            //TODO: start activity to learn challenging words
+            //Start activity to learn challenging words
+            it.findNavController().navigate(R.id.action_statisticFragment_to_learningActivity)
         }
     }
 
@@ -64,7 +64,7 @@ class StatisticFragment : Fragment() {
         viewModel = ViewModelProviders.of(activity!!).get(MainViewModel::class.java)
 
         var learnedAndLearningWordsObserver: Observer<Int>? = null
-        var learnedWordsObserver: Observer<Int>? = null
+        val learnedWordsObserver: Observer<Int>?
         var challengingWordsObserver: Observer<Int>? = null
 
         // get and show the number of learned and learning words
@@ -96,7 +96,7 @@ class StatisticFragment : Fragment() {
 
         // if there is challenging words, we need to show an alert.
         challengingWordsObserver = Observer {challengingWordsCount ->
-            if(challengingWordsCount > 1){
+            if(challengingWordsCount >= 1){
                 layout_challenging_words.visibility = View.VISIBLE
 
                 tv_challenging_words.text = String.format(getString(R.string.palavras_desafiadoras_encontradas),

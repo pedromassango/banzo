@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import com.pedromassango.banzo.LearningActivity
 import com.pedromassango.banzo.R
 import com.pedromassango.banzo.data.preferences.PreferencesHelper
@@ -25,7 +26,7 @@ class MainFragment : Fragment() {
         with(v){
             btn_start_learning.setOnClickListener {
                 // start activity to learn
-                ActivityUtils.start(context, LearningActivity::class.java)
+                it.findNavController().navigate(R.id.action_mainFragment_to_learningActivity)
             }
         }
 

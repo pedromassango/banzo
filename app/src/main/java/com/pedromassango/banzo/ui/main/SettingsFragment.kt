@@ -14,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.pedromassango.banzo.BuildConfig
@@ -46,7 +47,10 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onPreferenceTreeClick(preference: Preference?): Boolean {
 
         when (preference!!.key) {
-            getString(R.string.prefs_learned_words) -> ActivityUtils.start(context, LearnedActivity::class.java)
+            getString(R.string.prefs_learned_words) ->{
+                // Navigate to Learned Words Activity
+                view?.findNavController()?.navigate(R.id.action_settingsFragment_to_learnedActivity)
+            }
             getString(R.string.prefs_rate_app) -> startPlaystoreAppPage(context!!)
             getString(R.string.prefs_share_app) -> startShareApp(activity!!)
         }
