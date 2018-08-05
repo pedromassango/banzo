@@ -52,7 +52,10 @@ class ReadingFragment : Fragment(), View.OnClickListener, TextToSpeech.OnInitLis
 
     private lateinit var wordToLearn: Word
     private var reverseTranslation: Boolean = false
+    private var validateChosedOption: Boolean = true
     private val textViews = arrayListOf<TextView>()
+    // the position of right answer's textView
+    private var rightAnswerPosition = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -73,8 +76,9 @@ class ReadingFragment : Fragment(), View.OnClickListener, TextToSpeech.OnInitLis
 
             // on ignore word, just skip to the next fragment
             btn_ignore_word.setOnClickListener {
-                // call next fragment
-                nextFragment()
+                validateChosedOption = false
+                val textView = textViews[rightAnswerPosition]
+                onClick(textView)
             }
         }
         return v
@@ -92,7 +96,7 @@ class ReadingFragment : Fragment(), View.OnClickListener, TextToSpeech.OnInitLis
 
         // A random position to set the right answer
         val random = Random()
-        val rightAnswerPosition = random.nextInt(textViews.size)
+        rightAnswerPosition = random.nextInt(textViews.size)
 
         // get and show fake words
         fakeWordsObserver = Observer {
@@ -141,8 +145,11 @@ class ReadingFragment : Fragment(), View.OnClickListener, TextToSpeech.OnInitLis
         textView.postDelayed({
             when (rightAnswer) {
                 true -> {
-                    // user hit that word
-                    iReadFragmentListener.onLearnWordResult(wordToLearn, true)
+                    // if chosen by user, make an hit
+                    if(validateChosedOption) {
+                        // user hit that word
+                        iReadFragmentListener.onLearnWordResult(wordToLearn, true)
+                    }
                     textView.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.green, null))
                 }
                 false -> {

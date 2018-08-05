@@ -129,8 +129,8 @@ class LearningActivity : AppCompatActivity(),
         // add new words to learn
         when((exercisesCount % 2) == 0){
             // add into learning list
-            true -> learningWords.addAll(words!!.take(4))
-            false -> learningWords.addAll(words!!.takeLast(4))
+            true -> learningWords.addAll(words!!.take(4).shuffled())
+            false -> learningWords.addAll(words!!.takeLast(4).shuffled())
         }
 
         // increase exercises count
