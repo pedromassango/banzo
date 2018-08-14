@@ -62,6 +62,7 @@
       <sourceFolder url="file://$MODULE_DIR$/build/generated/aidl_source_output_dir/freeDebug/compileFreeDebugAidl/out" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/free/debug" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/renderscript_source_output_dir/freeDebug/compileFreeDebugRenderscript/out" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/kaptKotlin/freeDebug" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/free/debug" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/res/resValues/free/debug" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/freeDebug/res" type="java-resource" />

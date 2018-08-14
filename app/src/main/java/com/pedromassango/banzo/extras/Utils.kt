@@ -1,6 +1,6 @@
 package com.pedromassango.banzo.extras
 
-import com.pedromassango.banzo.BanzoApp
+import com.pedromassango.banzo.MainApplication
 
 /**
  * Created by Pedro Massango on 7/15/18.
@@ -9,7 +9,7 @@ import com.pedromassango.banzo.BanzoApp
 
 val runOnFree = {code: ()-> Unit ->
 
-    if(!BanzoApp.isPro()){
+    if(!MainApplication.isPro()){
         code()
     }
 }

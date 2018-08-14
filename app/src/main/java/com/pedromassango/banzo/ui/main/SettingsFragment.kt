@@ -5,22 +5,18 @@ import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.pedromassango.banzo.BuildConfig
-import com.pedromassango.banzo.LearnedActivity
+import com.pedromassango.banzo.ui.LearnedActivity
 
 import com.pedromassango.banzo.R
-import com.pedromassango.banzo.data.preferences.PreferencesHelper
 import com.pedromassango.banzo.extras.ActivityUtils
 import java.io.File
 

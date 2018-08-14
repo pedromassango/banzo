@@ -3,14 +3,14 @@ package com.pedromassango.banzo.data.preferences
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
-import com.pedromassango.banzo.BanzoApp
+import com.pedromassango.banzo.MainApplication
 import com.pedromassango.banzo.enums.LanguagestTypes
 
 /**
  * Created by Pedro Massango on 13/06/2017 at 21:52.
  */
 
-class PreferencesHelper(context: Context = BanzoApp.applicationContext()) {
+class PreferencesHelper(context: Context = MainApplication.applicationContext()) {
 
     companion object {
 

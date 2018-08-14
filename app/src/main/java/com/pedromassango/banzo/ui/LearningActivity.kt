@@ -1,4 +1,4 @@
-package com.pedromassango.banzo
+package com.pedromassango.banzo.ui
 
 import android.os.Build
 import android.os.Bundle
@@ -12,6 +12,8 @@ import androidx.lifecycle.ViewModelProviders
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
+import com.pedromassango.banzo.MainApplication
+import com.pedromassango.banzo.R
 import com.pedromassango.banzo.data.models.Word
 import com.pedromassango.banzo.data.preferences.PreferencesHelper
 import com.pedromassango.banzo.enums.LanguagestTypes
@@ -194,7 +196,7 @@ class LearningActivity : AppCompatActivity(),
         // else, learn again by writing
         when(reversed){
             true -> {
-                if(BanzoApp.isPro()){
+                if(MainApplication.isPro()){
                     this.finish()
                 }else{
                     showInterstitialAdsOrCloseActivity()

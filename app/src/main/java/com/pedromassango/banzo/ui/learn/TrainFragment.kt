@@ -1,19 +1,16 @@
 package com.pedromassango.banzo.ui.learn
 
 import android.graphics.Typeface
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
-import android.text.style.StrikethroughSpan
 import android.text.style.StyleSpan
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
-import com.pedromassango.banzo.LearningActivity
+import com.pedromassango.banzo.ui.LearningActivity
 import com.pedromassango.banzo.R
 import com.pedromassango.banzo.data.models.Word
 import kotlinx.android.synthetic.main.train_fragment.*

@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import com.pedromassango.banzo.LearningActivity
+import com.pedromassango.banzo.ui.LearningActivity
 import com.pedromassango.banzo.R
 import com.pedromassango.banzo.data.models.Word
 import kotlinx.android.synthetic.main.writing_fragment.*

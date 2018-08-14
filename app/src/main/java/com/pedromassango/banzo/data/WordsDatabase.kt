@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.pedromassango.banzo.BanzoApp
+import com.pedromassango.banzo.MainApplication
 import com.pedromassango.banzo.data.models.Word
 
 /**
@@ -17,7 +17,7 @@ abstract class WordsDatabase : RoomDatabase() {
     companion object {
         private var INSTANCE: WordsDatabase? = null
 
-        fun getInstance(context: Context = BanzoApp.applicationContext()): WordsDatabase {
+        fun getInstance(context: Context = MainApplication.applicationContext()): WordsDatabase {
             if (INSTANCE == null) {
                 INSTANCE = create(context)
             }

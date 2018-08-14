@@ -7,7 +7,7 @@
     android:background="@drawable/animated_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"

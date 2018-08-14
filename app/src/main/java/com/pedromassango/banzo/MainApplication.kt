@@ -9,11 +9,11 @@ import timber.log.Timber
 /**
  * Created by Pedro Massango on 6/22/18.
  */
-class BanzoApp : Application() {
+class MainApplication : Application() {
 
     companion object {
 
-        private var instance: BanzoApp? = null
+        private var instance: MainApplication? = null
 
         fun applicationContext(): Context {
             checkNotNull(instance)

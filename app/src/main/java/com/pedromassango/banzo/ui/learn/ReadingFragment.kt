@@ -1,7 +1,6 @@
 package com.pedromassango.banzo.ui.learn
 
 import android.content.Context
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +10,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.pedromassango.banzo.LearningActivity
+import com.pedromassango.banzo.ui.LearningActivity
 import com.pedromassango.banzo.R
 import com.pedromassango.banzo.data.models.Word
 import kotlinx.android.synthetic.main.reading_fragment.*

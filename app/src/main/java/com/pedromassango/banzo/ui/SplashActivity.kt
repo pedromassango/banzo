@@ -1,4 +1,4 @@
-package com.pedromassango.banzo
+package com.pedromassango.banzo.ui
 
 import android.os.Bundle
 import android.os.Handler

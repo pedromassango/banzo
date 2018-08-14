@@ -1,7 +1,8 @@
-package com.pedromassango.banzo
+package com.pedromassango.banzo.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.pedromassango.banzo.R
 import com.pedromassango.banzo.ui.learned.LearnedFragment
 import kotlinx.android.synthetic.main.activity_learned.*
 

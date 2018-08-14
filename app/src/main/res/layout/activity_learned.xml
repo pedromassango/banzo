@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorAccent"
     android:fitsSystemWindows="true"
-    tools:context=".LearnedActivity">
+    tools:context=".ui.LearnedActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -26,6 +26,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:background="@drawable/background_cut_out"
-        tools:context=".LearnedActivity" />
+        tools:context=".ui.LearnedActivity" />
 
 </RelativeLayout>

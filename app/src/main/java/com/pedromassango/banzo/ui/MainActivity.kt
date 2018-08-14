@@ -1,8 +1,6 @@
-package com.pedromassango.banzo
+package com.pedromassango.banzo.ui
 
-import android.graphics.drawable.AnimatedStateListDrawable
 import android.graphics.drawable.AnimationDrawable
-import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.get
@@ -10,6 +8,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHost
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import com.pedromassango.banzo.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), NavHost {
