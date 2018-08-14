@@ -72,6 +72,11 @@ class ReadingFragment : Fragment(), View.OnClickListener, TextToSpeech.OnInitLis
 
             // on ignore word, just skip to the next fragment
             btn_ignore_word.setOnClickListener {
+                if (!canClick) {
+                    return@setOnClickListener
+                }
+                canClick = false
+
                 // call next fragment
                 nextFragment()
             }
@@ -129,6 +134,8 @@ class ReadingFragment : Fragment(), View.OnClickListener, TextToSpeech.OnInitLis
             return
         }
         canClick = false
+        // disable click to skip button
+        btn_ignore_word.isClickable = false
 
         val translation = (textView as TextView).text
 
