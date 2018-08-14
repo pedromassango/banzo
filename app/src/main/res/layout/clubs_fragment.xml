@@ -9,19 +9,57 @@
     tools:context=".ui.main.ClubsFragment">
 
   <LinearLayout
+      android:id="@+id/no_logged_view"
       android:layout_centerInParent="true"
       android:orientation="vertical"
+      android:gravity="center_horizontal"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content">
 
       <TextView
-          android:id="@+id/tv_learn_status"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:gravity="center_horizontal"
-          android:text="Lista de clubes para troca de mensagem"
+          android:text="Você pode conversar com outros usuários, e aprender mais."
           android:textSize="20sp" />
 
+      <TextView
+          android:paddingTop="16dp"
+          android:layout_width="210dp"
+          android:layout_height="wrap_content"
+          android:gravity="center_horizontal"
+          android:text="Entre com uma conta Google para começar" />
+
+      <com.google.android.gms.common.SignInButton
+          android:layout_marginTop="16dp"
+          android:layout_width="200dp"
+          android:layout_height="wrap_content"/>
+
   </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/logged_view"
+        android:visibility="invisible"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:paddingTop="32dp"
+            android:paddingBottom="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Selecione um clube, e comece a conversar"
+            android:textSize="20sp" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_clubs"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
 
 </RelativeLayout>
