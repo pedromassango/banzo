@@ -20,4 +20,9 @@
         android:name="com.pedromassango.banzo.ui.main.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/clubsFragment"
+        android:name="com.pedromassango.banzo.ui.main.ClubsFragment"
+        android:label="clubs_fragment"
+        tools:layout="@layout/clubs_fragment" />
 </navigation>

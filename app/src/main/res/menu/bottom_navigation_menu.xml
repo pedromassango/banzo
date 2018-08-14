@@ -13,7 +13,13 @@
         android:id="@+id/mainFragment"
         android:icon="@drawable/ic_learn"/>
 
-    <item android:title="Configuracoes"
+    <item android:title="Clubes"
+        android:checked="false"
+        android:checkable="true"
+        android:id="@+id/clubsFragment"
+        android:icon="@drawable/ic_clubs"/>
+
+    <item android:title="Definições"
         android:checked="false"
         android:checkable="true"
         android:id="@+id/settingsFragment"

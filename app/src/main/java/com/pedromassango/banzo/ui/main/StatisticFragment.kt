@@ -81,7 +81,7 @@ class StatisticFragment : Fragment() {
             val animator = ValueAnimator.ofInt(0, learnedAndLearningWordsCount)
             animator.duration = TEXT_ANIMATION_DURATION.toLong()
             animator.addUpdateListener{ anim ->
-                tv_learned_words_count.text = anim.animatedValue.toString()
+                tv_learned_words_count?.text = anim.animatedValue.toString()
             }
             animator.start()
 
