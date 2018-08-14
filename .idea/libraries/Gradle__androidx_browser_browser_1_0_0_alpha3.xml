@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.browser:browser-1.0.0-alpha3">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/browser-1.0.0-alpha3.aar/20d70f9054b9a2adcfb1ba1274de4b89/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/browser-1.0.0-alpha3.aar/20d70f9054b9a2adcfb1ba1274de4b89/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/browser-1.0.0-alpha3.aar/1e12335b4b06bcf5444b823e1fefa526/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/browser-1.0.0-alpha3.aar/1e12335b4b06bcf5444b823e1fefa526/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
