@@ -18,7 +18,7 @@
         android:text="0"
         android:textSize="32sp"
         android:maxLines="1"
-        android:textColor="@color/colorAccent" />
+        android:textColor="@color/colorPrimary" />
 
     <androidx.appcompat.widget.AppCompatTextView
         style="@style/TextAppearance.AppCompat.Medium"

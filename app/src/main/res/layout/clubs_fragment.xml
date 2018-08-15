@@ -33,7 +33,15 @@
       <com.google.android.gms.common.SignInButton
           android:layout_marginTop="16dp"
           android:layout_width="200dp"
+          android:id="@+id/btn_google_signin"
           android:layout_height="wrap_content"/>
+
+      <ProgressBar
+          android:visibility="gone"
+          android:layout_marginTop="4dp"
+          android:id="@+id/login_progress"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content" />
 
   </LinearLayout>
 

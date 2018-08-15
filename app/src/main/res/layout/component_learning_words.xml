@@ -16,11 +16,11 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
-            android:text="45"
+            android:text="0"
             android:id="@+id/tv_progress_learnig_average"
             android:fontFamily="@font/gotham_rounded_bold"
             android:textSize="20sp"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
             android:layout_gravity="center"
             android:layout_height="wrap_content" />
 
@@ -33,7 +33,7 @@
             app:cpb_foregroundProgressWidth="20"
             app:cpb_backgroundProgressWidth="20"
             app:cpb_backgroundProgressColor="@color/lessWhite"
-            app:cpb_foregroundProgressColor="@color/colorAccent"
+            app:cpb_foregroundProgressColor="@color/colorPrimary"
             app:cpb_touchEnabled="false"/>
 
     </FrameLayout>

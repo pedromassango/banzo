@@ -18,6 +18,8 @@ class PreferencesHelper(context: Context = MainApplication.applicationContext())
         private const val KEY_LEARNING_DAY = "KEY_LEARNING_DAY"
         private const val KEY_TOTAL_WORDS_TO_LEARN = "KEY_TOTAL_WORDS_TO_LEARN"
         private const val KEY_LANG_TO_LEARN = "KEY_LANG_TO_LEARN"
+        private const val KEY_USER_NAME = "KEY_USER_NAME"
+        private const val KEY_USER_PHOTO_URL = "KEY_USER_PHOTO_URL"
 
     }
 
@@ -32,6 +34,12 @@ class PreferencesHelper(context: Context = MainApplication.applicationContext())
 
     var totalWordsToLearn = preferences.getInt(KEY_TOTAL_WORDS_TO_LEARN, 0)
         set(value) = editor.putInt(KEY_TOTAL_WORDS_TO_LEARN, value).apply()
+
+    var username = preferences.getString(KEY_USER_NAME, "")
+        set(value) = editor.putString(KEY_USER_NAME, value).apply()
+
+    var photoUrl = preferences.getString(KEY_USER_PHOTO_URL, "")
+        set(value) = editor.putString(KEY_USER_PHOTO_URL, value).apply()
 
     private var languageToLearn = preferences.getInt(KEY_LANG_TO_LEARN, 0)
         set(value) = editor.putInt(KEY_LANG_TO_LEARN, value).apply()

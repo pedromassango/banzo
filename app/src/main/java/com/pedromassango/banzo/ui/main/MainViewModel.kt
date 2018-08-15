@@ -3,18 +3,25 @@ package com.pedromassango.banzo.ui.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseAuth
+import com.pedromassango.banzo.data.AuthRepository
 import com.pedromassango.banzo.data.WordsDatabase
+import com.pedromassango.banzo.data.preferences.PreferencesHelper
 
 
 class MainViewModel : ViewModel() {
     // database
     private val wordsDatabase = WordsDatabase.getInstance().wordDAO
+    // preferences
+    private val preferencesHelper = PreferencesHelper()
+
     // a count of learning and learned words
     private var learningAndLearnedWordsCount: LiveData<Int>? = null
     private var learnedWordsCount: LiveData<Int>? = null
     private var challengingWordsCount: LiveData<Int>? = null
     private var authState = MutableLiveData<Boolean>()
+    private var errorEvent = MutableLiveData<String>()
 
     init {
         // Listen auth state
@@ -55,6 +62,13 @@ class MainViewModel : ViewModel() {
     }
 
     /**
+     * The LiveData that will be notified when some error occours
+     */
+    fun getErrorEvent(): LiveData<String>{
+        return errorEvent
+    }
+
+    /**
      * This function, retrieve the number of learned words.
      */
     fun getLearnedWordsCount(): LiveData<Int>?{
@@ -62,5 +76,19 @@ class MainViewModel : ViewModel() {
             learnedWordsCount = wordsDatabase.getLearnedWords()
         }
         return learnedWordsCount
+    }
+
+    /**
+     * Start Google auth
+     * @param account the account to authenticate with.
+     */
+    fun authWithGoogle(account: GoogleSignInAccount) {
+        // start google auth in server
+        AuthRepository(preferencesHelper)
+                .errorListener(errorEvent)
+                .authWithGoogle(account){ firebaseUser ->
+                    // if not null user is logged in
+                    authState.postValue( firebaseUser != null)
+                }
     }
 }
