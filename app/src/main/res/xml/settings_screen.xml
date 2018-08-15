@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <Preference android:title="Conta"
+        android:key="@string/prefs_username"
+        android:selectable="false"
+        android:summary="@string/app_name"/>
+
+    <Preference android:title="Palavras aprendidas"
+        android:key="@string/prefs_learned_words"
+        android:summary="Todas palavras aprendidas"/>
+
     <Preference android:title="Palavras aprendidas"
         android:key="@string/prefs_learned_words"
         android:summary="Todas palavras aprendidas"/>
@@ -19,5 +28,8 @@
 
     <Preference android:title="Partilhar este app"
         android:key="@string/prefs_share_app"/>
+
+    <Preference android:title="Remover Conta"
+        android:key="@string/prefs_remove_account"/>
 
 </PreferenceScreen>

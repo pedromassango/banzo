@@ -18,6 +18,7 @@ import com.pedromassango.banzo.BuildConfig
 import com.pedromassango.banzo.ui.LearnedActivity
 
 import com.pedromassango.banzo.R
+import com.pedromassango.banzo.data.preferences.PreferencesHelper
 import com.pedromassango.banzo.extras.ActivityUtils
 import java.io.File
 
@@ -29,6 +30,11 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.settings_screen)
+
+        // show username
+        val username = PreferencesHelper().username
+        findPreference(getString(R.string.prefs_username)).summary = username
+
 
         val maxWords = findPreference( getString(R.string.prefs_max_daily_words))
         maxWords.isEnabled = !BuildConfig.DEBUG
@@ -49,6 +55,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
             }
             getString(R.string.prefs_rate_app) -> startPlaystoreAppPage(context!!)
             getString(R.string.prefs_share_app) -> startShareApp(activity!!)
+            getString(R.string.prefs_remove_account) -> {
+                // TODO:("remove google account (sign in out)"
+            }
         }
 
         return super.onPreferenceTreeClick(preference)
