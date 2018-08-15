@@ -93,6 +93,7 @@
         android:layout_height="60dp"
         android:layout_gravity="center_horizontal"
         android:layout_margin="32dp"
+        app:backgroundTint="#355C7D"
         android:id="@+id/btn_ready"
         android:text="Preparado" />
 

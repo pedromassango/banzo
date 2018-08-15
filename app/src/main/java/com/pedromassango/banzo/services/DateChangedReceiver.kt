@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import androidx.lifecycle.ViewModelProviders
+import com.pedromassango.banzo.data.WordDAO
 import com.pedromassango.banzo.data.WordsDatabase
 import com.pedromassango.banzo.data.models.Word
 import com.pedromassango.banzo.data.preferences.PreferencesHelper
@@ -41,7 +41,7 @@ class DateChangedReceiver : BroadcastReceiver() {
 
                 // set as learned word
                 it.forEach { learningWord ->
-                    learningWord.learning = userLearnTheWord(learningWord)
+                    learningWord.learning = userTrainedTheWord(learningWord)
                     learningWord.learned = isLearnedWord( learningWord)
 
                     wordsDatabase.update(learningWord)
@@ -56,7 +56,6 @@ class DateChangedReceiver : BroadcastReceiver() {
                 // set new words in learning state
                 it.forEach { wordToLearn ->
                     wordToLearn.learning = true
-
                     wordsDatabase.update(wordToLearn)
                 }
 
@@ -73,7 +72,7 @@ class DateChangedReceiver : BroadcastReceiver() {
      * @return true if there is more hit than fail counter
      */
     private fun isLearnedWord(word: Word): Boolean{
-        return word.hitCounter > word.failCount
+        return (word.hitCounter - word.failCount) >= WordDAO.MIN_HIT_ALLOWED
     }
 
     /**
@@ -81,7 +80,7 @@ class DateChangedReceiver : BroadcastReceiver() {
      * @param word the word to check
      * @return true if there is at least one hit or fail counter.
      */
-    private fun userLearnTheWord(word: Word): Boolean{
-        return word.hitCounter > 3 || word.failCount > 3
+    private fun userTrainedTheWord(word: Word): Boolean{
+        return (word.hitCounter >= WordDAO.MIN_HIT_ALLOWED || word.failCount >= WordDAO.MIN_HIT_ALLOWED)
     }
 }

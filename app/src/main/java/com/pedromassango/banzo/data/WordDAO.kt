@@ -13,37 +13,59 @@ interface WordDAO {
     companion object {
         const val FAKE_WORDS_LIMIT = 48
         const val DAILY_WORDS_LIMIT = 8
+        /**
+         * The minimum of hits acceptable to mark an word as a learned word.
+         * NOTE: This is also the number of tests for each word.
+         **/
+        const val MIN_HIT_ALLOWED = 4
     }
 
-    // get words that is in learning state
+    /**
+     * Get words that is in learning state as a List
+     */
     @Query("SELECT * FROM Word WHERE Word.learning = 1")
     fun getLearningWordsList(): List<Word>?
 
-    // get words that  have not been learned
-    @Query("SELECT * FROM Word WHERE Word.learned = 0 ORDER BY Random() LIMIT $DAILY_WORDS_LIMIT")
-    fun getWordsToLearnList(): List<Word>?
-
-    // get the number of learning and learned words
-    @Query("SELECT COUNT(*) FROM Word WHERE( learning = 1 OR learned = 1)")
-    fun getLearningAndLearnedWordsCount(): LiveData<Int>
-
-    // get the number of learning words with more fails than hit
-    @Query("SELECT COUNT(*) FROM Word WHERE( learning = 1 AND failCount > 2)")
-    fun getChallengingWordsCount(): LiveData<Int>
-
-
+    /**
+     * Get words that is in learning state as LiveData
+     */
     @Query("SELECT * FROM Word WHERE Word.learning = 1")
     fun getLearningWords(): LiveData<List<Word>>?
 
-    // get words that  have not been learned
+    /**
+     * Return the number of learning and learned words
+     */
+    @Query("SELECT COUNT(*) FROM Word WHERE( learning = 1 OR learned = 1)")
+    fun getLearningAndLearnedWordsCount(): LiveData<Int>
+
+    /**
+     * TODO: updated challenging words Query
+     * Return the number of learned words with many fails than hits
+     */
+    @Query("SELECT COUNT(*) FROM Word WHERE((Word.failCount - Word.hitCounter) >= $MIN_HIT_ALLOWED)")
+    fun getChallengingWordsCount(): LiveData<Int>
+
+    /**
+     * Get words that have not been learned
+     */
     @Query("SELECT * FROM Word WHERE Word.learned = 0 ORDER BY Random() LIMIT $DAILY_WORDS_LIMIT")
     fun getWordsToLearn(): LiveData<List<Word>>?
 
-    // return all words is not current learning
+    /**
+     * Get words that have not been learned as List
+     */
+    @Query("SELECT * FROM Word WHERE Word.learned = 0 ORDER BY Random() LIMIT $DAILY_WORDS_LIMIT")
+    fun getWordsToLearnList(): List<Word>?
+
+    /**
+     * Return all words that is not currently in learning or learned state
+     */
     @Query("SELECT * FROM Word WHERE Word.learning = 0 ORDER BY Random() LIMIT $FAKE_WORDS_LIMIT")
     fun getFakeWords(): LiveData<List<Word>>?
 
-    // get all words that have been learned or learning
+    /**
+     * Get all words that have been learned or learning
+     */
     @Query("SELECT * FROM Word WHERE Word.learned = 1 OR Word.learning = 1 OR Word.hitCounter > 1 OR Word.failCount > 1")
     fun getLearnedAndLearningWords(): LiveData<List<Word>>
 
@@ -51,13 +73,19 @@ interface WordDAO {
      * Return the total of learned words
      * The number of words with more hits, than fails.
      */
-    @Query("SELECT COUNT(*) FROM Word WHERE ((Word.hitCounter - Word.failCount) > 3)")
+    @Query("SELECT COUNT(*) FROM Word WHERE ((Word.hitCounter - Word.failCount) >= $MIN_HIT_ALLOWED)")
     //@Query("SELECT COUNT(*) FROM Word WHERE Word.failCount = 0 AND Word.hitCounter > 3")
     fun getLearnedWords(): LiveData<Int>
 
+    /**
+     * Update an word in database
+     */
     @Update
     fun update(word: Word)
 
+    /**
+     * Insert an Word in database
+     */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun add(word: Word)
 }

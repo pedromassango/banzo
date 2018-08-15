@@ -9,20 +9,56 @@
         android:id="@+id/mainFragment"
         android:name="com.pedromassango.banzo.ui.main.MainFragment"
         android:label="main_fragment"
-        tools:layout="@layout/main_fragment" />
+        tools:layout="@layout/main_fragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_learningActivity"
+            app:destination="@id/learningActivity"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/statisticFragment"
         android:name="com.pedromassango.banzo.ui.main.StatisticFragment"
         android:label="fragment_statistic"
-        tools:layout="@layout/fragment_statistic" />
+        tools:layout="@layout/fragment_statistic" >
+        <action
+            android:id="@+id/action_statisticFragment_to_learningActivity"
+            app:destination="@+id/learningActivity"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.pedromassango.banzo.ui.main.SettingsFragment"
         android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_settingsFragment_to_learnedActivity"
+            app:destination="@id/learnedActivity"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/clubsFragment"
         android:name="com.pedromassango.banzo.ui.main.ClubsFragment"
         android:label="clubs_fragment"
-        tools:layout="@layout/clubs_fragment" />
+        tools:layout="@layout/clubs_fragment"/>
+
+    <activity
+        android:id="@+id/learningActivity"
+        android:name="com.pedromassango.banzo.ui.LearningActivity"
+        android:label="activity_learn"
+        tools:layout="@layout/activity_learn" />
+    <activity
+        android:id="@+id/learnedActivity"
+        android:name="com.pedromassango.banzo.ui.LearnedActivity"
+        android:label="activity_learned"
+        tools:layout="@layout/activity_learned" />
 </navigation>

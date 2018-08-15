@@ -32,7 +32,7 @@
             android:theme="@style/AppThemeSetup" />
         <activity
             android:name=".ui.LearningActivity"
-            android:label="Treino"
+            android:label="@string/train"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeSetup"/>
 

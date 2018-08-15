@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">Banzo</string>
+    <string name="app_name" translatable="false">Banzo</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="selecione_o_idioma_que_deja_aprender">Selecione o idioma que deja aprender</string>
-    <string name="escolha_seu_nivel_de_1_s">Escolha seu nivel de %1$s</string>
+    <string name="escolha_seu_nivel_de_1_s">Selecione seu nivel actual de %1$s</string>
     <string name="comece_a_aprender">Comece a aprender</string>
     <string name="selecionar">Selecionar</string>
     <string name="muito_bem_vamos_come_ar_com_o_treinamento_de_hoje">Muito bem! Vamos começar com o treinamento de hoje.</string>
@@ -12,9 +12,10 @@
     <string name="voce_tem_palavras_novas_para_aprender">Esta um bom dia para aprender, vamos estudar novas palavras novas hoje.</string>
     <string name="palavras_estao_sendo_aprendidas">Palavras estao sendo aprendidas</string>
     <string name="prefs_learned_words">prefs_learned_words</string>
-    <string name="prefs_rate_app">prefs_rate_app</string>
-    <string name="prefs_share_app">prefs_share_app</string>
-    <string name="prefs_max_daily_words">prefs_max_daily_words</string>
+    <string name="prefs_rate_app" translatable="false">prefs_rate_app</string>
+    <string name="prefs_share_app" translatable="false">prefs_share_app</string>
+    <string name="prefs_max_daily_words" translatable="false">prefs_max_daily_words</string>
     <string name="palavras_aprendidas_estarao_aqui">Palavras aprendidas estarao aqui!</string>
     <string name="palavras_desafiadoras_encontradas">%1$s palavras desafiadoras encontradas.</string>
+    <string name="train">Treino</string>
 </resources>

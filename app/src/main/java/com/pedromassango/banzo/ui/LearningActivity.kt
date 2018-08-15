@@ -3,6 +3,7 @@ package com.pedromassango.banzo.ui
 import android.os.Build
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -80,16 +81,14 @@ class LearningActivity : AppCompatActivity(),
             this.onBackPressed()
         }
 
-        // get viewModel
-        viewModel = ViewModelProviders.of(this).get(LearnViewModel::class.java)
-        // get words to learn
-        viewModel.getLearningWords()?.observe(this, this)
-        // pre-load fake words from database
-        viewModel.getFakeWords()
-
         // setup TextToSpeech
         tts = TextToSpeech(this, this)
         tts.language = Locale.US
+
+        // get viewModel
+        viewModel = ViewModelProviders.of(this).get(LearnViewModel::class.java)
+        // start loading data
+        startExercises()
 
         // setup ads
         runOnFree{
@@ -107,20 +106,37 @@ class LearningActivity : AppCompatActivity(),
     }
 
     /**
+     * This, will load words to learn,
+     * and start the exercises.
+     */
+    private fun startExercises(){
+        // get words to learn
+        viewModel.getLearningWords()?.observe(this, this)
+        // pre-load fake words from database
+        viewModel.getFakeWords()
+    }
+
+    /**
      * Method to receive words that need to be learned at this time.
      * @param words the words to be learned
      */
+    private var exercisesCount = 0
     override fun onChanged(words: List<Word>?) {
         // remove observer, we need to observe just one time
         viewModel.getLearningWords()?.removeObserver(this)
 
-        // shuffle the list
-        val shuffledWords = words?.shuffled()
-                ?.sortedByDescending { it.failCount == 0 || it.hitCounter == 0 }
-                ?.shuffled()!!
+        // clear current list
+        learningWords.clear()
 
-        // add into learning list
-        learningWords.addAll(shuffledWords.take(4))
+        // add new words to learn
+        when((exercisesCount % 2) == 0){
+            // add into learning list
+            true -> learningWords.addAll(words!!.take(4).shuffled())
+            false -> learningWords.addAll(words!!.takeLast(4).shuffled())
+        }
+
+        // increase exercises count
+        exercisesCount += 1
 
         // the user start learning by reading,
         // then by reading reversed, then
@@ -138,6 +154,7 @@ class LearningActivity : AppCompatActivity(),
         // show fragments
         learn_viewpager.adapter = MyPagerAdapter(supportFragmentManager, fragments)
     }
+
     /**
      * Show learn by reading fragments.
      * @param reversed if true reverse the translation and fake words.
@@ -155,6 +172,7 @@ class LearningActivity : AppCompatActivity(),
 
         showFragments(fragments)
     }
+
     /**
      * Show learn by writing fragments.
      * @param reversed if true reverse the translation.
@@ -192,15 +210,12 @@ class LearningActivity : AppCompatActivity(),
     override fun onLearnWritingFinished(reversed: Boolean) {
         Timber.i("onLearnWritingFinished() reversed: $reversed")
 
-        // if user learned by writing two times, finish activity
+        // if user learned by writing two times, repeat tasks instead of finish the activity
         // else, learn again by writing
         when(reversed){
             true -> {
-                if(MainApplication.isPro()){
-                    this.finish()
-                }else{
-                    showInterstitialAdsOrCloseActivity()
-                }
+                startExercises()
+                //this.finish()
             }
             false -> showWritingFragments( true)
         }
