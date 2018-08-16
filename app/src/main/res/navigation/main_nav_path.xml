@@ -49,7 +49,11 @@
         android:id="@+id/clubsFragment"
         android:name="com.pedromassango.banzo.ui.main.ClubsFragment"
         android:label="clubs_fragment"
-        tools:layout="@layout/clubs_fragment"/>
+        tools:layout="@layout/clubs_fragment">
+        <action
+            android:id="@+id/action_clubsFragment_to_chatActivity"
+            app:destination="@id/chatActivity" />
+    </fragment>
 
     <activity
         android:id="@+id/learningActivity"
@@ -61,4 +65,8 @@
         android:name="com.pedromassango.banzo.ui.LearnedActivity"
         android:label="activity_learned"
         tools:layout="@layout/activity_learned" />
+    <activity
+        android:id="@+id/chatActivity"
+        android:name="com.pedromassango.banzo.ui.ChatActivity"
+        android:label="ChatActivity" />
 </navigation>
