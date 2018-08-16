@@ -8,16 +8,15 @@
 
     <Preference android:title="Palavras aprendidas"
         android:key="@string/prefs_learned_words"
-        android:summary="Todas palavras aprendidas"/>
-
-    <Preference android:title="Palavras aprendidas"
-        android:key="@string/prefs_learned_words"
-        android:summary="Todas palavras aprendidas"/>
+        android:summary="Ver e revisar palavras aprendidas"/>
 
     <Preference android:title="Palavras por dia"
         android:key="@string/prefs_max_daily_words"/>
 
-<!--    <CheckBoxPreference android:title="Lembrar-me"
+<!--
+    Use alarm to reminder the user to learn
+
+<CheckBoxPreference android:title="Lembrar-me"
         android:key="prefs_reminder"
         android:defaultValue="true"
         android:summaryOff="Desativado"

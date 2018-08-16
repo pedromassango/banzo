@@ -11,16 +11,18 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.pedromassango.banzo.BuildConfig
-import com.pedromassango.banzo.ui.LearnedActivity
 
 import com.pedromassango.banzo.R
+import com.pedromassango.banzo.data.AuthManager
 import com.pedromassango.banzo.data.preferences.PreferencesHelper
-import com.pedromassango.banzo.extras.ActivityUtils
 import java.io.File
+import kotlin.math.log
 
 /**
  * A simple [Fragment] subclass.
@@ -28,13 +30,27 @@ import java.io.File
  */
 class SettingsFragment : PreferenceFragmentCompat() {
 
+    private lateinit var viewModel: MainViewModel
+
+    // preferences helper
+    private val preferencesHelper: PreferencesHelper by lazy{
+        PreferencesHelper()
+    }
+    // authentication manager
+    private val authManager: AuthManager by lazy{
+        AuthManager(preferencesHelper)
+    }
+
+    // UI preferences
+    private val usernamePrefs: Preference by lazy{
+        findPreference(getString(R.string.prefs_username))
+    }
+    private val removeAccountPrefs: Preference by lazy{
+        findPreference(getString(R.string.prefs_remove_account))
+    }
+
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.settings_screen)
-
-        // show username
-        val username = PreferencesHelper().username
-        findPreference(getString(R.string.prefs_username)).summary = username
-
 
         val maxWords = findPreference( getString(R.string.prefs_max_daily_words))
         maxWords.isEnabled = !BuildConfig.DEBUG
@@ -43,7 +59,21 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.white, null))
+    }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+
+        viewModel.getAuthState().observe(this, Observer{isLoggedIn ->
+            // only enable logout button, if user is logged in
+            removeAccountPrefs.isEnabled = isLoggedIn
+            // show/hide username
+            usernamePrefs.summary = when(isLoggedIn){
+                true -> preferencesHelper.username
+                false -> ""
+            }
+        })
     }
 
     override fun onPreferenceTreeClick(preference: Preference?): Boolean {
@@ -55,9 +85,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
             }
             getString(R.string.prefs_rate_app) -> startPlaystoreAppPage(context!!)
             getString(R.string.prefs_share_app) -> startShareApp(activity!!)
-            getString(R.string.prefs_remove_account) -> {
-                // TODO:("remove google account (sign in out)"
-            }
+            getString(R.string.prefs_remove_account) -> authManager.logout()
         }
 
         return super.onPreferenceTreeClick(preference)

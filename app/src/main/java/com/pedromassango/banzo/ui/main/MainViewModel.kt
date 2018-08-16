@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseAuth
-import com.pedromassango.banzo.data.AuthRepository
+import com.pedromassango.banzo.data.AuthManager
 import com.pedromassango.banzo.data.WordsDatabase
 import com.pedromassango.banzo.data.preferences.PreferencesHelper
 
@@ -84,7 +84,7 @@ class MainViewModel : ViewModel() {
      */
     fun authWithGoogle(account: GoogleSignInAccount) {
         // start google auth in server
-        AuthRepository(preferencesHelper)
+        AuthManager(preferencesHelper)
                 .errorListener(errorEvent)
                 .authWithGoogle(account){ firebaseUser ->
                     // if not null user is logged in
