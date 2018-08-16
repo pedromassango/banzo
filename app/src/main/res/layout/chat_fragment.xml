@@ -3,30 +3,41 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/chat"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.chat.ChatFragment">
 
-    <RelativeLayout
+    <androidx.cardview.widget.CardView
         android:background="@drawable/background_cut_out"
-        android:padding="12dp"
         android:id="@+id/container"
+        app:cardElevation="16dp"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:hint="@string/app_name"
+            android:hint="Digite um comentario"
+            android:padding="12dp"
             android:background="@android:color/transparent"
             android:layout_width="match_parent"
-            android:minHeight="45dp"
+            android:minHeight="50dp"
             android:imeOptions="actionSend"
             android:layout_height="wrap_content" />
-    </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
+    <ProgressBar
+        android:layout_centerInParent="true"
+        android:id="@+id/progress_chat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_messages"
+        android:id="@+id/recycler_comments"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/row_comment"
         android:layout_above="@id/container"
         android:layout_alignParentTop="true"
         android:layout_width="match_parent"
