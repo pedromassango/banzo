@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
+    android:background="@color/colorPrimary"
     android:fitsSystemWindows="true"
     tools:context=".ui.LearnedActivity">
 
@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_alignParentTop="true"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimary"
         app:title="Palavras aprendidas"
         app:titleTextColor="@color/white" />
 
