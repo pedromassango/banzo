@@ -22,6 +22,7 @@ class MainViewModel : ViewModel() {
     private var challengingWordsCount: LiveData<Int>? = null
     private var authState = MutableLiveData<Boolean>()
     private var errorEvent = MutableLiveData<String>()
+    private var loginErrorEvent = MutableLiveData<String>()
 
     init {
         // Listen auth state
@@ -62,6 +63,13 @@ class MainViewModel : ViewModel() {
     }
 
     /**
+     * To notify UI when auth error occurs
+     */
+    fun getAuthErrorState(): LiveData<String>{
+        return loginErrorEvent
+    }
+
+    /**
      * The LiveData that will be notified when some error occours
      */
     fun getErrorEvent(): LiveData<String>{
@@ -85,7 +93,7 @@ class MainViewModel : ViewModel() {
     fun authWithGoogle(account: GoogleSignInAccount) {
         // start google auth in server
         AuthManager(preferencesHelper)
-                .errorListener(errorEvent)
+                .errorListener(loginErrorEvent)
                 .authWithGoogle(account){ firebaseUser ->
                     // if not null user is logged in
                     authState.postValue( firebaseUser != null)

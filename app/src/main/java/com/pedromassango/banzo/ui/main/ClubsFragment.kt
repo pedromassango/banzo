@@ -89,16 +89,17 @@ class ClubsFragment : Fragment() {
                 }
             }
         })
-        // listen for errors
-        viewModel.getErrorEvent().observe(this, Observer{
+
+        // listen for login errors
+        viewModel.getAuthErrorState().observe(this, Observer{
             // remove progress
             login_progress.visibility = View.GONE
+            // show back login button
+            btn_google_signin.visibility = View.VISIBLE
 
             // show a message
             Toast.makeText(activity, it, Toast.LENGTH_LONG).show()
         })
-
-        //TODO: test google signin (test fails)
     }
 
     companion object{
