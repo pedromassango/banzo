@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        app:cardCornerRadius="16dp"
+        app:cardCornerRadius="@dimen/default_card_corner_radius"
         tools:context=".ui.learn.ReadingFragment">
 
         <LinearLayout

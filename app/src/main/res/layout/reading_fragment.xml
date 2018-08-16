@@ -12,7 +12,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="12dp"
+        app:cardCornerRadius="@dimen/default_card_corner_radius"
         android:layout_margin="8dp"
         tools:context=".ui.learn.ReadingFragment">
 
