@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginStart="12dp"
+    android:layout_marginLeft="12dp"
+    android:layout_marginEnd="12dp"
+    android:layout_marginRight="12dp"
+    app:cardCornerRadius="@dimen/default_card_corner_radius">
+
+    <RelativeLayout
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+
+        <ImageView
+            android:scaleType="centerCrop"
+            android:id="@+id/img_club_cover"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            tools:src="@drawable/cover_music"
+            android:layout_width="85dp"
+            android:layout_height="85dp" />
+
+        <include
+            layout="@layout/divider"
+            android:id="@+id/divider"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@id/img_club_cover"
+            android:layout_toLeftOf="@id/img_club_cover"
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:id="@+id/tv_club_name"
+            android:textSize="18sp"
+            android:paddingEnd="12dp"
+            android:paddingStart="0dp"
+            android:paddingLeft="0dp"
+            android:paddingRight="12dp"
+            android:fontFamily="@font/gotham_rounded_bold"
+            tools:text="@tools:sample/last_names"
+            android:textColor="@color/secondaryText"
+            android:layout_toStartOf="@id/divider"
+            android:layout_toLeftOf="@id/divider"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:paddingTop="8dp"
+            android:id="@+id/tv_club_description"
+            android:paddingEnd="8dp"
+            android:paddingStart="0dp"
+            android:paddingLeft="0dp"
+            android:paddingRight="8dp"
+            android:fontFamily="@font/gotham_rounded_bold"
+            tools:text="@tools:sample/lorem/random"
+            android:maxLines="3"
+            android:textColor="@color/grey"
+            android:layout_below="@id/tv_club_name"
+            android:layout_toStartOf="@id/divider"
+            android:layout_toLeftOf="@id/divider"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

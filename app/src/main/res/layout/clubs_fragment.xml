@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/selectlangtolearn"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:animateLayoutChanges="true"
     tools:context=".ui.main.ClubsFragment">
 
   <LinearLayout
+      android:padding="16dp"
       android:id="@+id/no_logged_view"
+      android:visibility="invisible"
       android:layout_centerInParent="true"
       android:orientation="vertical"
       android:gravity="center_horizontal"
@@ -48,6 +51,7 @@
     <LinearLayout
         android:id="@+id/logged_view"
         android:visibility="invisible"
+        tools:visibility="visible"
         android:orientation="vertical"
         android:gravity="center_horizontal"
         android:layout_width="wrap_content"
@@ -62,9 +66,10 @@
             android:text="Selecione um clube, e comece a conversar"
             android:textSize="20sp" />
 
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_clubs"
+            app:layoutManager="LinearLayoutManager"
+            tools:listitem="@layout/row_club"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 

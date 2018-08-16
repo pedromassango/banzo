@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseAuth
-import com.pedromassango.banzo.data.AuthRepository
+import com.pedromassango.banzo.data.AuthManager
 import com.pedromassango.banzo.data.WordsDatabase
 import com.pedromassango.banzo.data.preferences.PreferencesHelper
 
@@ -22,6 +22,7 @@ class MainViewModel : ViewModel() {
     private var challengingWordsCount: LiveData<Int>? = null
     private var authState = MutableLiveData<Boolean>()
     private var errorEvent = MutableLiveData<String>()
+    private var loginErrorEvent = MutableLiveData<String>()
 
     init {
         // Listen auth state
@@ -62,6 +63,13 @@ class MainViewModel : ViewModel() {
     }
 
     /**
+     * To notify UI when auth error occurs
+     */
+    fun getAuthErrorState(): LiveData<String>{
+        return loginErrorEvent
+    }
+
+    /**
      * The LiveData that will be notified when some error occours
      */
     fun getErrorEvent(): LiveData<String>{
@@ -84,8 +92,8 @@ class MainViewModel : ViewModel() {
      */
     fun authWithGoogle(account: GoogleSignInAccount) {
         // start google auth in server
-        AuthRepository(preferencesHelper)
-                .errorListener(errorEvent)
+        AuthManager(preferencesHelper)
+                .errorListener(loginErrorEvent)
                 .authWithGoogle(account){ firebaseUser ->
                     // if not null user is logged in
                     authState.postValue( firebaseUser != null)

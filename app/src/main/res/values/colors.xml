@@ -6,6 +6,7 @@
     <color name="colorAccentLight">#962185</color>
     <color name="colorAccentSetup">#ffbf00</color>
     <color name="secondaryText">#212121</color>
+    <color name="grey">#757575</color>
     <color name="lessWhite">#d1d1d1</color>
     <color name="lessWhiteLight">#edecec</color>
     <color name="white">#fff</color>

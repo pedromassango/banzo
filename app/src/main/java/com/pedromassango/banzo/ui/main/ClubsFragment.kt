@@ -9,16 +9,19 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.pedromassango.banzo.R
+import com.pedromassango.banzo.data.models.Club
 import kotlinx.android.synthetic.main.clubs_fragment.*
 import kotlinx.android.synthetic.main.clubs_fragment.view.*
+import kotlinx.android.synthetic.main.row_club.view.*
 import timber.log.Timber
 
-class ClubsFragment : Fragment() {
+class ClubsFragment : Fragment(), (Club) -> Unit {
 
     // ViewModel
     private lateinit var viewModel: MainViewModel
@@ -34,11 +37,15 @@ class ClubsFragment : Fragment() {
         GoogleSignIn.getClient(activity!!, gso)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+    override fun onCreateView(inflater: LayoutInflater,
+                              container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         val v = inflater.inflate(R.layout.clubs_fragment, container, false)
 
         with(v){
+            // attach the clubs adapter in recyclerView
+            recycler_clubs.adapter = ClubsAdapter(clubs, this@ClubsFragment)
+
             btn_google_signin.setOnClickListener {
                 // start google login intent
                 val signinIntent = googleSigninClient.signInIntent
@@ -48,7 +55,9 @@ class ClubsFragment : Fragment() {
         return v
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    override fun onActivityResult(requestCode: Int,
+                                  resultCode: Int,
+                                  data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
@@ -89,19 +98,74 @@ class ClubsFragment : Fragment() {
                 }
             }
         })
-        // listen for errors
-        viewModel.getErrorEvent().observe(this, Observer{
+
+        // listen for login errors
+        viewModel.getAuthErrorState().observe(this, Observer{
             // remove progress
             login_progress.visibility = View.GONE
+            // show back login button
+            btn_google_signin.visibility = View.VISIBLE
 
             // show a message
             Toast.makeText(activity, it, Toast.LENGTH_LONG).show()
         })
+    }
 
-        //TODO: test google signin (test fails)
+    /**
+     * Called when an club is clicked.
+     * @param club the club that was clicked
+     */
+    override fun invoke(club: Club){
+        // TODO: handle club click
+    }
+
+
+    // Club ViewHolder Class
+    private class MyViewHolder(val mView: View): RecyclerView.ViewHolder(mView){
+        fun bind(club: Club, clubClickListener: (Club) -> Unit){
+            with(mView){
+                img_club_cover.setImageResource(club.image)
+                tv_club_name.text = club.name
+                tv_club_description.text = club.description
+
+                // on item click, notify listener
+                setOnClickListener { clubClickListener(club) }
+            }
+        }
+    }
+    // Club Adapter Class
+    private class ClubsAdapter(private val clubs: ArrayList<Club>,
+                               private val clubClickListener: (Club) -> Unit
+    ) : RecyclerView.Adapter<MyViewHolder>(){
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+            val v = LayoutInflater.from(parent.context).inflate(R.layout.row_club, parent, false)
+            return (MyViewHolder(v))
+        }
+
+        override fun getItemCount(): Int = clubs.size
+
+        override fun onBindViewHolder(holder: MyViewHolder, position: Int) =
+                holder.bind( clubs[ position], clubClickListener)
     }
 
     companion object{
+        // google sig in intent request code
         const val GOOGLE_SIGNIN_REQUEST_CODE = 0
+
+        /**
+         * This is all clubs to chat.
+         */
+        private val clubs = arrayListOf(
+
+                Club(id = "chat_club",
+                        name = "Chat Club",
+                        description = "Chat to learn. Learn by interacting with others learners.",
+                        image = R.drawable.cover_chat),
+                Club("music_club",
+                        "Music Club",
+                        "Do you love music? come on, talk with song lovers.",
+                        R.drawable.cover_music)
+        )
     }
 }
