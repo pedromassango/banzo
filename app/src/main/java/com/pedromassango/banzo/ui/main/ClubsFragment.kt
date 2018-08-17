@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -16,6 +17,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.pedromassango.banzo.R
 import com.pedromassango.banzo.data.models.Club
+import com.pedromassango.banzo.ui.ChatActivity
 import kotlinx.android.synthetic.main.clubs_fragment.*
 import kotlinx.android.synthetic.main.clubs_fragment.view.*
 import kotlinx.android.synthetic.main.row_club.view.*
@@ -62,8 +64,9 @@ class ClubsFragment : Fragment(), (Club) -> Unit {
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == GOOGLE_SIGNIN_REQUEST_CODE) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
+                val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+
                 // Google Sign In was successful, authenticate with Firebase
                 val account = task.getResult(ApiException::class.java)
 
@@ -117,6 +120,15 @@ class ClubsFragment : Fragment(), (Club) -> Unit {
      */
     override fun invoke(club: Club){
         // TODO: handle club click
+
+        // compress club data to be sent
+        val data = Bundle().apply {
+            putString(ChatActivity.KEY_CLUB_NAME, club.name)
+            putString(ChatActivity.KEY_CLUB_ID, club.id)
+        }
+
+        // navigate to chat activity
+        view!!.findNavController().navigate(R.id.action_clubsFragment_to_chatActivity, data)
     }
 
 
@@ -129,7 +141,8 @@ class ClubsFragment : Fragment(), (Club) -> Unit {
                 tv_club_description.text = club.description
 
                 // on item click, notify listener
-                setOnClickListener { clubClickListener(club) }
+                findViewById<View>(R.id.container)
+                        .setOnClickListener { clubClickListener(club) }
             }
         }
     }
