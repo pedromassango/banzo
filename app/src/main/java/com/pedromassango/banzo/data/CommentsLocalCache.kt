@@ -11,10 +11,17 @@ class CommentsLocalCache(
         private val commentsDao: CommentDao
 ) {
 
-    fun insert(comments: List<Comment>){
-        commentsDao.addAll(comments)
-        Timber.i("inserting ${comments.size} comments")
+    fun insert(comment: Comment){
+        commentsDao.add(comment)
+        Timber.i("inserting comment ID: ${comment.id}")
         //insertfinished()
+    }
+
+    fun insert(comments: List<Comment>){
+
+        comments.forEach { insert(it) }
+
+        Timber.i("inserting ${comments.size} comments")
     }
 
     /**
@@ -23,6 +30,10 @@ class CommentsLocalCache(
      * @param club_id the club id to get comments
      */
     fun getAll(club_id: String): LiveData<List<Comment>>{
-        return commentsDao.getAllByClub( club_id)
+        val result = commentsDao.getAllByClub(club_id)
+
+        Timber.i("local comments: ${result.value?.size}")
+
+        return result
     }
 }

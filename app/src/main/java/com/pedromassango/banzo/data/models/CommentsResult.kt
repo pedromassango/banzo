@@ -7,6 +7,6 @@ import androidx.lifecycle.LiveData
  * LiveData<List<String>> containing network errors state.
  */
 class CommentsLoadResult(
-        val data: LiveData<List<Comment>>,
+        val data: LiveData<List<Comment>>?,
         val networkErrors: LiveData<String>
 )

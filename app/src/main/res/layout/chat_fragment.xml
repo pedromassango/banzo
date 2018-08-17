@@ -16,14 +16,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:hint="Digite um comentario"
-            android:padding="12dp"
-            android:background="@android:color/transparent"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:minHeight="50dp"
-            android:imeOptions="actionSend"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/btn_send_comment"
+                android:padding="8dp"
+                android:layout_centerVertical="true"
+                android:foregroundTint="@color/colorPrimary"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_send"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edt_comment"
+                android:hint="Digite um comentario"
+                android:padding="12dp"
+                android:layout_toStartOf="@id/btn_send_comment"
+                android:layout_toLeftOf="@id/btn_send_comment"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:minHeight="50dp"
+                android:imeOptions="actionSend"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
     </androidx.cardview.widget.CardView>
 
     <ProgressBar

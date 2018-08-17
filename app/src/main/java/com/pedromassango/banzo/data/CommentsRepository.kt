@@ -1,6 +1,8 @@
 package com.pedromassango.banzo.data
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.pedromassango.banzo.data.models.Comment
 import com.pedromassango.banzo.data.models.CommentsLoadResult
 
 class CommentsRepository(
@@ -11,9 +13,7 @@ class CommentsRepository(
     private val networkError = MutableLiveData<String>()
 
     fun getComments(clubId: String): CommentsLoadResult{
-
-        // get all from cache
-        val data = cache.getAll( clubId)
+        val commentsResult = cache.getAll(clubId)
 
         // get all comments from server
         // if get result, save in local cache
@@ -22,7 +22,28 @@ class CommentsRepository(
                 { result -> cache.insert(result) },
                 { error -> networkError.postValue(error) })
 
-        return CommentsLoadResult(data, networkError)
+        return CommentsLoadResult(null, networkError)
+    }
+
+    /**
+     * Load local comments by club id
+     */
+    fun loadCache(clubId: String): LiveData<List<Comment>>{
+        return cache.getAll(clubId)
+    }
+
+    /**
+     * send a comment to remote server
+     */
+    fun saveComment(clubId: String,
+                    comment: Comment,
+                    onSuccess: ()-> Unit,
+                    onError: (String?) -> Unit){
+
+        // send comment and insert it in cache, when succeeded
+        service.send(clubId, comment,
+                { cache.insert( it) ; onSuccess() },
+                { error -> onError(error) })
     }
 
 }

@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.pedromassango.banzo.data.models.Comment
 
+
 @Dao
 interface CommentDao {
 
@@ -18,17 +19,9 @@ interface CommentDao {
     fun add(comment: Comment)
 
     /**
-     * Insert a set of comments in database
-     * @param comments to be inserted in database.
-     */
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addAll(comments: List<Comment>)
-
-    /**
      * Get all comments from the giving club id.
      * @param club_id the club id to load all comments.
      */
-    @Query("SELECT * FROM comments_table WHERE clubId == :club_id")
+    @Query("SELECT * FROM comments_table WHERE (clubId == :club_id)")
     fun getAllByClub(club_id: String): LiveData<List<Comment>>
-
 }

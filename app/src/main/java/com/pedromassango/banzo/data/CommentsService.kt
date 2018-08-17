@@ -54,4 +54,25 @@ class CommentsService {
                     }
                 })
     }
+
+    /**
+     * Send a comment in server
+     * @param comment the comment to be sent
+     */
+    fun send(clubId: String,
+             comment: Comment,
+             onSuccess: (Comment)-> Unit,
+             onError: (String?)-> Unit){
+
+        // set the club id, and comment id
+        comment.clubId = clubId
+        comment.id = clubsPath.push().key!!
+
+        clubsPath.child(clubId)
+                .child(comment.id)
+                .setValue(comment)
+                .addOnFailureListener { onError(it.message) }
+                .addOnCanceledListener { onError("Envio cancelado!") }
+                .addOnCompleteListener { onSuccess( comment) }
+    }
 }

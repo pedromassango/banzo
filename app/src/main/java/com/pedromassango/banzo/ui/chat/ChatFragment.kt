@@ -34,7 +34,18 @@ class ChatFragment : Fragment(), (Comment) -> Unit {
         val v = inflater.inflate(R.layout.chat_fragment, container, false)
 
         with(v) {
+            // attach adapter
             recycler_comments.adapter = commentsAdapter
+
+            // on send button click
+            btn_send_comment.setOnClickListener{
+                val text = edt_comment.text.toString()
+
+                // if there is a text, send the comment
+                if(text.trim().isNotEmpty()){
+                    viewModel.sendComment(text)
+                }
+            }
         }
         return v
     }
@@ -45,19 +56,26 @@ class ChatFragment : Fragment(), (Comment) -> Unit {
 
         // listen for error event, we show only a Toast for now
         viewModel.errorEvent.observe(this, Observer{
-
             progress_chat.visibility = View.GONE
-
             Toast.makeText(activity, it, Toast.LENGTH_LONG).show()
         })
 
         // listen for comments
         viewModel.commentsEvent.observe(this, Observer{data ->
             progress_chat.visibility = View.GONE
+            recycler_comments.visibility = View.VISIBLE
 
             when(data.isEmpty()){
                 true -> Toast.makeText(activity, "Sem dados!", Toast.LENGTH_LONG).show()
                 false -> commentsAdapter.addAll(data)
+            }
+        })
+
+        // listen for send comment event
+        viewModel.sendCommentResult.observe(this, Observer{success ->
+            when(success){
+                true -> edt_comment.setText("")
+                false -> Toast.makeText(activity, "Send comment failed", Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -67,7 +85,7 @@ class ChatFragment : Fragment(), (Comment) -> Unit {
      * @param comment the long clicked comment
      */
     override fun invoke(comment: Comment) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        // TODO: perform club long click
     }
 
     // Comment ViewHolder Class
@@ -113,7 +131,7 @@ class ChatFragment : Fragment(), (Comment) -> Unit {
 
         @Synchronized
         fun addAll(mComments: List<Comment>){
-            comments.addAll(comments)
+            comments.addAll(mComments)
             notifyDataSetChanged()
         }
     }
