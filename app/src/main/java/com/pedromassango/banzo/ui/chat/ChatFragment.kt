@@ -46,7 +46,7 @@ class ChatFragment : Fragment(), (Comment) -> Unit {
         // TODO: load all messages
         commentsAdapter.add( Comment(author = "Pedro Massango",  mText = "Muito bom"))
         commentsAdapter.add( Comment(author = "Elizandra",  mText = "Muito util para aprendizado"))
-        commentsAdapter.add( Comment(author = "Pedro Massango",  mText = "This is very helpful"))
+        commentsAdapter.add( Comment(author = "Pedro Massango",  mText = "This is very helpful. Chat to learn. Learn by interacting with others learners. Chat to learn. Learn by interacting with others learners."))
         commentsAdapter.add( Comment(author = "Pedro Massango",  mText = "Do que voces mais gostam?"))
     }
 

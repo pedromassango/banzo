@@ -119,7 +119,6 @@ class ClubsFragment : Fragment(), (Club) -> Unit {
      * @param club the club that was clicked
      */
     override fun invoke(club: Club){
-        // TODO: handle club click
 
         // compress club data to be sent
         val data = Bundle().apply {

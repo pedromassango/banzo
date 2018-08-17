@@ -5,7 +5,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import com.pedromassango.banzo.data.WordDAO
-import com.pedromassango.banzo.data.WordsDatabase
+import com.pedromassango.banzo.data.AppDatabase
 import com.pedromassango.banzo.data.models.Word
 import com.pedromassango.banzo.data.preferences.PreferencesHelper
 import com.pedromassango.banzo.extras.DateUtils
@@ -23,7 +23,7 @@ class DateChangedReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
         Timber.i("onReceive()")
 
-        val wordsDatabase = WordsDatabase.getInstance(context!!).wordDAO
+        val wordsDatabase = AppDatabase.getInstance(context!!).wordDAO
 
         // current day
         val currentDay = DateUtils.currentDay()

@@ -1,17 +1,15 @@
 package com.pedromassango.banzo.ui.learn
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
-import com.pedromassango.banzo.data.WordsDatabase
+import com.pedromassango.banzo.data.AppDatabase
 import com.pedromassango.banzo.data.models.Word
 import timber.log.Timber
 
 class LearnViewModel : ViewModel() {
 
     // Words database
-    private val wordsDatabase = WordsDatabase.getInstance().wordDAO
+    private val wordsDatabase = AppDatabase.getInstance().wordDAO
 
     // learning words
     private var learningWords: LiveData<List<Word>>? = null
