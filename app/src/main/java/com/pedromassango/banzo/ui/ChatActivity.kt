@@ -35,6 +35,7 @@ class ChatActivity : AppCompatActivity() {
         toolbar.title = clubName
 
         // pass data to ViewModel
+        // This will cause immediate load comments in ChatFragment
         viewModel.setClubId( clubId)
 
         // show fragment

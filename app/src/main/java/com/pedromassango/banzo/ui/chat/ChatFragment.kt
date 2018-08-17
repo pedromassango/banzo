@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.pedromassango.banzo.R
 import com.pedromassango.banzo.data.models.Comment
@@ -41,13 +43,23 @@ class ChatFragment : Fragment(), (Comment) -> Unit {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(activity!!).get(ChatViewModel::class.java)
 
-        recycler_comments.visibility = View.VISIBLE
+        // listen for error event, we show only a Toast for now
+        viewModel.errorEvent.observe(this, Observer{
 
-        // TODO: load all messages
-        commentsAdapter.add( Comment(author = "Pedro Massango",  mText = "Muito bom"))
-        commentsAdapter.add( Comment(author = "Elizandra",  mText = "Muito util para aprendizado"))
-        commentsAdapter.add( Comment(author = "Pedro Massango",  mText = "This is very helpful. Chat to learn. Learn by interacting with others learners. Chat to learn. Learn by interacting with others learners."))
-        commentsAdapter.add( Comment(author = "Pedro Massango",  mText = "Do que voces mais gostam?"))
+            progress_chat.visibility = View.GONE
+
+            Toast.makeText(activity, it, Toast.LENGTH_LONG).show()
+        })
+
+        // listen for comments
+        viewModel.commentsEvent.observe(this, Observer{data ->
+            progress_chat.visibility = View.GONE
+
+            when(data.isEmpty()){
+                true -> Toast.makeText(activity, "Sem dados!", Toast.LENGTH_LONG).show()
+                false -> commentsAdapter.addAll(data)
+            }
+        })
     }
 
     /**
@@ -100,7 +112,7 @@ class ChatFragment : Fragment(), (Comment) -> Unit {
         }
 
         @Synchronized
-        fun addAll(comments: ArrayList<Comment>){
+        fun addAll(mComments: List<Comment>){
             comments.addAll(comments)
             notifyDataSetChanged()
         }
