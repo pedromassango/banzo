@@ -1,6 +1,7 @@
 package com.pedromassango.banzo.data.models
 
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.google.firebase.database.IgnoreExtraProperties
 
@@ -18,6 +19,7 @@ class Comment(
         var clubId: String = "",
         var timestamp: Long = 0
 ){
+        @Ignore
         // Firebase need an empty constructor
         constructor(): this("", "", "", "", "")
 }

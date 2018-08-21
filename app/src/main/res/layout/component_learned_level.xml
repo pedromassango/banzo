@@ -63,7 +63,7 @@
         android:layout_width="wrap_content"
         android:fontFamily="@font/gotham_rounded_book"
         android:layout_height="wrap_content"
-        android:text="Quanto mais treinar, mais palavras vai aprender."
+        android:text="@string/quanto_mais_treinar_mais_palavras_vai_aprender"
         android:textColor="@color/secondaryText"
         android:textSize="12sp" />
     </LinearLayout>

@@ -81,6 +81,16 @@ interface WordDAO {
     //@Query("SELECT COUNT(*) FROM Word WHERE Word.failCount = 0 AND Word.hitCounter > 3")
     fun getLearnedWords(): LiveData<Int>
 
+
+    /**
+     * Get all words that are currently learning on this day
+     *
+     * This is the number of words, that have more hit than fails,
+     * and are in learning state.
+     */
+    @Query("SELECT COUNT(*) FROM Word WHERE Word.learning = 1 AND Word.hitCounter > Word.failCount")
+    fun getLearningWordsWithMoreHitsCount(): LiveData<Int>
+
     /**
      * Update an word in database
      */

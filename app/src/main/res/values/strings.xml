@@ -20,4 +20,6 @@
     <string name="palavras_aprendidas_estarao_aqui">Palavras aprendidas estarao aqui!</string>
     <string name="palavras_desafiadoras_encontradas">%1$s palavras desafiadoras encontradas.</string>
     <string name="train">Treino</string>
+    <string name="quanto_mais_treinar_mais_palavras_vai_aprender">Quanto mais treinar, mais palavras vai aprender.</string>
+    <string name="voce_est_se_saind_muito_bem">Voce esta se saindo muito bem. Mantem o ritmo de aprendizagem!</string>
 </resources>

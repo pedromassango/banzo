@@ -20,6 +20,7 @@ class MainViewModel : ViewModel() {
     private var learningAndLearnedWordsCount: LiveData<Int>? = null
     private var learnedWordsCount: LiveData<Int>? = null
     private var challengingWordsCount: LiveData<Int>? = null
+    private var learningWordsWithMoreHitsCount: LiveData<Int>? = null
     private var authState = MutableLiveData<Boolean>()
     private var errorEvent = MutableLiveData<String>()
     private var loginErrorEvent = MutableLiveData<String>()
@@ -84,6 +85,16 @@ class MainViewModel : ViewModel() {
             learnedWordsCount = wordsDatabase.getLearnedWords()
         }
         return learnedWordsCount
+    }
+
+    /**
+     * Expose learning words with more hits than fails
+     */
+    fun getLearningWordsWithMoreHitsCount(): LiveData<Int>?{
+        if(learningWordsWithMoreHitsCount == null){
+            learningWordsWithMoreHitsCount = wordsDatabase.getLearningWordsWithMoreHitsCount()
+        }
+        return learningWordsWithMoreHitsCount
     }
 
     /**
