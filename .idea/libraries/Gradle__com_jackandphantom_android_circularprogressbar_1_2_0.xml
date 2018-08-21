@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.jackandphantom.android:circularprogressbar-1.2.0">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/circularprogressbar-1.2.0.aar/5d9955666e9906db564d7d7a1acdd18a/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/circularprogressbar-1.2.0.aar/5d9955666e9906db564d7d7a1acdd18a/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/circularprogressbar-1.2.0.aar/dae290a14eeeffd566edab9376fd8d88/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/circularprogressbar-1.2.0.aar/dae290a14eeeffd566edab9376fd8d88/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
