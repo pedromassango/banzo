@@ -39,10 +39,14 @@ interface WordDAO {
     fun getLearningAndLearnedWordsCount(): LiveData<Int>
 
     /**
-     * TODO: updated challenging words Query
-     * Return the number of learned words with many fails than hits
+     * Return the number of learned words that have more fails than hits,
+     * and tha was learned some day before than today.
+     *
+     * get the number of learned words that have many fails.
      */
-    @Query("SELECT COUNT(*) FROM Word WHERE((Word.failCount - Word.hitCounter) >= $MIN_HIT_ALLOWED)")
+    @Query("SELECT COUNT(*) FROM Word " +
+            "WHERE((Word.failCount - Word.hitCounter) >= $MIN_HIT_ALLOWED)" +
+            "AND Word.learning = 0)")
     fun getChallengingWordsCount(): LiveData<Int>
 
     /**
