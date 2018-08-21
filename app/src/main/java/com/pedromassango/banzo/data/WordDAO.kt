@@ -46,7 +46,7 @@ interface WordDAO {
      */
     @Query("SELECT COUNT(*) FROM Word " +
             "WHERE((Word.failCount - Word.hitCounter) >= $MIN_HIT_ALLOWED)" +
-            "AND Word.learning = 0)")
+            "AND Word.learning = 0")
     fun getChallengingWordsCount(): LiveData<Int>
 
     /**
