@@ -51,7 +51,7 @@ class PreferencesHelper(context: Context = MainApplication.applicationContext())
     fun getLangToLearn(): LanguagestTypes{
         return when(languageToLearn){
             0 -> LanguagestTypes.ENGLISH
-            1 -> LanguagestTypes.QUIMBUNDO
+            1 -> LanguagestTypes.ESPANHOL
             else -> LanguagestTypes.ENGLISH
         }
     }

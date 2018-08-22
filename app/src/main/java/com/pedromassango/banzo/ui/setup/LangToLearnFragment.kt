@@ -27,7 +27,7 @@ class LangToLearnFragment : Fragment(), (Language) -> Unit {
     // Available languages to learn
     private val languages = arrayListOf(
             Language("Inglês", LanguagestTypes.ENGLISH),
-            Language("Quimbundo", LanguagestTypes.QUIMBUNDO)
+            Language("Espanhol", LanguagestTypes.ESPANHOL)
     )
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

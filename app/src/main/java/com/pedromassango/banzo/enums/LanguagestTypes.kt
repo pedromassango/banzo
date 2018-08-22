@@ -5,6 +5,6 @@ package com.pedromassango.banzo.enums
  */
 enum class LanguagestTypes(val value: Int) {
     ENGLISH(0),
-    QUIMBUNDO(1),
+    ESPANHOL(1),
     PORTUGUES(900)
 }
