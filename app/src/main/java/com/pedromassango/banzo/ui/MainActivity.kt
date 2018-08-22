@@ -11,7 +11,7 @@ import androidx.navigation.findNavController
 import com.pedromassango.banzo.R
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), NavHost {
+class MainActivity : AppCompatActivity(), NavHost{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

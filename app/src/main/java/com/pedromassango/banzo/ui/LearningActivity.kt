@@ -1,5 +1,6 @@
 package com.pedromassango.banzo.ui
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
@@ -19,6 +20,7 @@ import com.pedromassango.banzo.data.models.Word
 import com.pedromassango.banzo.data.preferences.PreferencesHelper
 import com.pedromassango.banzo.enums.LanguagestTypes
 import com.pedromassango.banzo.extras.runOnFree
+import com.pedromassango.banzo.services.TimerService
 import com.pedromassango.banzo.ui.learn.*
 import kotlinx.android.synthetic.main.activity_learn.*
 import timber.log.Timber
@@ -210,12 +212,16 @@ class LearningActivity : AppCompatActivity(),
     override fun onLearnWritingFinished(reversed: Boolean) {
         Timber.i("onLearnWritingFinished() reversed: $reversed")
 
-        // if user learned by writing two times, repeat tasks instead of finish the activity
+        // if user learned by writing two times, finish the activity and
+        // take a learning break.
         // else, learn again by writing
         when(reversed){
             true -> {
-                startExercises()
-                //this.finish()
+                //startExercises()
+
+                // start service to count break time, and finish activity
+                startService( Intent(this, TimerService::class.java))
+                this.finish()
             }
             false -> showWritingFragments( true)
         }

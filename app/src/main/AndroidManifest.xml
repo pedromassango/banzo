@@ -48,6 +48,7 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+        <service android:name=".services.TimerService"/>
 
         <activity android:name=".ui.LearnedActivity" />
         <activity android:name=".ui.ChatActivity"
