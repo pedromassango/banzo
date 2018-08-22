@@ -28,7 +28,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:padding="12dp"
-                android:text="Leia atentamente estas palavras"
+                tools:text="Leia atentamente estas palavras"
                 android:textAllCaps="true"
                 android:textColor="@color/secondaryText"
                 app:autoSizeTextType="uniform" />
@@ -42,7 +42,7 @@
                 android:background="@color/train_item_background"
                 android:gravity="center"
                 android:padding="8dp"
-                android:text="car \n carro"
+                tools:text="car \n carro"
                 android:textColor="@color/secondaryText"
                 android:textSize="16sp" />
 
@@ -55,7 +55,7 @@
                 android:background="@color/train_item_background"
                 android:gravity="center"
                 android:padding="8dp"
-                android:text="Cheese \n queijo"
+                tools:text="Cheese \n queijo"
                 android:textColor="@color/secondaryText"
                 android:textSize="16sp" />
 
@@ -68,7 +68,7 @@
                 android:background="@color/train_item_background"
                 android:gravity="center"
                 android:padding="8dp"
-                android:text="strong \n forte"
+                tools:text="strong \n forte"
                 android:textColor="@color/secondaryText"
                 android:textSize="16sp" />
 
@@ -81,7 +81,7 @@
                 android:background="@color/train_item_background"
                 android:gravity="center"
                 android:padding="8dp"
-                android:text="strong \n forte"
+                tools:text="strong \n forte"
                 android:textColor="@color/secondaryText"
                 android:textSize="16sp" />
 
@@ -95,6 +95,6 @@
         android:layout_margin="32dp"
         app:backgroundTint="#355C7D"
         android:id="@+id/btn_ready"
-        android:text="Preparado" />
+        android:text="@string/preparado" />
 
 </LinearLayout>

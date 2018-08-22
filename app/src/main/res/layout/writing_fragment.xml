@@ -33,7 +33,7 @@
                 android:paddingStart="32dp"
                 android:paddingEnd="32dp"
                 android:paddingBottom="16dp"
-                android:text="possivel"
+                tools:text="possivel"
                 android:textSize="32sp"
                 android:fontFamily="@font/gotham_rounded_bold"
                 android:textAllCaps="true"
@@ -48,7 +48,7 @@
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:paddingBottom="16dp"
-                android:text="Escreva a traducao"
+                tools:text="Escreva a traducao"
                 android:textAllCaps="true"
                 android:textColor="@color/secondaryText"/>
 
@@ -78,6 +78,6 @@
         android:layout_alignParentRight="true"
         android:background="@android:color/transparent"
         android:id="@+id/btn_submit_response"
-        android:text="Resultado" />
+        android:text="@string/resultado" />
 
 </RelativeLayout>

@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:padding="16dp"
     android:background="@color/white"
     android:orientation="vertical">
@@ -16,7 +17,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
-            android:text="0"
+            tools:text="0"
             android:id="@+id/tv_progress_learnig_average"
             android:fontFamily="@font/gotham_rounded_bold"
             android:textSize="20sp"
@@ -54,7 +55,7 @@
         android:layout_height="wrap_content"
         android:maxLines="1"
         android:gravity="start"
-        android:text="Nivel de aprendizagem"
+        android:text="@string/nivel_de_aprendizagem"
         android:textColor="@color/secondaryText"
         android:textSize="16sp" />
 
@@ -63,7 +64,7 @@
         android:layout_width="wrap_content"
         android:fontFamily="@font/gotham_rounded_book"
         android:layout_height="wrap_content"
-        android:text="Complete as tarefas para aprender as palavras!"
+        android:text="@string/complete_as_tarefas_para_aprender_as_palavras"
         android:textColor="@color/secondaryText"
         android:textSize="12sp" />
     </LinearLayout>

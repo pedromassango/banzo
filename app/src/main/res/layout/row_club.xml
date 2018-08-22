@@ -30,7 +30,8 @@
             android:layout_alignParentTop="true"
             tools:src="@drawable/cover_music"
             android:layout_width="85dp"
-            android:layout_height="85dp" />
+            android:layout_height="85dp"
+            android:contentDescription="@string/app_name" />
 
         <include
             layout="@layout/divider"

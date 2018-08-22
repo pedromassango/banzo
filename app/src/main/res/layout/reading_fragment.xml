@@ -32,7 +32,7 @@
                 android:paddingStart="32dp"
                 android:paddingEnd="32dp"
                 android:paddingBottom="16dp"
-                android:text="possivel"
+                tools:text="possivel"
                 android:textSize="32sp"
                 android:fontFamily="@font/gotham_rounded_bold"
                 android:textAllCaps="true"
@@ -47,7 +47,7 @@
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:paddingBottom="16dp"
-                android:text="Selecione a traducao"
+                tools:text="Selecione a traducao"
                 android:textAllCaps="true"
                 android:textColor="@color/secondaryText"/>
 
@@ -60,7 +60,7 @@
                 android:background="@drawable/custom_ripple"
                 android:gravity="center"
                 android:padding="8dp"
-                android:text="car \n carro"
+                tools:text="car \n carro"
                 android:textColor="@color/secondaryText"
                 android:textSize="16sp" />
 
@@ -73,7 +73,7 @@
                 android:background="@drawable/custom_ripple"
                 android:gravity="center"
                 android:padding="8dp"
-                android:text="Cheese \n queijo"
+                tools:text="Cheese \n queijo"
                 android:textColor="@color/secondaryText"
                 android:textSize="16sp" />
 
@@ -86,7 +86,7 @@
                 android:background="@drawable/custom_ripple"
                 android:gravity="center"
                 android:padding="8dp"
-                android:text="strong \n forte"
+                tools:text="strong \n forte"
                 android:textColor="@color/secondaryText"
                 android:textSize="16sp" />
 
@@ -99,7 +99,7 @@
                 android:background="@drawable/custom_ripple"
                 android:gravity="center"
                 android:padding="8dp"
-                android:text="strong \n forte"
+                tools:text="strong \n forte"
                 android:textColor="@color/secondaryText"
                 android:textSize="16sp" />
 
@@ -116,6 +116,6 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="32dp"
         android:textSize="12sp"
-        android:text="Ignorar palavra" />
+        android:text="@string/ignorar_palavra" />
 
 </LinearLayout>

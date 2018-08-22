@@ -8,7 +8,7 @@
     <TextView
         android:textColor="#000"
         android:gravity="center_horizontal"
-        android:text="Instale a Versao completa, aprenda mais rapido com 12 palavras por dia e sem anuncios."
+        android:text="@string/instale_a_versao_completa_aprenda_mais_rapido_com_12_palavras_por_dia_e_sem_anuncios"
         android:layout_marginTop="32dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
@@ -23,7 +23,7 @@
         android:layout_marginTop="8dp"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         app:backgroundTint="#ffbf00"
-        android:text="Instalar Premium"
+        android:text="@string/instalar_premium"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"

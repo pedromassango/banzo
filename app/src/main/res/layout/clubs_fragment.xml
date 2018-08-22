@@ -23,7 +23,7 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:gravity="center_horizontal"
-          android:text="Você pode conversar com outros usuários, e aprender mais."
+          android:text="@string/voc_pode_conversar_com_outros_usu_rios_e_aprender_mais"
           android:textSize="20sp" />
 
       <TextView
@@ -31,7 +31,7 @@
           android:layout_width="210dp"
           android:layout_height="wrap_content"
           android:gravity="center_horizontal"
-          android:text="Entre com uma conta Google para começar" />
+          android:text="@string/entre_com_uma_conta_google_para_come_ar" />
 
       <com.google.android.gms.common.SignInButton
           android:layout_marginTop="16dp"
@@ -63,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="Selecione um clube, e comece a conversar"
+            android:text="@string/selecione_um_clube_e_comece_a_conversar"
             android:textSize="20sp" />
 
         <androidx.recyclerview.widget.RecyclerView

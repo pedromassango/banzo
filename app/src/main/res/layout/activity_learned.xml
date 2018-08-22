@@ -15,7 +15,7 @@
         android:layout_height="?attr/actionBarSize"
         android:layout_alignParentTop="true"
         android:background="@color/colorPrimary"
-        app:title="Palavras aprendidas"
+        app:title="@string/learned_words"
         app:titleTextColor="@color/white" />
 
     <FrameLayout xmlns:tools="http://schemas.android.com/tools"

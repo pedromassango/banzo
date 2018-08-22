@@ -33,7 +33,7 @@
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/edt_comment"
-                android:hint="Digite um comentario"
+                android:hint="@string/digite_um_comentario"
                 android:padding="12dp"
                 android:layout_toStartOf="@id/btn_send_comment"
                 android:layout_toLeftOf="@id/btn_send_comment"

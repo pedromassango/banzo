@@ -8,6 +8,8 @@
 
     <TextView
         android:paddingStart="54dp"
+        android:paddingEnd="0dp"
+        android:paddingRight="0dp"
         android:paddingLeft="54dp"
         android:id="@+id/tv_title"
         android:text="@string/app_name"

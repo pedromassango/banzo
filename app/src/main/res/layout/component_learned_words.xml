@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
     android:paddingTop="32dp"
     android:paddingStart="16dp"
@@ -15,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="0"
+        tools:text="0"
         android:textSize="32sp"
         android:maxLines="1"
         android:textColor="@color/colorPrimary" />
@@ -49,7 +50,7 @@
             android:id="@+id/btn_train_challenging_words"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:text="Treinar"
+            android:text="@string/train"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

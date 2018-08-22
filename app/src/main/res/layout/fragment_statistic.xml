@@ -43,6 +43,8 @@
             android:layout_marginEnd="@dimen/divider_margin" />
 
         <TextView
+            android:visibility="gone"
+            tools:visibility="visible"
             android:textSize="20sp"
             android:padding="32dp"
             android:gravity="center_horizontal"
