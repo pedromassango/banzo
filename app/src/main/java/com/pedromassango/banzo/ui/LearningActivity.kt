@@ -37,7 +37,7 @@ class LearningActivity : AppCompatActivity(),
 
     companion object {
         // Time to wait before show the next fragment
-        const val PAUSE_SCREEN_TIME = 1700L
+        const val PAUSE_SCREEN_TIME = 1800L
         // Time to pause before show the right answer
         const val PAUSE_SHOW_ANSWER_TIME = 250L
     }
