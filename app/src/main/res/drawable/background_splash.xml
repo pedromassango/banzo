@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@color/colorPrimary"/>
-    <item>
-        <bitmap
-            android:src="@mipmap/ic_launcher"
-            android:gravity="center"/>
-    </item>
+
+    <item android:drawable="@drawable/logo_foreground"
+        android:top="190dp"
+        android:bottom="190dp"
+        android:left="32dp"
+        android:right="32dp"/>
 </layer-list>
