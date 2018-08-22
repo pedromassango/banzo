@@ -28,7 +28,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:padding="12dp"
-                tools:text="Leia atentamente estas palavras"
+                android:text="@string/leia_atentamente_estas_palavras"
                 android:textAllCaps="true"
                 android:textColor="@color/secondaryText"
                 app:autoSizeTextType="uniform" />

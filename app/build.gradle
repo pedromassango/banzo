@@ -21,8 +21,8 @@ android {
         applicationId 'com.pedromassango.banzo'
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 1
-        versionName "1.0.0-beta"
+        versionCode 2
+        versionName "1.0.1-beta"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.config
     }
@@ -45,16 +45,16 @@ android {
             applicationId "com.pedromassango.banzo.free"
             minSdkVersion 16
             targetSdkVersion 27
-            versionCode 1
-            versionName '1.0.0-beta'
+            versionCode 2
+            versionName '1.0.1-beta'
             signingConfig signingConfigs.config
         }
         pro {
             applicationId "com.pedromassango.banzo.pro"
             minSdkVersion 16
             targetSdkVersion 27
-            versionCode 1
-            versionName '1.0.0-beta'
+            versionCode 2
+            versionName '1.0.1-beta'
             signingConfig signingConfigs.config
         }
     }
