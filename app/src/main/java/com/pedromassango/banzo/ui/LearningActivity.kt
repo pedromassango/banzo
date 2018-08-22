@@ -49,6 +49,10 @@ class LearningActivity : AppCompatActivity(),
     private lateinit var interstitialAd: InterstitialAd
     private lateinit var tts: TextToSpeech
     private val languageToLearn = PreferencesHelper().getLangToLearn()
+    // how many times should play all daily words before take a break
+    private val PLAY_TIME_TO_TAKE_BREAK = 2
+    // times played all daily words
+    private var playedExercicesCount = 0
 
     /**
      * Function to speak the learning word.
@@ -112,6 +116,9 @@ class LearningActivity : AppCompatActivity(),
      * and start the exercises.
      */
     private fun startExercises(){
+        // update counter
+        playedExercicesCount += 1
+
         // get words to learn
         viewModel.getLearningWords()?.observe(this, this)
         // pre-load fake words from database
@@ -217,11 +224,14 @@ class LearningActivity : AppCompatActivity(),
         // else, learn again by writing
         when(reversed){
             true -> {
-                //startExercises()
-
-                // start service to count break time, and finish activity
-                startService( Intent(this, TimerService::class.java))
-                this.finish()
+                if(playedExercicesCount == PLAY_TIME_TO_TAKE_BREAK){
+                    // start service to count break time, and finish activity
+                    startService( Intent(this, TimerService::class.java))
+                    this.finish()
+                }else {
+                    // call this to play another four words (eight in total)
+                    startExercises()
+                }
             }
             false -> showWritingFragments( true)
         }
