@@ -127,8 +127,7 @@ class MainFragment : Fragment() {
 
         // show info depending of last day value
         tv_learn_status.text = when(lastLearnedDay){
-            0 -> getString(R.string.muito_bem_vamos_come_ar_com_o_treinamento_de_hoje)
-            DateUtils.currentDay() -> getString(R.string.voce_tem_quatro_palavras_para_revisar)
+            DateUtils.currentDay() -> getString(R.string.muito_bem_vamos_come_ar_com_o_treinamento_de_hoje)
             else -> getString(R.string.voce_tem_palavras_novas_para_aprender)
         }
     }
