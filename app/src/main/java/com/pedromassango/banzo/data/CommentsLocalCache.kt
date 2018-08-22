@@ -19,6 +19,10 @@ class CommentsLocalCache(
 
     fun insert(comments: List<Comment>){
 
+        // TODO: removing all local comments, to repopulate
+        deleteAll()
+
+        // repopulate database
         comments.forEach { insert(it) }
 
         Timber.i("inserting ${comments.size} comments")
@@ -35,5 +39,9 @@ class CommentsLocalCache(
         Timber.i("local comments: ${result.value?.size}")
 
         return result
+    }
+
+    fun deleteAll(){
+        commentsDao.delete()
     }
 }

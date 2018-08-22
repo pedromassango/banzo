@@ -1,10 +1,7 @@
 package com.pedromassango.banzo.data
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.pedromassango.banzo.data.models.Comment
 
 
@@ -24,4 +21,8 @@ interface CommentDao {
      */
     @Query("SELECT * FROM comments_table WHERE (clubId == :club_id)")
     fun getAllByClub(club_id: String): LiveData<List<Comment>>
+
+    // delete all comments
+    @Query("DELETE FROM comments_table")
+    fun delete()
 }
