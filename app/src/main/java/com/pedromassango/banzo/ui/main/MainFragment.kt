@@ -37,11 +37,11 @@ class MainFragment : Fragment() {
 
             val anim = when(goodLevel){
                 true ->{
-                    tv_learn_status.text = getString(R.string.voce_est_se_saind_muito_bem)
+                    tv_learn_status?.text = getString(R.string.voce_est_se_saind_muito_bem)
                     R.raw.animation_fast_learn
                 }
                 false ->{
-                    tv_learn_status.text = getString(R.string.quanto_mais_treinar_mais_palavras_vai_aprender)
+                    tv_learn_status?.text = getString(R.string.quanto_mais_treinar_mais_palavras_vai_aprender)
                     R.raw.animation_slow_learn
                 }
             }
@@ -64,15 +64,16 @@ class MainFragment : Fragment() {
                 true ->{
                     // play if not played yet
                     if(!started) {
-                        lottie_anim_view.setAnimation(R.raw.animation_pause_time)
-                        lottie_anim_view.playAnimation()
+                        lottie_anim_view?.setAnimation(R.raw.animation_pause_time)
+                        lottie_anim_view?.playAnimation()
+                        started = true
                     }
 
                     // update info text
-                    tv_learn_status.text = getString(R.string.momento_de_intervalo)
+                    tv_learn_status?.text = getString(R.string.momento_de_intervalo)
                     // updated button text, and remove click listener
-                    btn_start_learning.setOnClickListener(null)
-                    btn_start_learning.text = DateUtils.getMinuteAndSecond(time)
+                    btn_start_learning?.setOnClickListener(null)
+                    btn_start_learning?.text = DateUtils.getMinuteAndSecond(time)
                 }
                 false ->{
                     started = false
@@ -81,8 +82,8 @@ class MainFragment : Fragment() {
                     viewModel.getLearningWordsWithMoreHitsCount()
                             ?.observe(this@MainFragment, learningWordsWithMoreHitsCountObserver)
 
-                    btn_start_learning.text = getString(R.string.iniciar)
-                    btn_start_learning.setOnClickListener(btnStartLearningListener)
+                    btn_start_learning?.text = getString(R.string.iniciar)
+                    btn_start_learning?.setOnClickListener(btnStartLearningListener)
                 }
             }
         }
