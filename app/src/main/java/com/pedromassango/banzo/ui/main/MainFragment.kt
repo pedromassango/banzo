@@ -64,6 +64,9 @@ class MainFragment : Fragment() {
                 true ->{
                     // play if not played yet
                     if(!started) {
+                        // remove current observer, we will add it when break time is finished
+                        viewModel.getLearningWordsWithMoreHitsCount()?.removeObserver(learningWordsWithMoreHitsCountObserver)
+
                         lottie_anim_view?.setAnimation(R.raw.animation_pause_time)
                         lottie_anim_view?.playAnimation()
                         started = true
