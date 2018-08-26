@@ -13,7 +13,7 @@ android {
             keyPassword 'S3t3mbr0/13'
             //storeFile file('/home/pedromassango/AndroidStudioProjects/keystores/pedromassango_apps.jks')
             storePassword 'S3t3mbr0/13'
-            storeFile file('/Users/pass/AndroidStudioProjects/banzo/pedromassango_apps.jks')
+            storeFile file('/home/pedromassango/AndroidStudioProjects/banzo/pedromassango_apps.jks')
         }
     }
     compileSdkVersion 28
@@ -31,6 +31,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
+            debuggable false
         }
         debug {
             signingConfig signingConfigs.config

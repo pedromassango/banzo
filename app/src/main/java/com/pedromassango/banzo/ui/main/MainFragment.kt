@@ -128,11 +128,6 @@ class MainFragment : Fragment() {
         // last day tha the user entered on app
         val lastLearnedDay = PreferencesHelper().lastLearnedDay
 
-        // show info depending of last day value
-        tv_learn_status.text = when(lastLearnedDay){
-            DateUtils.currentDay() -> getString(R.string.muito_bem_vamos_come_ar_com_o_treinamento_de_hoje)
-            else -> getString(R.string.voce_tem_palavras_novas_para_aprender)
-        }
     }
 
     override fun onStop() {
