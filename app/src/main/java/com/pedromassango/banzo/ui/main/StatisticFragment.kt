@@ -18,7 +18,6 @@ import android.widget.Toast
 import androidx.navigation.findNavController
 import com.google.android.gms.ads.AdRequest
 import com.pedromassango.banzo.extras.runOnFree
-import kotlinx.android.synthetic.free.fragment_statistic.view.*
 import kotlinx.android.synthetic.main.component_learned_level.*
 
 
@@ -38,14 +37,6 @@ class StatisticFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val v = inflater.inflate(R.layout.fragment_statistic, container, false)
-
-        with(v){
-            // setup ads
-            runOnFree {
-                val adRequest = AdRequest.Builder().build()
-                adView_statistic.loadAd(adRequest)
-            }
-        }
         return v
     }
 

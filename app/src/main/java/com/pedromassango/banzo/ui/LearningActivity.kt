@@ -4,22 +4,16 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.google.android.gms.ads.AdListener
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.InterstitialAd
-import com.pedromassango.banzo.MainApplication
 import com.pedromassango.banzo.R
 import com.pedromassango.banzo.data.models.Word
 import com.pedromassango.banzo.data.preferences.PreferencesHelper
 import com.pedromassango.banzo.enums.LanguagestTypes
-import com.pedromassango.banzo.extras.runOnFree
 import com.pedromassango.banzo.services.TimerService
 import com.pedromassango.banzo.ui.learn.*
 import kotlinx.android.synthetic.main.activity_learn.*
@@ -46,7 +40,7 @@ class LearningActivity : AppCompatActivity(),
     private val learningWords: ArrayList<Word> = lazy {
         arrayListOf<Word>()
     }.value
-    private lateinit var interstitialAd: InterstitialAd
+    //private lateinit var interstitialAd: InterstitialAd
     private lateinit var tts: TextToSpeech
     private val languageToLearn = PreferencesHelper().getLangToLearn()
     // how many times should play all daily words before take a break
@@ -96,7 +90,7 @@ class LearningActivity : AppCompatActivity(),
         // start loading data
         startExercises()
 
-        // setup ads
+        /*// setup ads
         runOnFree{
             interstitialAd = InterstitialAd(this)
             interstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712"
@@ -108,7 +102,7 @@ class LearningActivity : AppCompatActivity(),
                     this@LearningActivity.finish()
                 }
             }
-        }
+        }*/
     }
 
     /**
@@ -243,11 +237,12 @@ class LearningActivity : AppCompatActivity(),
     }
 
     private fun showInterstitialAdsOrCloseActivity(){
-        if(interstitialAd.isLoaded){
+        this.finish()
+        /* if(interstitialAd.isLoaded){
             interstitialAd.show()
         }else{
             this.finish()
-        }
+        }*/
     }
 
     /**
