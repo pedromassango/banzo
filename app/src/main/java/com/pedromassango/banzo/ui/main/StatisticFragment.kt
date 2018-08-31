@@ -16,7 +16,7 @@ import timber.log.Timber
 import android.animation.ValueAnimator
 import android.widget.Toast
 import androidx.navigation.findNavController
-import com.google.android.gms.ads.AdRequest
+//import com.google.android.gms.ads.AdRequest
 import com.pedromassango.banzo.extras.runOnFree
 import kotlinx.android.synthetic.main.component_learned_level.*
 

@@ -21,8 +21,8 @@ android {
         applicationId 'com.pedromassango.banzo'
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 5
-        versionName "1.1.0"
+        versionCode 6
+        versionName "1.2.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.config
     }
@@ -46,16 +46,16 @@ android {
             applicationId "com.pedromassango.banzo.free"
             minSdkVersion 16
             targetSdkVersion 27
-            versionCode 5
-            versionName '1.1.0'
+            versionCode 6
+            versionName '1.2.0'
             signingConfig signingConfigs.config
         }
         pro {
             applicationId "com.pedromassango.banzo.pro"
             minSdkVersion 16
             targetSdkVersion 27
-            versionCode 5
-            versionName '1.1.0'
+            versionCode 6
+            versionName '1.2.0'
             signingConfig signingConfigs.config
         }
     }
@@ -101,7 +101,7 @@ dependencies {
     implementation 'com.android.support:preference-v7:28.0.3'
     implementation 'android.arch.navigation:navigation-fragment:1.0.0-alpha05'
     // ads
-    implementation 'com.google.firebase:firebase-ads:15.0.1'
+    //implementation 'com.google.firebase:firebase-ads:15.0.1'
     // Lottie animations
     implementation 'com.airbnb.android:lottie:2.6.0-beta19'
 }
