@@ -47,7 +47,7 @@
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:paddingBottom="16dp"
-                tools:text="Selecione a traducao"
+                android:text="@string/select_translation"
                 android:textAllCaps="true"
                 android:textColor="@color/secondaryText"/>
 
