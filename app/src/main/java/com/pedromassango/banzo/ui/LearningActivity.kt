@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.pedromassango.banzo.R
+import com.pedromassango.banzo.R.id.learn_viewpager
 import com.pedromassango.banzo.data.models.Word
 import com.pedromassango.banzo.data.preferences.PreferencesHelper
 import com.pedromassango.banzo.enums.LanguagestTypes
@@ -232,17 +233,7 @@ class LearningActivity : AppCompatActivity(),
     }
 
     override fun onBackPressed() {
-        //super.onBackPressed()
-        showInterstitialAdsOrCloseActivity()
-    }
-
-    private fun showInterstitialAdsOrCloseActivity(){
-        this.finish()
-        /* if(interstitialAd.isLoaded){
-            interstitialAd.show()
-        }else{
-            this.finish()
-        }*/
+        super.onBackPressed()
     }
 
     /**

@@ -49,14 +49,6 @@ android {
             versionName '1.2.1'
             signingConfig signingConfigs.config
         }
-        pro {
-            applicationId "com.pedromassango.banzo.pro"
-            minSdkVersion 16
-            targetSdkVersion 27
-            versionCode 7
-            versionName '1.2.1'
-            signingConfig signingConfigs.config
-        }
     }
 }
 
@@ -99,8 +91,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
     implementation 'com.android.support:preference-v7:28.0.3'
     implementation 'android.arch.navigation:navigation-fragment:1.0.0-alpha05'
-    // ads
-    //implementation 'com.google.firebase:firebase-ads:15.0.1'
     // Lottie animations
     implementation 'com.airbnb.android:lottie:2.6.0-beta19'
 }

@@ -9,7 +9,7 @@ import com.pedromassango.banzo.MainApplication
 
 val runOnFree = {code: ()-> Unit ->
 
-    if(!MainApplication.isPro()){
-        code()
-    }
+//    if(!MainApplication.isPro()){
+//        code()
+//    }
 }
