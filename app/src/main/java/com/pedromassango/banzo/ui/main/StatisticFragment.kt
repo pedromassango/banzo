@@ -14,10 +14,8 @@ import kotlinx.android.synthetic.main.component_learned_words.*
 import kotlinx.android.synthetic.main.component_learning_words.*
 import timber.log.Timber
 import android.animation.ValueAnimator
-import android.widget.Toast
 import androidx.navigation.findNavController
 //import com.google.android.gms.ads.AdRequest
-import com.pedromassango.banzo.extras.runOnFree
 import kotlinx.android.synthetic.main.component_learned_level.*
 
 
@@ -36,8 +34,7 @@ class StatisticFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val v = inflater.inflate(R.layout.fragment_statistic, container, false)
-        return v
+        return inflater.inflate(R.layout.fragment_statistic, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -69,12 +66,20 @@ class StatisticFragment : Fragment() {
             val progress = ((learnedAndLearningWordsCount * 100) / totalWords).toFloat()
 
             // show total learned and learning words
-            val animator = ValueAnimator.ofInt(0, learnedAndLearningWordsCount)
-            animator.duration = TEXT_ANIMATION_DURATION.toLong()
-            animator.addUpdateListener{ anim ->
-                tv_learned_words_count?.text = anim.animatedValue.toString()
+            when(PreferencesHelper().animateStatistics) {
+             true -> {
+                 val animator = ValueAnimator.ofInt(0, learnedAndLearningWordsCount)
+                 animator.duration = TEXT_ANIMATION_DURATION.toLong()
+                 animator.addUpdateListener { anim ->
+                     tv_learned_words_count?.text = anim.animatedValue.toString()
+                 }
+                 animator.start()
+
+                 // disable animation
+                 PreferencesHelper().animateStatistics = false
+             }
+                else -> tv_learned_words_count?.text = learnedAndLearningWordsCount.toString()
             }
-            animator.start()
 
             // show learning progress
             val value = "${progress.toInt()}%"

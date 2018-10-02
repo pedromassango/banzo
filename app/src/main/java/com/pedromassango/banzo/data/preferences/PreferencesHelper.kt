@@ -20,6 +20,7 @@ class PreferencesHelper(context: Context = MainApplication.applicationContext())
         private const val KEY_LANG_TO_LEARN = "KEY_LANG_TO_LEARN"
         private const val KEY_USER_NAME = "KEY_USER_NAME"
         private const val KEY_USER_PHOTO_URL = "KEY_USER_PHOTO_URL"
+        private const val KEY_ANIMATE_STATISTIC = "KEY_ANIMATE_STATISTIC"
 
     }
 
@@ -43,6 +44,9 @@ class PreferencesHelper(context: Context = MainApplication.applicationContext())
 
     private var languageToLearn = preferences.getInt(KEY_LANG_TO_LEARN, 0)
         set(value) = editor.putInt(KEY_LANG_TO_LEARN, value).apply()
+
+    var animateStatistics = preferences.getBoolean(KEY_ANIMATE_STATISTIC, true)
+        set(value) = editor.putBoolean(KEY_ANIMATE_STATISTIC, value).apply()
 
     fun setLangToLearn(type: LanguagestTypes){
         languageToLearn = type.value

@@ -21,8 +21,8 @@ android {
         applicationId 'com.pedromassango.banzo'
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 8
-        versionName "2.0.0"
+        versionCode appVersionCode
+        versionName appVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.config
     }
@@ -44,9 +44,9 @@ android {
         free {
             applicationId "com.pedromassango.banzo.free"
             minSdkVersion 16
-            targetSdkVersion 27
-            versionCode 8
-            versionName '1.8.0'
+            targetSdkVersion 28
+            versionCode appVersionCode
+            versionName appVersionName
             signingConfig signingConfigs.config
         }
     }

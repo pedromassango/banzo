@@ -1,7 +1,12 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+    // APP
+    ext.appVersionCode = 9
+    ext.appVersionName = "2.0.0"
+    // Kotlin
     ext.kotlin_version = '1.2.60'
+
     repositories {
         maven { url "https://jcenter.bintray.com"}
         maven {
