@@ -60,7 +60,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.setBackgroundColor(ResourcesCompat.getColor(resources, android.R.color.white, null))
+        view.setBackgroundColor(ResourcesCompat.getColor(resources, android.R.color.transparent, null))
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
