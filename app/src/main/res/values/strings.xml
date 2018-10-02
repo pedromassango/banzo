@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name" translatable="false">Banzo</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="selecione_o_idioma_que_deja_aprender">Selecione o idioma que deja aprender</string>
     <string name="escolha_seu_nivel_de_1_s">Selecione seu nivel actual de %1$s</string>
     <string name="comece_a_aprender">Comece a aprender</string>
@@ -11,9 +10,9 @@
     <string name="voce_tem_quatro_palavras_para_revisar">Vamos treinar mais as palavras aprendidas.</string>
     <string name="voce_tem_palavras_novas_para_aprender">Esta um bom dia para aprender, vamos estudar novas palavras novas hoje.</string>
     <string name="palavras_estao_sendo_aprendidas">Palavras estao sendo aprendidas</string>
-    <string name="prefs_username">prefs_username</string>
-    <string name="prefs_remove_account">prefs_remove_account</string>
-    <string name="prefs_learned_words">prefs_learned_words</string>
+    <string name="prefs_username" translatable="false">prefs_username</string>
+    <string name="prefs_remove_account" translatable="false">prefs_remove_account</string>
+    <string name="prefs_learned_words" translatable="false">prefs_learned_words</string>
     <string name="prefs_rate_app" translatable="false">prefs_rate_app</string>
     <string name="prefs_share_app" translatable="false">prefs_share_app</string>
     <string name="prefs_max_daily_words" translatable="false">prefs_max_daily_words</string>
@@ -24,7 +23,7 @@
     <string name="voce_est_se_saind_muito_bem">Voce esta se saindo muito bem. Mantem o ritmo de aprendizagem!</string>
     <string name="momento_de_intervalo">Momento de intervalo, voltaremos dentro de alguns minutos!</string>
     <string name="learned_words">Palavras aprendidas</string>
-    <string name="digite_um_comentario">Digite um comentario</string>
+    <string name="digite_um_comentario">Digite um comentário</string>
     <string name="selecione_um_clube_e_comece_a_conversar">Selecione um clube, e comece a conversar</string>
     <string name="entre_com_uma_conta_google_para_come_ar">Entre com uma conta Google para começar</string>
     <string name="voc_pode_conversar_com_outros_usu_rios_e_aprender_mais">Você pode conversar com outros usuários, e aprender mais.</string>
@@ -37,4 +36,9 @@
     <string name="preparado">Preparado</string>
     <string name="resultado">Resultado</string>
     <string name="leia_atentamente_estas_palavras">Leia atentamente estas palavras</string>
+    <string name="select_translation">Selecione a tradução</string>
+    <string name="estatisticas">Estatísticas</string>
+    <string name="aprender">Aprender</string>
+    <string name="clubes">Clubes</string>
+    <string name="defini_es">Definições</string>
 </resources>

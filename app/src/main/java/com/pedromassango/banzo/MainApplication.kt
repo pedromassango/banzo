@@ -17,14 +17,6 @@ class MainApplication : Application() {
             checkNotNull(instance)
             return instance!!.applicationContext
         }
-
-        /**
-         * Check the version of the app.
-         * @return true if it is pro version.
-         */
-        fun isPro(): Boolean{
-            return BuildConfig.APPLICATION_ID == "com.pedromassango.banzo.pro"
-        }
     }
 
     override fun onCreate() {

@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Estatisticas"
+    <item android:title="@string/estatisticas"
         android:checked="false"
         android:checkable="true"
         android:id="@+id/statisticFragment"
         android:icon="@drawable/ic_statistic"/>
 
-    <item android:title="Aprender"
+    <item android:title="@string/aprender"
         android:checked="true"
         android:checkable="true"
         android:id="@+id/mainFragment"
         android:icon="@drawable/ic_learn"/>
 
-    <item android:title="Clubes"
+    <item android:title="@string/clubes"
         android:checked="false"
         android:checkable="true"
         android:id="@+id/clubsFragment"
         android:icon="@drawable/ic_clubs"/>
 
-    <item android:title="Definições"
+    <item android:title="@string/defini_es"
         android:checked="false"
         android:checkable="true"
         android:id="@+id/settingsFragment"

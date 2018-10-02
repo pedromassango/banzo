@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Banzo</string>
+    <string name="selecione_o_idioma_que_deja_aprender">Seleccionar el idioma que desea aprender</string>
+    <string name="escolha_seu_nivel_de_1_s">Seleccionar su nivel actual desde %1$s</string>
+    <string name="comece_a_aprender">Comienza a aprender</string>
+    <string name="selecionar">Seleccionar</string>
+    <string name="muito_bem_vamos_come_ar_com_o_treinamento_de_hoje">¡Muy bien! Empecemos con el entrenamiento de hoy.</string>
+    <string name="iniciar">comienzo</string>
+    <string name="voce_tem_quatro_palavras_para_revisar">Entrenaremos más las palabras aprendidas.</string>
+    <string name="voce_tem_palavras_novas_para_aprender">Este es un buen día para aprender, estudiemos nuevas palabras hoy.</string>
+    <string name="palavras_estao_sendo_aprendidas">Las palabras se están aprendiendo</string>
+    <string name="palavras_aprendidas_estarao_aqui">¡Las palabras aprendidas estarán aquí!</string>
+    <string name="palavras_desafiadoras_encontradas">%1$s palabras desafiantes encontradas.</string>
+    <string name="train">Formación</string>
+    <string name="quanto_mais_treinar_mais_palavras_vai_aprender">Cuanto más entrenas, más palabras aprenderás.</string>
+    <string name="voce_est_se_saind_muito_bem">Lo estás haciendo muy bien. ¡Mantén el ritmo del aprendizaje!</string>
+    <string name="momento_de_intervalo">Momento de intervalo, volveremos en unos minutos!</string>
+    <string name="learned_words">Palabras aprendidas</string>
+    <string name="digite_um_comentario">Escribe una reseña</string>
+    <string name="selecione_um_clube_e_comece_a_conversar">Selecciona un club y empieza a chatear.</string>
+    <string name="entre_com_uma_conta_google_para_come_ar">Inicia sesión con una cuenta de Google para comenzar.</string>
+    <string name="voc_pode_conversar_com_outros_usu_rios_e_aprender_mais">Puedes chatear con otros usuarios y aprender más.</string>
+    <string name="total_de_palavras_aprendidas">Total de palabras aprendidas</string>
+    <string name="nivel_de_aprendizagem">Nivel de aprendizaje</string>
+    <string name="complete_as_tarefas_para_aprender_as_palavras">Completa las tareas para aprender las palabras!</string>
+    <string name="instale_a_versao_completa_aprenda_mais_rapido_com_12_palavras_por_dia_e_sem_anuncios">Instale la versión completa, aprenda más rápido con 12 palabras por día y sin anuncios.</string>
+    <string name="instalar_premium">Instalar premium</string>
+    <string name="ignorar_palavra">Saltar esta palabra</string>
+    <string name="preparado">Listo</string>
+    <string name="resultado">Resultado</string>
+    <string name="leia_atentamente_estas_palavras">Lee estas palabras cuidadosamente</string>
+    <string name="select_translation">Seleccionar traducción</string>
+    <string name="estatisticas">Estadística</string>
+    <string name="aprender">Aprender</string>
+    <string name="clubes">Clubes</string>
+    <string name="defini_es">Definitions</string>
+</resources>
