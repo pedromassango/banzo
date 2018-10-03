@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Banzo</string>
+    <string name="app_name">Banzo</string>
 
     <string name="selecione_o_idioma_que_deja_aprender">Selecione o idioma que deja aprender</string>
     <string name="escolha_seu_nivel_de_1_s">Selecione seu nível actual de %1$s</string>
@@ -28,7 +29,7 @@
     <string name="entre_com_uma_conta_google_para_come_ar">Entre com uma conta Google para começar</string>
     <string name="voc_pode_conversar_com_outros_usu_rios_e_aprender_mais">Você pode conversar com outros usuários, e aprender mais.</string>
     <string name="total_de_palavras_aprendidas">Total de palavras aprendidas</string>
-    <string name="nivel_de_aprendizagem">Nivel de aprendizagem</string>
+    <string name="nivel_de_aprendizagem">Nível de aprendizagem</string>
     <string name="complete_as_tarefas_para_aprender_as_palavras">Complete as tarefas para aprender as palavras!</string>
     <string name="instale_a_versao_completa_aprenda_mais_rapido_com_12_palavras_por_dia_e_sem_anuncios">Instale a Versao completa, aprenda mais rapido com 12 palavras por dia e sem anuncios.</string>
     <string name="instalar_premium">Instalar Premium</string>

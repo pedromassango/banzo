@@ -29,6 +29,7 @@ import com.pedromassango.banzo.services.DateChangedReceiver
 import kotlinx.android.synthetic.main.fragment_lang_level.*
 import kotlinx.android.synthetic.main.fragment_lang_level.view.*
 import timber.log.Timber
+import java.util.*
 
 
 /**
@@ -101,12 +102,19 @@ class LangLevelFragment : Fragment(), (Level) -> Unit {
         Thread {
 
             val fileUtils = FileUtils(resources.assets)
-            val portugueseWords = fileUtils.read(LanguagestTypes.PORTUGUES)
-            val translationhWords = fileUtils.read(selectedLanguage.type)
+
+            val selectedLanguageWords = fileUtils.read(selectedLanguage.type)
+
+            val translationWords = when(Locale.getDefault().language){
+                "es" -> fileUtils.read(LanguagestTypes.ESPANHOL)
+                "pt" -> fileUtils.read(LanguagestTypes.PORTUGUES)
+                //"en" -> fileUtils.read(LanguagestTypes.ENGLISH)
+                else -> fileUtils.read(LanguagestTypes.ENGLISH) // default translation language
+            }
 
             // get all words from assets, and store in database
-            portugueseWords.forEachIndexed { index, ptWord ->
-                val translationWord = translationhWords[index]
+            translationWords.forEachIndexed { index, ptWord ->
+                val translationWord = selectedLanguageWords[index]
 
                 // Word model class to save in database
                 val word = Word(
@@ -124,7 +132,7 @@ class LangLevelFragment : Fragment(), (Level) -> Unit {
             // set first time flat to false
             PreferencesHelper().isFirstTime = false
             // save total words
-            PreferencesHelper().totalWordsToLearn = portugueseWords.size
+            PreferencesHelper().totalWordsToLearn = translationWords.size
             // save the selected language
             PreferencesHelper().setLangToLearn(selectedLanguage.type)
 
@@ -159,7 +167,7 @@ class LangLevelFragment : Fragment(), (Level) -> Unit {
                               private val callback: (Level) -> Unit) : RecyclerView.Adapter<LevelsAdapter.ViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LevelsAdapter.ViewHolder {
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.row_language, null)
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.row_language, null, false)
             return ViewHolder(view)
         }
 
@@ -170,7 +178,7 @@ class LangLevelFragment : Fragment(), (Level) -> Unit {
             holder.tvTitle.text = item.level
             holder.chkSelected.isChecked = item.isSelected
 
-            val listener = { v: View ->
+            val listener = { _: View ->
 
                 levels.forEach {
                     it.isSelected = it.level == holder.tvTitle.text
