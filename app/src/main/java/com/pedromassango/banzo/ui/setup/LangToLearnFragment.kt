@@ -16,13 +16,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pedromassango.banzo.enums.LanguagestTypes
 import kotlinx.android.synthetic.main.fragment_lang_to_learn.*
 import kotlinx.android.synthetic.main.fragment_lang_to_learn.view.*
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 /**
  * A fragment to select the language to learn.
  */
 class LangToLearnFragment : Fragment(), (Language) -> Unit {
 
-    private lateinit var viewModel: SetupSharedViewModel
+    private val setupViewModel: SetupSharedViewModel by sharedViewModel()
 
     // Available languages to learn
     private val languages = arrayListOf(
@@ -54,7 +55,6 @@ class LangToLearnFragment : Fragment(), (Language) -> Unit {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(activity!!).get(SetupSharedViewModel::class.java)
     }
 
     /**
@@ -62,7 +62,7 @@ class LangToLearnFragment : Fragment(), (Language) -> Unit {
      * @param language selected language
      */
     override fun invoke(language: Language) {
-        viewModel.selectLanguage(language)
+        setupViewModel.selectLanguage(language)
 
         btn_select_language.visibility = View.VISIBLE
     }

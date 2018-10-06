@@ -21,6 +21,7 @@ import com.pedromassango.banzo.enums.LanguagestTypes
 import com.pedromassango.banzo.ui.MyDividerDecoration
 import kotlinx.android.synthetic.main.learned_fragment.*
 import kotlinx.android.synthetic.main.learned_fragment.view.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 import java.util.*
 
@@ -30,7 +31,7 @@ class LearnedFragment : Fragment() {
         fun newInstance() = LearnedFragment()
     }
 
-    private lateinit var viewModel: LearnedViewModel
+    private val learnViewModel: LearnedViewModel by viewModel()
     private lateinit var tts: TextToSpeech
     private val languageToLearn = PreferencesHelper().getLangToLearn()
     private val wordsAdapter: WordsAdapter = lazy {
@@ -78,8 +79,8 @@ class LearnedFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(LearnedViewModel::class.java)
-        viewModel.getLearnedWords()?.observe(this, Observer { learnedWords ->
+
+        learnViewModel.getLearnedWords()?.observe(this, Observer { learnedWords ->
             Timber.i("learned words ready: ${learnedWords?.size}")
 
             // remove progress bar

@@ -28,6 +28,8 @@ import com.pedromassango.banzo.extras.FileUtils
 import com.pedromassango.banzo.services.DateChangedReceiver
 import kotlinx.android.synthetic.main.fragment_lang_level.*
 import kotlinx.android.synthetic.main.fragment_lang_level.view.*
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 import java.util.*
 
@@ -38,7 +40,7 @@ import java.util.*
  */
 class LangLevelFragment : Fragment(), (Level) -> Unit {
 
-    private lateinit var viewModel: SetupSharedViewModel
+    private val setupViewModel: SetupSharedViewModel by sharedViewModel()
 
     private var levels = arrayListOf(
             Level("Iniciante", LanguageLevels.BEGINNER),
@@ -77,8 +79,8 @@ class LangLevelFragment : Fragment(), (Level) -> Unit {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(activity!!).get(SetupSharedViewModel::class.java)
-        viewModel.getSelectedLanguage()
+
+        setupViewModel.getSelectedLanguage()
                 .observe(this, Observer { selectedLanguage ->
 
                     checkNotNull(selectedLanguage)
@@ -123,7 +125,7 @@ class LangLevelFragment : Fragment(), (Level) -> Unit {
                 )
 
                 // save word in database
-                viewModel.saveWord(word)
+                setupViewModel.saveWord(word)
             }
 
             // Done
@@ -156,7 +158,7 @@ class LangLevelFragment : Fragment(), (Level) -> Unit {
      * @param level the selected level
      */
     override fun invoke(level: Level) {
-        viewModel.selectLevel(level)
+        setupViewModel.selectLevel(level)
         selectedLevel = level
 
         btn_select_level.visibility = View.VISIBLE

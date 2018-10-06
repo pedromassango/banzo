@@ -7,11 +7,12 @@ import com.pedromassango.banzo.R
 import com.pedromassango.banzo.ui.chat.ChatFragment
 import com.pedromassango.banzo.ui.chat.ChatViewModel
 import kotlinx.android.synthetic.main.chat_activity.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
 class ChatActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: ChatViewModel
+    private val chatViewModel: ChatViewModel by viewModel()
 
     private var clubId = ""
     private var clubName = ""
@@ -19,7 +20,6 @@ class ChatActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.chat_activity)
-        viewModel = ViewModelProviders.of(this).get(ChatViewModel::class.java)
 
         // toolbar
         setSupportActionBar(toolbar)
@@ -36,7 +36,7 @@ class ChatActivity : AppCompatActivity() {
 
         // pass data to ViewModel
         // This will cause immediate load comments in ChatFragment
-        viewModel.setClubId( clubId)
+        chatViewModel.setClubId( clubId)
 
         // show fragment
         if (savedInstanceState == null) {

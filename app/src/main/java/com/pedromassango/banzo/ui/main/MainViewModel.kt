@@ -6,13 +6,12 @@ import androidx.lifecycle.ViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseAuth
 import com.pedromassango.banzo.data.AuthManager
-import com.pedromassango.banzo.data.AppDatabase
+import com.pedromassango.banzo.data.WordDAO
 import com.pedromassango.banzo.data.preferences.PreferencesHelper
 
 
-class MainViewModel : ViewModel() {
-    // database
-    private val wordsDatabase = AppDatabase.getInstance().wordDAO
+class MainViewModel(private val wordsDatabase: WordDAO,
+                    private val authManager: AuthManager) : ViewModel() {
     // preferences
     private val preferencesHelper = PreferencesHelper()
 
@@ -103,7 +102,7 @@ class MainViewModel : ViewModel() {
      */
     fun authWithGoogle(account: GoogleSignInAccount) {
         // start google auth in server
-        AuthManager(preferencesHelper)
+        authManager
                 .errorListener(loginErrorEvent)
                 .authWithGoogle(account){ firebaseUser ->
                     // if not null user is logged in

@@ -18,6 +18,7 @@ import com.pedromassango.banzo.enums.LanguagestTypes
 import com.pedromassango.banzo.services.TimerService
 import com.pedromassango.banzo.ui.learn.*
 import kotlinx.android.synthetic.main.activity_learn.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 import java.util.*
 
@@ -37,7 +38,7 @@ class LearningActivity : AppCompatActivity(),
         const val PAUSE_SHOW_ANSWER_TIME = 250L
     }
 
-    private lateinit var viewModel: LearnViewModel
+    private val learnViewModel: LearnViewModel by viewModel()
     private val learningWords: ArrayList<Word> = lazy {
         arrayListOf<Word>()
     }.value
@@ -86,8 +87,6 @@ class LearningActivity : AppCompatActivity(),
         tts = TextToSpeech(this, this)
         tts.language = Locale.US
 
-        // get viewModel
-        viewModel = ViewModelProviders.of(this).get(LearnViewModel::class.java)
         // start loading data
         startExercises()
 
@@ -115,9 +114,9 @@ class LearningActivity : AppCompatActivity(),
         playedExercicesCount += 1
 
         // get words to learn
-        viewModel.getLearningWords()?.observe(this, this)
+        learnViewModel.getLearningWords()?.observe(this, this)
         // pre-load fake words from database
-        viewModel.getFakeWords()
+        learnViewModel.getFakeWords()
     }
 
     /**
@@ -127,7 +126,7 @@ class LearningActivity : AppCompatActivity(),
     private var exercisesCount = 0
     override fun onChanged(words: List<Word>?) {
         // remove observer, we need to observe just one time
-        viewModel.getLearningWords()?.removeObserver(this)
+        learnViewModel.getLearningWords()?.removeObserver(this)
 
         // clear current list
         learningWords.clear()
@@ -250,7 +249,7 @@ class LearningActivity : AppCompatActivity(),
             else -> learnedWord!!.failCount += 1
         }
 
-        viewModel.update(learnedWord!!)
+        learnViewModel.update(learnedWord!!)
     }
 
     /**

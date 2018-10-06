@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.reading_fragment.view.*
 import timber.log.Timber
 import java.util.*
 import android.speech.tts.TextToSpeech
-
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class ReadingFragment : Fragment(), View.OnClickListener, TextToSpeech.OnInitListener {
@@ -44,7 +44,7 @@ class ReadingFragment : Fragment(), View.OnClickListener, TextToSpeech.OnInitLis
         }
     }
 
-    private lateinit var viewModel: LearnViewModel
+    private val learnViewModel: LearnViewModel by viewModel()
     private lateinit var fakeWordsObserver: Observer<List<Word>>
     private lateinit var iReadFragmentListener: IReadFragmentListener
     private var optionsClickListener: View.OnClickListener? = null
@@ -85,7 +85,6 @@ class ReadingFragment : Fragment(), View.OnClickListener, TextToSpeech.OnInitLis
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(activity!!).get(LearnViewModel::class.java)
 
         // Get and show the learning word
         wordToLearn = arguments!!.getParcelable(KEY_WORD)
@@ -100,7 +99,7 @@ class ReadingFragment : Fragment(), View.OnClickListener, TextToSpeech.OnInitLis
         // get and show fake words
         fakeWordsObserver = Observer {
             Timber.i("GetFakeWords()")
-            viewModel.getFakeWords()?.removeObserver(fakeWordsObserver)
+            learnViewModel.getFakeWords()?.removeObserver(fakeWordsObserver)
 
             // shuffle list
             val fakes = it?.shuffled()
@@ -117,7 +116,7 @@ class ReadingFragment : Fragment(), View.OnClickListener, TextToSpeech.OnInitLis
         }
 
         // observe fake words container
-        viewModel.getFakeWords()?.observe(this, fakeWordsObserver)
+        learnViewModel.getFakeWords()?.observe(this, fakeWordsObserver)
     }
 
     override fun onAttach(context: Context?) {

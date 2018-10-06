@@ -14,6 +14,7 @@ import com.pedromassango.banzo.data.models.Comment
 import kotlinx.android.synthetic.main.chat_fragment.*
 import kotlinx.android.synthetic.main.chat_fragment.view.*
 import kotlinx.android.synthetic.main.row_comment.view.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ChatFragment : Fragment(), (Comment) -> Unit {
 
@@ -21,7 +22,7 @@ class ChatFragment : Fragment(), (Comment) -> Unit {
         fun newInstance() = ChatFragment()
     }
 
-    private lateinit var viewModel: ChatViewModel
+    private val chatViewModel: ChatViewModel by viewModel()
 
     // comments adapter
     private val commentsAdapter: CommentsAdapter by lazy {
@@ -43,7 +44,7 @@ class ChatFragment : Fragment(), (Comment) -> Unit {
 
                 // if there is a text, send the comment
                 if(text.trim().isNotEmpty()){
-                    viewModel.sendComment(text)
+                    chatViewModel.sendComment(text)
                 }
             }
         }
@@ -52,16 +53,15 @@ class ChatFragment : Fragment(), (Comment) -> Unit {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(activity!!).get(ChatViewModel::class.java)
 
         // listen for error event, we show only a Toast for now
-        viewModel.errorEvent.observe(this, Observer{
+        chatViewModel.errorEvent.observe(this, Observer{
             progress_chat.visibility = View.GONE
             Toast.makeText(activity, it, Toast.LENGTH_LONG).show()
         })
 
         // listen for comments
-        viewModel.commentsEvent.observe(this, Observer{data ->
+        chatViewModel.commentsEvent.observe(this, Observer{data ->
             progress_chat.visibility = View.GONE
             recycler_comments.visibility = View.VISIBLE
 
@@ -72,7 +72,7 @@ class ChatFragment : Fragment(), (Comment) -> Unit {
         })
 
         // listen for send comment event
-        viewModel.sendCommentResult.observe(this, Observer{success ->
+        chatViewModel.sendCommentResult.observe(this, Observer{success ->
             when(success){
                 true -> edt_comment.setText("")
                 false -> Toast.makeText(activity, "Send comment failed", Toast.LENGTH_SHORT).show()

@@ -21,12 +21,13 @@ import com.pedromassango.banzo.ui.ChatActivity
 import kotlinx.android.synthetic.main.clubs_fragment.*
 import kotlinx.android.synthetic.main.clubs_fragment.view.*
 import kotlinx.android.synthetic.main.row_club.view.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
 class ClubsFragment : Fragment(), (Club) -> Unit {
 
     // ViewModel
-    private lateinit var viewModel: MainViewModel
+    private val mainViewModel: MainViewModel by viewModel()
 
     // For Google Auth
     private val gso: GoogleSignInOptions by lazy{
@@ -75,7 +76,7 @@ class ClubsFragment : Fragment(), (Club) -> Unit {
                 login_progress.visibility = View.VISIBLE
 
                 // start google auth
-                viewModel.authWithGoogle( account)
+                mainViewModel.authWithGoogle( account)
             }
             catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
@@ -86,10 +87,9 @@ class ClubsFragment : Fragment(), (Club) -> Unit {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
         // remove no logged view, if the user is logged
-        viewModel.getAuthState().observe(this, Observer { isLoggedIn ->
+        mainViewModel.getAuthState().observe(this, Observer { isLoggedIn ->
             when (isLoggedIn) {
                 true -> {
                     no_logged_view.visibility = View.GONE
@@ -103,7 +103,7 @@ class ClubsFragment : Fragment(), (Club) -> Unit {
         })
 
         // listen for login errors
-        viewModel.getAuthErrorState().observe(this, Observer{
+        mainViewModel.getAuthErrorState().observe(this, Observer{
             // remove progress
             login_progress.visibility = View.GONE
             // show back login button

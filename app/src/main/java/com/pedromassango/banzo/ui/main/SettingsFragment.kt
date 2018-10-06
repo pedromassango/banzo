@@ -23,6 +23,8 @@ import com.pedromassango.banzo.BuildConfig
 import com.pedromassango.banzo.R
 import com.pedromassango.banzo.data.AuthManager
 import com.pedromassango.banzo.data.preferences.PreferencesHelper
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.File
 import kotlin.math.log
 
@@ -32,16 +34,13 @@ import kotlin.math.log
  */
 class SettingsFragment : PreferenceFragmentCompat() {
 
-    private lateinit var viewModel: MainViewModel
+    private val mainViewModel: MainViewModel by viewModel()
 
     // preferences helper
-    private val preferencesHelper: PreferencesHelper by lazy{
-        PreferencesHelper()
-    }
+    private val preferencesHelper: PreferencesHelper by inject()
+
     // authentication manager
-    private val authManager: AuthManager by lazy{
-        AuthManager(preferencesHelper)
-    }
+    private val authManager: AuthManager by inject()
 
     // UI preferences
     private val usernamePrefs: Preference by lazy{
@@ -65,9 +64,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
-        viewModel.getAuthState().observe(this, Observer{isLoggedIn ->
+        mainViewModel.getAuthState().observe(this, Observer{isLoggedIn ->
             // only enable logout button, if user is logged in
             removeAccountPrefs.isEnabled = isLoggedIn
             // show/hide username

@@ -2,6 +2,7 @@ package com.pedromassango.banzo
 
 import android.app.Application
 import android.content.Context
+import org.koin.android.ext.android.startKoin
 import timber.log.Timber
 
 /**
@@ -22,6 +23,9 @@ class MainApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
+
+        // setup Koin (DI)
+        startKoin(this, listOf(DependencyInjection.appModule))
 
         // Setup Timber logging library
         when (BuildConfig.DEBUG) {

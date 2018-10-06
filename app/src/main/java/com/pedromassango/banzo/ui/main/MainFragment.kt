@@ -21,10 +21,11 @@ import com.pedromassango.banzo.extras.DateUtils
 import com.pedromassango.banzo.services.TimerService
 import kotlinx.android.synthetic.main.main_fragment.*
 import kotlinx.android.synthetic.main.main_fragment.view.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainFragment : Fragment() {
 
-    private lateinit var viewModel: MainViewModel
+    private val mainViewModel: MainViewModel by viewModel()
 
     private val learningWordsWithMoreHitsCountObserver: Observer<Int> by lazy {
         Observer<Int>{
@@ -65,7 +66,7 @@ class MainFragment : Fragment() {
                     // play if not played yet
                     if(!started) {
                         // remove current observer, we will add it when break time is finished
-                        viewModel.getLearningWordsWithMoreHitsCount()?.removeObserver(learningWordsWithMoreHitsCountObserver)
+                        mainViewModel.getLearningWordsWithMoreHitsCount()?.removeObserver(learningWordsWithMoreHitsCountObserver)
 
                         lottie_anim_view?.setAnimation(R.raw.animation_pause_time)
                         lottie_anim_view?.playAnimation()
@@ -82,7 +83,7 @@ class MainFragment : Fragment() {
                     started = false
 
                     // reload learning words views
-                    viewModel.getLearningWordsWithMoreHitsCount()
+                    mainViewModel.getLearningWordsWithMoreHitsCount()
                             ?.observe(this@MainFragment, learningWordsWithMoreHitsCountObserver)
 
                     btn_start_learning?.text = getString(R.string.iniciar)
@@ -111,10 +112,9 @@ class MainFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(activity!!).get(MainViewModel::class.java)
 
         // handle learn speed animation
-        viewModel.getLearningWordsWithMoreHitsCount()
+        mainViewModel.getLearningWordsWithMoreHitsCount()
                 ?.observe(activity!!, learningWordsWithMoreHitsCountObserver)
     }
 

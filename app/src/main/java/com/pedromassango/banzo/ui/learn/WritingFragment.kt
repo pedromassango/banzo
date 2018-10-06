@@ -13,6 +13,7 @@ import com.pedromassango.banzo.R
 import com.pedromassango.banzo.data.models.Word
 import kotlinx.android.synthetic.main.writing_fragment.*
 import kotlinx.android.synthetic.main.writing_fragment.view.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class WritingFragment : Fragment(), View.OnClickListener {
 
@@ -33,7 +34,7 @@ class WritingFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private lateinit var viewModel: LearnViewModel
+    private val learnViewModel: LearnViewModel by viewModel()
     private lateinit var iWriteFragmentListener: IWriteFragmentListener
 
     private lateinit var wordToLearn: Word
@@ -56,7 +57,6 @@ class WritingFragment : Fragment(), View.OnClickListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(activity!!).get(LearnViewModel::class.java)
 
         // Get and show the learning word
         wordToLearn = arguments!!.getParcelable(KEY_WORD)

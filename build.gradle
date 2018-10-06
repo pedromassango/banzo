@@ -8,6 +8,7 @@ buildscript {
     ext.kotlin_version = '1.2.60'
 
     repositories {
+        jcenter()
         maven { url "https://jcenter.bintray.com"}
         maven {
             url 'https://maven.google.com/'
@@ -27,6 +28,7 @@ buildscript {
 
 allprojects {
     repositories {
+        jcenter()
         maven { url "https://jcenter.bintray.com"}
         maven {
             url 'https://maven.google.com/'

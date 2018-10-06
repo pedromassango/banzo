@@ -11,12 +11,6 @@
     <string name="voce_tem_quatro_palavras_para_revisar">Vamos treinar mais as palavras aprendidas.</string>
     <string name="voce_tem_palavras_novas_para_aprender">Esta um bom dia para aprender, vamos estudar novas palavras novas hoje.</string>
     <string name="palavras_estao_sendo_aprendidas">Palavras estão sendo aprendidas</string>
-    <string name="prefs_username" translatable="false">prefs_username</string>
-    <string name="prefs_remove_account" translatable="false">prefs_remove_account</string>
-    <string name="prefs_learned_words" translatable="false">prefs_learned_words</string>
-    <string name="prefs_rate_app" translatable="false">prefs_rate_app</string>
-    <string name="prefs_share_app" translatable="false">prefs_share_app</string>
-    <string name="prefs_max_daily_words" translatable="false">prefs_max_daily_words</string>
     <string name="palavras_aprendidas_estarao_aqui">Palavras aprendidas estarao aqui!</string>
     <string name="palavras_desafiadoras_encontradas">%1$s palavras desafiadoras encontradas.</string>
     <string name="train">Treino</string>

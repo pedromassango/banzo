@@ -17,6 +17,7 @@ import android.animation.ValueAnimator
 import androidx.navigation.findNavController
 //import com.google.android.gms.ads.AdRequest
 import kotlinx.android.synthetic.main.component_learned_level.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 /**
@@ -29,7 +30,7 @@ class StatisticFragment : Fragment() {
         const val TEXT_ANIMATION_DURATION = 2500
     }
 
-    private lateinit var viewModel: MainViewModel
+    private val mainViewModel: MainViewModel by viewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -49,7 +50,6 @@ class StatisticFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(activity!!).get(MainViewModel::class.java)
 
         var learnedAndLearningWordsObserver: Observer<Int>? = null
         val learnedWordsObserver: Observer<Int>?
@@ -57,7 +57,7 @@ class StatisticFragment : Fragment() {
 
         // get and show the number of learned and learning words
         learnedAndLearningWordsObserver = Observer { learnedAndLearningWordsCount ->
-            viewModel.getLearningAndLearnedWordsCount()?.removeObserver(learnedAndLearningWordsObserver!!)
+            mainViewModel.getLearningAndLearnedWordsCount()?.removeObserver(learnedAndLearningWordsObserver!!)
 
             Timber.i("Number of learned and learning words: $learnedAndLearningWordsCount")
 
@@ -116,10 +116,10 @@ class StatisticFragment : Fragment() {
         }
 
         // start looking for data
-        viewModel.getLearnedWordsCount()?.observe(this, learnedWordsObserver)
-        viewModel.getLearningAndLearnedWordsCount()?.observe(this, learnedAndLearningWordsObserver)
+        mainViewModel.getLearnedWordsCount()?.observe(this, learnedWordsObserver)
+        mainViewModel.getLearningAndLearnedWordsCount()?.observe(this, learnedAndLearningWordsObserver)
         // start observing challenging words count
-        viewModel.getChallengingWordsCount()?.observe(this@StatisticFragment, challengingWordsObserver)
+        mainViewModel.getChallengingWordsCount()?.observe(this@StatisticFragment, challengingWordsObserver)
     }
 
 }
