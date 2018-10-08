@@ -149,7 +149,8 @@ class LangLevelFragment : Fragment(), (Level) -> Unit {
             // navigate to MainActivity
             Timber.i("starting main activity...")
             view?.findNavController()?.navigate(R.id.action_langLevelFragment_to_mainActivity)
-
+            // finish activity
+            activity?.finish()
         }.start()
     }
 
