@@ -1,6 +1,5 @@
 package com.pedromassango.banzo.ui.chat
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -32,48 +31,42 @@ class ChatFragment : Fragment(), (Comment) -> Unit {
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
-        val v = inflater.inflate(R.layout.chat_fragment, container, false)
+        return with(inflater.inflate(R.layout.chat_fragment, container, false)) {
 
-        with(v) {
             // attach adapter
             recycler_comments.adapter = commentsAdapter
 
             // on send button click
-            btn_send_comment.setOnClickListener{
-                val text = edt_comment.text.toString()
-
-                // if there is a text, send the comment
-                if(text.trim().isNotEmpty()){
-                    chatViewModel.sendComment(text)
-                }
+            btn_send_comment.setOnClickListener {
+                chatViewModel.onSendCommentClick( edt_comment.text.toString())
             }
+            this
         }
-        return v
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         // listen for error event, we show only a Toast for now
-        chatViewModel.errorEvent.observe(this, Observer{
+        chatViewModel.errorEvent.observe(this, Observer {
             progress_chat.visibility = View.GONE
             Toast.makeText(activity, it, Toast.LENGTH_LONG).show()
         })
 
         // listen for comments
-        chatViewModel.commentsEvent.observe(this, Observer{data ->
+        chatViewModel.commentsEvent.observe(this, Observer { data ->
             progress_chat.visibility = View.GONE
             recycler_comments.visibility = View.VISIBLE
 
-            when(data.isEmpty()){
+            when (data.isEmpty()) {
                 true -> Toast.makeText(activity, "Sem dados!", Toast.LENGTH_LONG).show()
                 false -> commentsAdapter.addAll(data)
             }
         })
 
         // listen for send comment event
-        chatViewModel.sendCommentResult.observe(this, Observer{success ->
-            when(success){
+        chatViewModel.sendCommentResult.observe(this, Observer { success ->
+            when (success) {
                 true -> edt_comment.setText("")
                 false -> Toast.makeText(activity, "Send comment failed", Toast.LENGTH_SHORT).show()
             }
@@ -124,13 +117,13 @@ class ChatFragment : Fragment(), (Comment) -> Unit {
                 holder.bind(comments[position], commentLongClickListener)
 
         @Synchronized
-        fun add(comment: Comment){
+        fun add(comment: Comment) {
             comments.add(comment)
             notifyDataSetChanged()
         }
 
         @Synchronized
-        fun addAll(mComments: List<Comment>){
+        fun addAll(mComments: List<Comment>) {
             comments.addAll(mComments)
             notifyDataSetChanged()
         }

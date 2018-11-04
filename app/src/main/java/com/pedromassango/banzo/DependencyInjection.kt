@@ -1,9 +1,6 @@
 package com.pedromassango.banzo
 
-import com.pedromassango.banzo.data.AppDatabase
-import com.pedromassango.banzo.data.AuthManager
-import com.pedromassango.banzo.data.CommentsRepository
-import com.pedromassango.banzo.data.CommentsService
+import com.pedromassango.banzo.data.*
 import com.pedromassango.banzo.data.preferences.PreferencesHelper
 import com.pedromassango.banzo.ui.chat.ChatViewModel
 import com.pedromassango.banzo.ui.learn.LearnViewModel
@@ -18,10 +15,15 @@ object DependencyInjection {
     val appModule = module {
         single { AppDatabase.getInstance( get()) }
         single { (get() as AppDatabase).wordDAO }
+        single { (get() as AppDatabase).commentsDao }
+
         factory { PreferencesHelper( get()) }
+
         single { AuthManager( get()) }
         single{ CommentsRepository( get(), get()) }
         single { CommentsService() }
+        factory { CommentsLocalCache( get())}
+
 
         viewModel { SetupSharedViewModel(get()) }
         viewModel { ChatViewModel( get(), get()) }

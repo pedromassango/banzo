@@ -39,11 +39,10 @@ class MainActivity : AppCompatActivity(), NavHost{
         bottom_navigation_view.selectedItemId = bottom_navigation_view.menu[1].itemId
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        return findNavController(R.id.main_nav_host_fragment).navigateUp()
-    }
+    override fun onSupportNavigateUp() =
+            findNavController(R.id.main_nav_host_fragment).navigateUp()
 
-    override fun getNavController(): NavController {
-        return Navigation.findNavController(this, R.id.main_nav_host_fragment)
-    }
+    override fun getNavController() =
+            Navigation.findNavController(this, R.id.main_nav_host_fragment)
+
 }

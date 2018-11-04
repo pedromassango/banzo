@@ -35,9 +35,13 @@ class ChatViewModel(private val prefs: PreferencesHelper,
     fun setClubId(mClubId: String) = clubId.postValue( mClubId)
 
     /**
-     * Send a comment
+     * Send a comment to server
      */
-    fun sendComment(text: String) {
+    fun onSendCommentClick(text: String) {
+
+        // if there is no text, do not send the comment
+        if(text.isEmpty()) { return }
+
         val comment = Comment(
                 mText = text,
                 author = prefs.username,

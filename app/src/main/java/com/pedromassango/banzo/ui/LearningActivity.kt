@@ -231,10 +231,6 @@ class LearningActivity : AppCompatActivity(),
         }
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-    }
-
     /**
      * Called when the user has learned an word.
      * Here we need to check if the user hit the word or missed it.

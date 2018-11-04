@@ -18,7 +18,7 @@ class SetupActivity : AppCompatActivity(), NavHost {
     override fun onSupportNavigateUp() =
             findNavController(R.id.setup_nav_host_fragment).navigateUp()
 
-    override fun getNavController(): NavController {
-        return Navigation.findNavController(this, R.id.setup_nav_host_fragment)
-    }
+    override fun getNavController(): NavController =
+            Navigation.findNavController(this, R.id.setup_nav_host_fragment)
+
 }
