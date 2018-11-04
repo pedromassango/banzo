@@ -8,6 +8,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHost
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.pedromassango.banzo.R
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -24,7 +25,6 @@ class MainActivity : AppCompatActivity(), NavHost{
         animatedDrawable.start()
 
         // Setup bottom navigation view
-        bottom_navigation_view.selectedItemId = bottom_navigation_view.menu.get(1).itemId
         bottom_navigation_view.setOnNavigationItemSelectedListener { menuItem ->
 
             // Navigate between fragments from main nat path
@@ -33,6 +33,10 @@ class MainActivity : AppCompatActivity(), NavHost{
 
             return@setOnNavigationItemSelectedListener true
         }
+
+        NavigationUI.setupWithNavController(bottom_navigation_view, navController)
+
+        bottom_navigation_view.selectedItemId = bottom_navigation_view.menu[1].itemId
     }
 
     override fun onSupportNavigateUp(): Boolean {
