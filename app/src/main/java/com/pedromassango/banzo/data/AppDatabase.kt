@@ -11,7 +11,7 @@ import com.pedromassango.banzo.data.models.Word
 /**
  * Created by Pedro Massango on 6/24/18.
  */
-@Database(entities = [Word::class, Comment::class], version = 1)
+@Database(entities = [Word::class, Comment::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     // words DAO

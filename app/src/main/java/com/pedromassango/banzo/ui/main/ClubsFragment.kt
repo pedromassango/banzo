@@ -76,7 +76,7 @@ class ClubsFragment : Fragment(), (Club) -> Unit {
                 login_progress.visibility = View.VISIBLE
 
                 // start google auth
-                mainViewModel.authWithGoogle( account)
+                mainViewModel.authWithGoogle( account!!)
             }
             catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately

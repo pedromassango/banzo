@@ -29,6 +29,6 @@
     <!-- First Setup activity theme-->
     <style name="AppThemeSetup" parent="AppTheme">
         <item name="colorAccent">@color/colorAccentSetup</item>
-        <item name="android:windowBackground">@color/colorPrimary</item>
+        <item name="android:windowBackground">@drawable/gradient6</item>
     </style>
 </resources>
