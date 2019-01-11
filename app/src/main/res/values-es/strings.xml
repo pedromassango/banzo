@@ -34,5 +34,8 @@
     <string name="estatisticas">Estadística</string>
     <string name="aprender">Aprender</string>
     <string name="clubes">Clubes</string>
-    <string name="defini_es">Definitions</string>
+    <string name="defini_es">Ajustes</string>
+    <string name="Beginner">Principiante</string>
+    <string name="Intermediate">Intermedio</string>
+    <string name="Advanced">Avanzado</string>
 </resources>

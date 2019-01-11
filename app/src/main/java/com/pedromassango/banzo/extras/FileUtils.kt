@@ -17,9 +17,9 @@ class FileUtils(private val assetsManager: AssetManager) {
         val result = arrayListOf<String>()
 
         val fileName = when(type){
-            LanguagestTypes.ENGLISH -> "en_words.txt"
+            LanguagestTypes.PORTUGUES -> "pt_words.txt"
             LanguagestTypes.ESPANHOL -> "sp_words.txt"
-            else -> "pt_words.txt"
+            else -> "en_words.txt"
         }
 
         try {

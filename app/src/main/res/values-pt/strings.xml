@@ -36,4 +36,7 @@
     <string name="aprender">Aprender</string>
     <string name="clubes">Clubes</string>
     <string name="defini_es">Definições</string>
+    <string name="Beginner">Iniciante</string>
+    <string name="Intermediate">Intermediario</string>
+    <string name="Advanced">Avançado</string>
 </resources>

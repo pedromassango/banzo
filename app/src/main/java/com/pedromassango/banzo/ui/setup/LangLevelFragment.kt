@@ -1,6 +1,7 @@
 package com.pedromassango.banzo.ui.setup
 
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -42,11 +43,10 @@ class LangLevelFragment : Fragment(), (Level) -> Unit {
 
     private val setupViewModel: SetupSharedViewModel by sharedViewModel()
 
-    private var levels = arrayListOf(
-            Level("Iniciante", LanguageLevels.BEGINNER),
-            Level("Basico", LanguageLevels.BASIC),
-            Level("Intermediario", LanguageLevels.INTERMEDIATE),
-            Level("Avancado", LanguageLevels.ADVANCED)
+    private fun getLevels(context: Context) = arrayListOf(
+            Level(context.getString(R.string.Beginner), LanguageLevels.BEGINNER),
+            Level(context.getString(R.string.Intermediate), LanguageLevels.INTERMEDIATE),
+            Level(context.getString(R.string.Advanced), LanguageLevels.ADVANCED)
     )
 
     private lateinit var selectedLanguage: Language
@@ -57,7 +57,7 @@ class LangLevelFragment : Fragment(), (Level) -> Unit {
         // Inflate the layout for this fragment
         val v = inflater.inflate(R.layout.fragment_lang_level, container, false)
 
-        val adapter = LevelsAdapter(levels, this)
+        val adapter = LevelsAdapter( getLevels(context!!), this)
 
         with(v) {
             recycler_levels.setHasFixedSize(true)
@@ -68,8 +68,6 @@ class LangLevelFragment : Fragment(), (Level) -> Unit {
             btn_select_level.visibility = View.INVISIBLE
 
             btn_select_level.setOnClickListener {
-
-                // Save data in database
                 saveAppData()
             }
         }
@@ -84,7 +82,7 @@ class LangLevelFragment : Fragment(), (Level) -> Unit {
                 .observe(this, Observer { selectedLanguage ->
 
                     checkNotNull(selectedLanguage)
-                    this.selectedLanguage = selectedLanguage!!
+                    this.selectedLanguage = selectedLanguage
 
                     // Append previous selected language to title text
                     tv_lang_level_title.text = String.format(
@@ -110,7 +108,7 @@ class LangLevelFragment : Fragment(), (Level) -> Unit {
             val translationWords = when(Locale.getDefault().language){
                 "es" -> fileUtils.read(LanguagestTypes.ESPANHOL)
                 "pt" -> fileUtils.read(LanguagestTypes.PORTUGUES)
-                //"en" -> fileUtils.read(LanguagestTypes.ENGLISH)
+                "en" -> fileUtils.read(LanguagestTypes.ENGLISH)
                 else -> fileUtils.read(LanguagestTypes.ENGLISH) // default translation language
             }
 
@@ -119,10 +117,7 @@ class LangLevelFragment : Fragment(), (Level) -> Unit {
                 val translationWord = selectedLanguageWords[index]
 
                 // Word model class to save in database
-                val word = Word(
-                        ptWord = ptWord,
-                        translation = translationWord
-                )
+                val word = Word(ptWord = ptWord, translation = translationWord)
 
                 // save word in database
                 setupViewModel.saveWord(word)
@@ -148,8 +143,8 @@ class LangLevelFragment : Fragment(), (Level) -> Unit {
 
             // navigate to MainActivity
             Timber.i("starting main activity...")
+
             view?.findNavController()?.navigate(R.id.action_langLevelFragment_to_mainActivity)
-            // finish activity
             activity?.finish()
         }.start()
     }
