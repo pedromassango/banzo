@@ -2,8 +2,8 @@
 
 buildscript {
     // APP
-    ext.appVersionCode = 11
-    ext.appVersionName = "2.2.0"
+    ext.appVersionCode = 12
+    ext.appVersionName = "2.2.1"
     // Kotlin
     ext.kotlin_version = '1.3.11'
 
